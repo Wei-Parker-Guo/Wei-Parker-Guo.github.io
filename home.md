@@ -10,25 +10,25 @@ Thanks for visiting! These are the areas I want to show you:
 <div class="container_flex">
 
   <div>
-     <i class="icon_button material-icons" style="font-size: 7rem;"
+     <i class="icon_button material-icons"
      href="">sentiment_very_satisfied</i>
      <p class="no_line_height">Portfolio</p>
    </div>
 
    <div>
-     <i class="icon_button material-icons" style="font-size: 7rem;"
+     <i class="icon_button material-icons"
      href="">catching_pokemon</i>
      <p class="no_line_height">Projects</p>
    </div>
 
    <div>
-     <i class="icon_button material-icons" style="font-size: 7rem;"
+     <i class="icon_button material-icons"
      href="">pie_chart</i>
      <p class="no_line_height">Gallery</p>
    </div>
 
    <div>
-     <i class="icon_button material-icons" style="font-size: 7rem;"
+     <i class="icon_button material-icons"
      href="">cookie</i>
      <p class="no_line_height">Blogs</p>
    </div>
@@ -55,8 +55,7 @@ Game is such a device. If a person is defined by being a businessman, how come h
 
 That's why I enjoy building games and talking about them. It's an especially urgent craft for today's world. When technology reversely determines what we can do and think, game could very well be the last resort of our significance and creativity. To quote Chaplin on this:
 
-> We have developed speed, but we have shut ourselves in. Machinery that gives abundance has left us in want. Our knowledge as made us cynical; our cleverness, hard and unkind. We think too much and feel too little.<br>...<br>machine men with machine minds and machine hearts!
+> We have developed speed, but we have shut ourselves in. Machinery that gives abundance has left us in want. Our knowledge has made us cynical; our cleverness, hard and unkind. We think too much and feel too little.<br>...<br>machine men with machine minds and machine hearts!
 
 I hope to share my thoughts and methodologies on crafting the experience of play through video games. I wish you can share this crude little web of mine, and then we shall build greater stuff together.
-
 </div>
