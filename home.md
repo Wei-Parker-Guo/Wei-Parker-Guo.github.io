@@ -30,7 +30,7 @@ Thanks for visiting! These are the areas I want to show you:
    </div>
 
    <div>
-    <a class="no-link-color" href="/blog/">
+    <a class="no-link-color" href="/blog">
      <i class="icon_button material-icons">cookie</i>
    </a>
      <p class="no_line_height">Blogs</p>

@@ -68,6 +68,8 @@ We cannot offer explicit instructions to anyone about autotelos, just as we cann
 
 There are six such systems observed by the author, and here they are, explained:
 
+---
+
 > Voluntarily find and face hard challenges.
 
 In other words, constantly breaking the comfort zone could yield endless rewards. When we are bored we pretend the trash bin to be a basketball basket. We pretend floor as lava and sofa as islands. We pose challenges for ourselves and can naturally claim rewards from them.
@@ -91,6 +93,8 @@ Reporters always have this revelation. Chasing after deep stories is not just to
 > Trigger curiosity.
 
 Curiosity could be triggered by oneself from the most mundane setups. A ritual is a manifesto of such a behaviour. For example, we could make any day interesting by giving it a “ritual name”. By calling some common day an “anniversary”, we are suddenly very curious about what might go on during it. Similarly, when we buy [blind boxes(ガシャポン)](https://en.wikipedia.org/wiki/Gashapon#Blind-boxes), satisfying curiosity is the biggest motive.
+
+---
 
 The list is far from complete. Autotelic systems are presented in so many ways, that their number might be as large as the number of life forms on this planet. In fact, I think life is perhaps one of the most basic autotelic phenomena: it generates and fulfils its own purpose. Game, therefore, is essentially an experience of life.
 
