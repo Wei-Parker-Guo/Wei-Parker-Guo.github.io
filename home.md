@@ -3,10 +3,12 @@ layout: home
 title: Home
 permalink: /
 ---
+
 <div class="text_block" markdown="1">
 # Index
 Thanks for visiting! These are the areas I want to show you:
 </div>
+
 <div class="container_flex">
 
   <div>
@@ -28,12 +30,34 @@ Thanks for visiting! These are the areas I want to show you:
    </div>
 
    <div>
-     <i class="icon_button material-icons"
-     href="">cookie</i>
+    <a class="no-link-color" href="/blog/">
+     <i class="icon_button material-icons">cookie</i>
+   </a>
      <p class="no_line_height">Blogs</p>
    </div>
 
 </div>
+
+<div class="text_block" markdown = "1">
+# Progression
+Some progress on this site. Gamified!
+</div>
+
+<div class="container_flex">
+  <div>
+    Posts Published: 2/50<br>
+    <progress class="long-progress" value="2" max="50"></progress>
+  </div>
+  <div>
+    Chars Published: 31.806k/100k<br>
+    <progress class="long-progress" value="31.806" max="100"></progress>
+  </div>
+  <div>
+    Reading Time: 0.365/24 hrs<br>
+    <progress class="long-progress" value="0.365" max="24"></progress>
+  </div>
+</div>
+
 <div class="text_block" markdown="1">
 # Through the looking-glass, found.
 
@@ -58,4 +82,15 @@ That's why I enjoy building games and talking about them. It's an especially urg
 > We have developed speed, but we have shut ourselves in. Machinery that gives abundance has left us in want. Our knowledge has made us cynical; our cleverness, hard and unkind. We think too much and feel too little.<br>...<br>machine men with machine minds and machine hearts!
 
 I hope to share my thoughts and methodologies on crafting the experience of play through video games. I wish you can share this crude little web of mine, and then we shall build greater stuff together.
+</div>
+
+<div class="text_block" markdown="1">
+# Disclaimers
+
+<b>Pronoun Usage: </b>In my writing situation often arises for the usage of gender neutral pronouns. For the ease of reading, sometimes "he/she" is abbreviated as "he". This by no means conveys any message of gender bias from the author.
+
+<b>Personal Opinions: </b>As this is a personal blog, a lot of personal opinions exist throughout the posts. I stand by the first amendment of free speech, and welcome discussions on them.
+
+<b>References: </b>I try to provide references to others' works throughout the posts following IEEE standards. As this is a personal blog, exact quotations are not made sometimes for ease of reading. However, I make sure every referenced work is presented in the footnotes.
+
 </div>

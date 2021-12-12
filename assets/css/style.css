@@ -28,13 +28,22 @@ b {
   margin-right: auto;
 }
 
+.text-right {
+  text-align: left !important;
+}
+
 .icon_button {
-	font-size: 7rem;
+	font-size: 156px;
 }
 
 .icon_button:hover {
 	color: #00BFFF;
 	cursor: pointer;
+}
+
+.long-progress {
+  width: 28rem;
+  height: 1.7rem;  
 }
 
 .no_line_height {
