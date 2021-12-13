@@ -5,7 +5,7 @@ highlighter:      rouge
 # Setup
 title:            Wei Guo
 tagline:          'Building CG, AI & ART in video games.'
-description:      'Building CG, AI & ART in video games.'
+description:      'I am working on video games with major interest in graphics. I enjoy the rendering, simulation and procedural generation of digital assets.'
 url:              https://wei-parker-guo.github.io
 baseurl:          ''
                   # the optional subpath of your site, e.g. "/blog"
@@ -13,6 +13,14 @@ baseurl:          ''
                   # If you want to move just the blog index pages but keep
                   # other pages at root, see the paginate_path and
                   # sidebar_blog_link below.
+logo: /assets/img/logo.png
+
+social:
+  name: Wei Guo
+  links:
+    - https://github.com/Wei-Parker-Guo
+
+google_site_verification: 'I9SaJvNiWmomKQr5NkmIZ5p33h01P5N_LSZQC6_qa6o'
 
 author:
   name:           'Wei Guo'
@@ -26,6 +34,7 @@ plugins:
   - jekyll-feed
   - jekyll-gist
   - jekyll-paginate
+  - jekyll-seo-tag
 
 # Sidebar link settings
 sidebar_home_link:  false

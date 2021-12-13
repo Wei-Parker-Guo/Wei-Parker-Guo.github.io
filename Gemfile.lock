@@ -64,6 +64,8 @@ GEM
     jekyll-paginate (1.1.0)
     jekyll-sass-converter (2.1.0)
       sassc (> 2.0.1, < 3.0)
+    jekyll-seo-tag (2.7.1)
+      jekyll (>= 3.8, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (2.3.1)
@@ -103,6 +105,10 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.1, >= 2.1.4)
+  jekyll-feed
+  jekyll-gist
+  jekyll-paginate
+  jekyll-seo-tag
   jekyll-theme-hydeout!
 
 BUNDLED WITH
