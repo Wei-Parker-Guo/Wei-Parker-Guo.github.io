@@ -4,13 +4,11 @@ title: About
 sidebar_link: true
 ---
 
-<div style="display: table;">
-	<div style="float: left; width: 30%;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+	<div style="flex: 1 1 auto; min-width: 9rem;max-width: 9rem;">
 		<img src="assets/img/me.png" alt="My Photo"/>
 	</div>
-	<div style="float: left; width: 5%;"><br></div>
-	<div style="float: left; width: 65%;">
-		<br>
+	<div style="flex: 2 2 auto; padding-left: 1.25rem; padding-right: 1.25rem;">
 		<h1>Hi, my name is Wei.<br>I'm building video games.</h1>
 	</div>
 </div>

@@ -39,6 +39,16 @@ The relationship among these three elements of flow could be illustrated as:
 The author argues that a game beats many devices in achieving flow mainly because of its _automatic challenge adjustment_ feature, i.e. the rules of a game are dynamically adjusted by algorithms to give each player hand-crafted challenges. These challenges are just enough to keep their target busy, while not too discouraged to give up. In reality, such balance is difficult to maintain since the task assignment system is usually static and not individual-specific.
 
 A game can push a player to his/her limits without breaking the good spirit, and always adjust the challenges in time to account for fluctuations. A person might be too sick to enjoy his office work some day, but can still find a good pace in a well-designed game. The experience of play, in other words, is mostly a _self-fulfilling prophecy_: we meet the just-right challenges we unknowingly set up for ourselves, always attaining satisfaction.
+
+<div class="blog-creature">
+  <div class="b-icon">
+    <img src="/assets/img/z-icons/z-smile.svg" alt="Dr.Ziegler">
+  </div>
+  <div class="z-lines">
+  Game lets us enjoy challenges with its <b>objective, challenges and feedback!</b> The <b>flows</b> generated from <b>just-right challenges</b> give joy!
+  </div>
+</div>
+
 ## 2. From exotelic to autotelic.
 > Autotelic, in greek as αὐτοτελής (autotelēs), formed from αὐτός (autos, "self") and τέλος (telos, "end" or "goal").[^4]
 
@@ -60,7 +70,14 @@ A game designer can hardly control this process, because the external rewards in
 
 Whenever a game becomes exotelic for players, its essence is poisoned. A game that could only promise joy from badges earned, players beaten or coins earned is no longer a game: it becomes yet another reality simulator, making people suffer rather than entertained. This is the most despicable thing a game designer could do. It’s a murder of a player’s time and soul. He/she sits down tonight to regain the ability to enjoy life by oneself, but is relentlessly denied. Even worse, the player is tricked into sacrificing his/her time for even more torture from shallow desires and hopeless lies.
 
-We have been talking about the danger of encouraging exotelic behaviours for a while now. One would naturally pose the next question: how do we keep players in the autotelic state, or better, help them discover autotelic happiness? 
+<div class="blog-creature">
+  <div class="b-icon">
+    <img src="/assets/img/l-icons/l-question.svg" alt="Lili">
+  </div>
+  <div class="l-lines">
+  We have been talking about the danger of encouraging exotelic behaviours for a while now. <b>But how do we keep players in the autotelic state and help them discover true happiness?</b>
+  </div>
+</div>
 
 The answer is to offer plenty of opportunities for a player to perform autotelic behaviours in a game. If 8 out of 10 actions a player could choose lead to autotelic revelations, then the guidance is already made.
 
@@ -105,6 +122,16 @@ Nevertheless, we could think along certain directions of human needs and see if 
 - We all want to surpass personal significance and work for something bigger than our own careers.
 
 Another thing we can do is to promise rewards instead of offering them straightaway. This will get external hijacking out of the way. One thing to note here is that the promise should be simple and straightforward enough to take effect. If someone rings a bell, the simplest promise is hearing a ring. Indirect promises, such as being served dinner, are not powerful enough for guidance.
+
+<div class="blog-creature">
+  <div class="b-icon">
+    <img src="/assets/img/z-icons/z-smile.svg" alt="Dr.Ziegler">
+  </div>
+  <div class="z-lines">
+  <b>Offering autotelic systems</b> and <b>promising instead of giving a lot of external rewards</b> help players to find autotelic joy!
+  </div>
+</div>
+
 ## 3. Towards blissful productivity.
 > Blissful Productivity: The idea that playing in a game makes you happier working hard, than you would be relaxing. Essentially, we’re optimised as human beings by working hard, and doing meaningful and rewarding work.[^6]
 
@@ -121,7 +148,14 @@ We can consider a game as consisted of several tasks, each constituting a separa
 
 I think the formula provided can be very handy in measuring blissful productivity without personal bias. All the terms have existent metrics in reality, e.g. engagement could be measured by APM and outcome by probability distributions. We then have a fair metric to compare blissful productivity offered by different game designs, and could also use the result to optimise our own projects.
 
-Now that we know what factors contribute to blissful productivity, it’s time to dive into each factor and see how we can implement them better in practise.
+<div class="blog-creature">
+  <div class="b-icon">
+    <img src="/assets/img/l-icons/l-question.svg" alt="Lili">
+  </div>
+  <div class="l-lines">
+  Now that we know what factors contribute to blissful productivity, <b>how can we implement them better in practise?</b>
+  </div>
+</div>
 
 ### How to set up clear outcomes.
 As we have already established, a clear set of outcomes must have low entropy whenever a player is done with a task. This means we can’t leave the player to “guess” his outcomes when a task is finished. Instead, we must emphasise the consequences. This is best manifested in the “+1” mechanism of many games, where a player will receive realtime feedback once he succeeds in a task: +1 intelligence, +1 experience, +1 health and so on.

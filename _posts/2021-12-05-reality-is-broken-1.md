@@ -37,6 +37,16 @@ With a cross reference table drawn on these 4 features, we can easily see how ga
 | Game | Accurate, fixed. | Easily understood, often with no instructions. | Realtime, significant feedback. | Ample choices, positive failure. |
 
 Apparently reality work scores poorly on all 4 features. Game, therefore, is an essential work supplement to help people find happiness. The key point to take away here is that people don’t _hate_ work: to the opposite, they love it and can’t live without one. Work in reality, however, is just too far from its ideal state to make people engaged.
+
+<div class="blog-creature">
+  <div class="b-icon">
+    <img src="/assets/img/z-icons/z-smile.svg" alt="Dr.Ziegler">
+  </div>
+  <div class="z-lines">
+  Game is work. But game is <b>better work</b> that people actually enjoy!
+  </div>
+</div>
+
 ## Game/Work Dynamics
 This is where my opinion differs from the author’s: instead of examining each feature separately, we should analyse them under a single system, with a single ruling quantity. We will call this quantity “game energy”. I will introduce the idea first, and then explain my rationales for devising such an analysis framework.
 
@@ -86,13 +96,32 @@ Let’s draw the resulted graph:
 ![](/assets/img/2021-12-05/extra_energy.jpg)
 It can be observed that rules need extra energy devoted into the system, which means a player needs to contribute more than just sitting there and watching a movie. Feedbacks, on the other hand, steep the curve downward between rules, s.t. the gamified work is not too windy/requiring to accomplish.
 
-We have successfully formalised all the observations from McGonigal into our dynamical system of work. But why? Why take all these efforts in deriving such an abstract analysis framework? Well, I will give my rationales for doing it.
+We have successfully formalised all the observations from McGonigal into our dynamical system of work.
+
+<div class="blog-creature">
+  <div class="b-icon">
+    <img src="/assets/img/l-icons/l-question.svg" alt="Lili">
+  </div>
+  <div class="l-lines">
+  But why? Why take all these efforts in deriving such an abstract analysis framework?
+  </div>
+</div>
+
 ## Rationales for Deriving Game Dynamics
 > What I cannot create, I do not understand.
 
 Yes, it begins with the good old Feynman quote. Trying to come up with a single theory/system that explains how game works is a first step towards designing one in my opinion.
 
 We have been immersed in so many theories from psychology, behavioural science and human-computer interaction in game design. They are all very valid knowledge, often experimentally-proven. However, why people enjoy game remains a mystery. See the discrepancy here yet? We have the notion of game but can’t explain it clearly even though it’s a fundamental human trait. When we approach a game project today, we can rely on nothing but the “many-to-one” approach: view it either as a software, behaviour or experience, jumping from perspectives and drawing conclusions.
+
+<div class="blog-creature">
+  <div class="b-icon">
+    <img src="/assets/img/z-icons/z-concerned.svg" alt="Dr.Ziegler">
+  </div>
+  <div class="z-lines">
+  We don't gave a <b>unified theory</b> for games yet. We have to rely on other disciplines to define/design them.
+  </div>
+</div>
 
 There is nothing wrong with this approach. However, it shows that we do not fully understand game in the best case. We understand many other things relatively better than game: if you drop a ball, it will fall, that’s gravity. If you vibrate air in a certain frequency, you can hear a specific sound, that’s musical note. These theories, no matter how simple or complex, could all be expressed compactly and experimented upon. We can’t do the same to game yet. We have some vague ideas on what disciplines it might be relevant to, and then try to stitch it up with patches. We cannot use game as a fundamental unit in shaping reality, while we can use mechanics and other knowledge to build great inventions. We cannot design a game with a “one-to-many” blueprint, a unified theory that gives birth to all games.
 

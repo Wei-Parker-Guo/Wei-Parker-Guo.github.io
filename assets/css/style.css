@@ -8,10 +8,14 @@ b {
   font-weight: normal;
 }
 
+hr {
+  border-color: #A24142;
+}
+
 .container_flex {
     display: flex;
     flex-wrap: wrap;
-    max-width: 66%;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
 }
@@ -33,7 +37,11 @@ b {
 }
 
 .icon_button {
-	font-size: 156px;
+	font-size: 6.1rem;
+}
+
+.icon_button_small {
+  font-size: 5.1rem;
 }
 
 .icon_button:hover {
@@ -41,11 +49,72 @@ b {
 	cursor: pointer;
 }
 
-.long-progress {
-  width: 28rem;
-  height: 1.7rem;  
+.icon_button_small:hover {
+  color: #00BFFF;
+  cursor: pointer;
 }
 
 .no_line_height {
 	line-height: 0;
+}
+
+.blog-creature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px;
+}
+
+.b-icon {
+  flex: 1 1 auto;
+  max-width: 5rem;
+  padding-right: 9px;
+}
+
+.z-lines {
+  flex: 2 2 auto;
+  border-style: dashed;
+  border-radius: 11px;
+  border-color: #E87572;
+  padding: 9px;
+  max-width: 31rem;
+}
+.l-lines {
+  flex: 2 2 auto;
+  border-style: dashed;
+  border-radius: 11px;
+  border-color: #65C9FF;
+  padding: 9px;
+  max-width: 31rem;
+}
+.l-lines b {
+  color: #65C9FF;
+}
+.b-lines {
+  flex: 2 2 auto;
+  border-style: dashed;
+  border-radius: 11px;
+  border-color: #F9B97A;
+  padding: 9px;
+  max-width: 31rem;
+}
+.b-lines b {
+  color: #F9B97A;
+}
+
+/*Progress Bar*/
+.progress-bar {
+  width: 21rem;
+  max-width: 21rem;
+  height: 5rem;
+}
+
+/* Desktop View */
+@media (min-width: 49rem) {
+  .icon_button {
+    font-size: 7rem;
+  }
+  hr {
+  border-color: #f9f9f9;
+}
 }
