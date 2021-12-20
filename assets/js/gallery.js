@@ -1,28 +1,6 @@
 function make_gallery(id) { //make a gallery of the div with that id
-    var folder = $('#'+id).attr('folder');
-    var photo_vals = new Array();
 
-    $.ajax({ //use synchronious ajax to get list of photos
-            url : folder,
-            async: false,
-            success: function (data) {
-                $(data).find("a").attr("href", function (i, val) {
-                    if( val.match(/\.(jpe?g|png|gif)$/) ) {
-                        photo_vals.push(val);
-                    }
-                });
-            }
-        });
-
-
-    var photos = new Array();
-
-    for (var i = 0; i < photo_vals.length; i++) {
-        var val = photo_vals[i];
-        var fn = val.substring(0, val.lastIndexOf('.')); //filename without extension
-        photos.push({ src: val, srct: 'thumbs/'+fn+'.jpg', title: fn });
-    }
-
+    //create gallery
     $('#'+id).nanogallery2( {
         // GALLERY AND THUMBNAIL LAYOUT
         galleryMosaic : [                       // default layout
@@ -102,12 +80,52 @@ function make_gallery(id) { //make a gallery of the div with that id
     
         // DEEP LINKING
         locationHash: true,
-
-        itemsBaseURL:     folder,
         
         // ### gallery content ### 
-        items: photos
+        items: []
       });
+
+    //retrieve data and instance of the new gallery
+    var ngy2data = $('#'+id).nanogallery2('data');
+    var instance = $('#'+id).nanogallery2('instance');
+
+    //get photo folder from github repo using github api
+    var owner = $('#'+id).attr('owner');
+    var repo = $('#'+id).attr('repo');
+    var path = $('#'+id).attr('path');
+    var photos = new Array();
+    var photo_thumbs = new Array();
+
+    (async () => {
+        const response = await fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+path);
+        const data = await response.json();
+        const response_t = await fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+path+'/thumbs');
+        const data_t = await response_t.json();
+        //write
+        for (let file of data) {
+          if( file.name.match(/\.(jpe?g|png|gif)$/) ) photos.push(file);
+        }
+        for (let file of data_t) {
+          if( file.name.match(/\.(jpe?g|png|gif)$/) ) photo_thumbs.push(file);
+        }
+        //add new photos
+        for (var i = 0; i < photos.length; i++) {
+            var ID = ngy2data.items.length + 1;
+            var albumID = '0';
+            var newItem = NGY2Item.New(instance, photos[i].name.replace(/\.[^/.]+$/, ""), '', ID, albumID, 'image', '' );
+
+            // define thumbnail -> image displayed in the gallery
+            newItem.thumbSet( photo_thumbs[i].download_url, 180, 220); // w,h
+
+            // define URL of the media to display in lightbox
+            newItem.setMediaURL( photos[i].download_url, 'img');
+
+            // add new item to current Gallery Object Model (GOM) 
+            newItem.addToGOM();
+        }
+        // refresh the display (-> only once if you add multiple items)
+        $('#'+id).nanogallery2('resize');
+    })()
 }
 
 $(document).ready( function () {
