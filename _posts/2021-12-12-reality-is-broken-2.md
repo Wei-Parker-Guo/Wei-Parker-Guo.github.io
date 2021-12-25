@@ -5,7 +5,8 @@ categories:
 - Game Design
 tags:
 - Game Philosophy
-- Game Mechanisms
+- Game 
+- Reading Notes
 ---
 
 Reading Time: 13 min 30 sec
@@ -14,7 +15,7 @@ In the [previous post]({% post_url 2021-12-05-reality-is-broken-1 %}) on _Realit
 
 In this post we are gonna review the first 3 of the 7 traits of game that enhance reality, summarised by the author. These traits are mostly derived from psychological observations. The idea of this post is to provide a concise but ample explanation for each trait, so that it could be easily applied in game designs. In some of them I will also enclose more relevant theories, and several opinions of my own.
 
-It should be noted that the theories in this post, no matter how convincing, usually stay within the perspectives of psychology/philosophy. Game, or play, is a fundamental feature of human being, but disciplines are not (J. Huizinga)[^2]. Therefore, these theories should serve as an errata-check rather than a cookbook for a game project: we refer to them in the hope of avoiding some mistakes, but never engineering the whole experience from them.
+It should be noted that the theories in this post, no matter how well constructed and proven, usually stay within the perspectives of psychology/philosophy. Game, or play, is a fundamental feature of human being, but disciplines are not (J. Huizinga)[^2]. Therefore, these theories should serve as an errata-check rather than a cookbook for a game project: we refer to them in the hope of avoiding some mistakes, but never engineering the whole experience from them.
 
 Let’s go through the first 3 traits now.
 ## 1. Meeting positive challenges.
@@ -192,7 +193,7 @@ The discussion of how to design these tasks needs too much space because we are 
 Blissful productivity has many other mechanisms which could be considered in game designs. This section serves as an introduction to the general concept and popular applications.
 
 ## Recap
-This concludes the first three traits mentioned by McGonigal in _Reality Is Broken_. Hopefully I have provided some insights on them that could help in your project. We are gonna discuss the rest four traits in the next post. Thanks for reading.
+This concludes the first three traits mentioned by McGonigal in _Reality Is Broken_. Hopefully I have provided some insights on them that could help in your project. We are gonna discuss the rest in the [next post]({% post_url 2021-12-25-reality-is-broken-3 %}). Thanks for reading.
 
 [^1]:	J. McGonigal, Reality is broken: why games make us better and how they can change the world. New York: Penguin Press, 2011.
 

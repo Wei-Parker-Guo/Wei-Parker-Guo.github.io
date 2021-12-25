@@ -48,14 +48,14 @@ Thanks for visiting! These are the areas I want to show you:
 Some progress on this site. Gamified!
 
 <div class="container_flex">
-  <div id="progress-bar-0" class="progress-bar" value="3" max="10">
-    Posts Published: 3/10
+  <div id="progress-bar-0" class="progress-bar" value="4" max="10">
+    Posts Published: 4/10
   </div>
-  <div id="progress-bar-1" class="progress-bar" value="42.838" max="100">
-    Chars Published: 42.838k/50k
+  <div id="progress-bar-1" class="progress-bar" value="44.882" max="100">
+    Chars Published: 44.882k/50k
   </div>
-  <div id="progress-bar-2" class="progress-bar" value="0.490" max="1">
-    Reading Time: 0.490/1 hrs
+  <div id="progress-bar-2" class="progress-bar" value="0.632" max="1">
+    Reading Time: 0.632/1 hrs
   </div>
 </div>
 

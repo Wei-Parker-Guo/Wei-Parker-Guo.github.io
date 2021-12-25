@@ -6,6 +6,7 @@ categories:
 tags:
 - Game Dynamics
 - Game Philosophy
+- Reading Notes
 ---
 
 Reading Time: 8 min 33 sec
