@@ -5,7 +5,6 @@ categories:
 - Game Design
 tags:
 - Game Philosophy
-- Game 
 - Reading Notes
 ---
 

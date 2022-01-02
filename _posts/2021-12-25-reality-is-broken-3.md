@@ -4,7 +4,6 @@ title: "Building Social Bonds: Notes on Reality Is Broken, Part III"
 categories: 
 - Game Design
 tags:
-- Game Dynamics
 - Game Philosophy
 - Reading Notes
 ---
