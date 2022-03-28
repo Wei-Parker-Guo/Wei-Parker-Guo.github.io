@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sketchfab - Cluster Layout</title>
+
+    <!-- Insert this script -->
+    <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"></script>
+    <script type="text/javascript" src="../logging/logging.js"></script>
+</head>
+
+<body>
+    <!-- Insert an empty iframe with attributes -->
+    <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" style="display: block; margin: 3% auto;" width="1024" height="576"></iframe>
+
+    <p style="width: 100%;text-align: center;font-size: 17pt;">
+        Hover on the cluster buttons <img src="./logo.png" width="32"> to expand annotations. Click on anywhere else in the screen to deselect a cluster.
+        <br><br>
+        One by one, click on annotations <b>3</b>, <b>4</b> and <b>5</b> until progress bar is full.
+    </p>
+
+    <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
+        <div id='pbar' style="width: 1%; height: 1.75rem; background-color: green;"></div>
+    </div>
+
+    <!-- Initialize the viewer -->
+    <script type="text/javascript" src="./logo.js"></script>
+    <script type="text/javascript">
+
+    var iframe = document.getElementById( 'api-frame' );
+    var uid = 'ae89eaa902574329a3444f5d80461f7f';
+
+    // By default, the latest version of the viewer API will be used.
+    var client = new Sketchfab( iframe );
+
+    // Alternatively, you can request a specific version.
+    // var client = new Sketchfab( '1.12.0', iframe );
+
+    //utilities
+    function array_add(a1, a2) {
+        r = [];
+        for (i in a1) {
+            r.push(a1[i] + a2[i]);
+        }
+        return r;
+    }
+
+    function array_add_ele(a1, x) {
+        r = [];
+        for (i in a1) {
+            r.push(a1[i] + x);
+        }
+        return r;
+    }
+
+    function array_div(a1, x) {
+        r = [];
+        for (i in a1) {
+            r.push(a1[i] / x);
+        }
+        return r;
+    }
+
+    function computePastilles(wCanvas, hCanvas, bgColor, bgBorderColor, fgColor, fgBorderColor, text, numHotspot, wPastille, hPastille) {
+      var wSize = wPastille / 10.0;
+      var col = wCanvas / wSize;
+      var row = hCanvas / wSize;
+      var padding = 2;
+      var w = wSize - padding;
+      var cx;
+      var cy = w * 0.5; //var cy = 24;
+
+      var ty = cy + 8;
+      var pastille = '';
+      var num = 0;
+
+      for (var i = 0; i < row; i++) {
+        cx = wSize * 0.5;
+
+        for (var k = 0; k < col; k++) {
+          num++;
+          var letters = text === 0 ? num : text[num];
+          var circle = "<circle cx=\"".concat(cx, "\"\n            cy=\"").concat(cy, "\"\n            r=\"20\"\n            fill=\"").concat(bgColor, "\"\n            stroke=\"").concat(bgBorderColor, "\"\n            stroke-width=\"2\"/>");
+          var textVG = "<text font-size=\"26\"\n          stroke=\"".concat(fgBorderColor, "\"\n          fill=\"").concat(fgColor, "\"\n          font-family=\"sans-serif\"\n          text-anchor=\"middle\"\n          alignment-baseline=\"baseline\"\n          x=\"").concat(cx, "\"\n          y=\"").concat(ty, "\">").concat(letters, "</text>");
+          pastille += circle + textVG;
+          cx += wSize;
+        }
+
+        cy += wSize;
+        ty += wSize;
+      }
+
+      var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('version', '1.1');
+      s.setAttribute('baseProfile', 'full');
+      s.setAttribute('width', wPastille);
+      s.setAttribute('height', hPastille);
+      s.setAttribute('viewBox', "0 0 ".concat(wPastille, " ").concat(hPastille));
+      s.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      s.innerHTML = pastille; // make it base64
+
+      var svg64 = btoa(s.outerHTML);
+      var b64Start = 'data:image/svg+xml;base64,';
+      var image64 = b64Start + svg64;
+      var textureOptions = {
+        url: image64,
+        colNumber: col,
+        padding: padding,
+        iconSize: w
+      };
+      return textureOptions;
+    }
+
+    function getNewPastilleURL(bgColor, bgBorderColor, fgColor, fgBorderColor, text, numHotspot, w, h) {
+      var imageData;
+      imageData = computePastilles(w, h, bgColor, bgBorderColor, fgColor, fgBorderColor, text, numHotspot, w, h);
+      return imageData;
+    }
+
+    client.init(uid, {
+        success: function onSuccess( api ){
+            api.start();
+            api.addEventListener( 'viewerready', function() {
+
+                // API is ready to use
+                // Insert your code here
+                console.log( 'Viewer is ready' );
+                // log starting time
+                loggingjs.logEvent(null, 'ClusterTrialStart', {
+                    eventName: 'ClusterTrialStart',
+                    model: 'well-spread'
+                });
+
+                //get list of annotations
+                api.getAnnotationList(function(err, annotations) {
+                    if (!err) {
+                        var eyes = [];
+                        var positions = [];
+                        var targets = [];
+                        var pbar = document.getElementById('pbar');
+
+                        //define arbitary tasks and clusters here
+                        tasks = [2, 3, 4];
+                        completed_tasks = [];
+                        total_tries = 0;
+                        clusters = [
+                            [1, 2],
+                            [0],
+                            [3, 4]
+                        ];
+
+                        for (i in annotations) {
+                            var a = annotations[i];
+                            eyes.push(a.eye);
+                            positions.push(a.position);
+                            targets.push(a.target);
+                            //hide all annotations first
+                            api.hideAnnotation(i);
+                        }
+
+                        //create annotations for each cluster
+                        for (i in clusters) {
+                            as = clusters[i];
+                            pos = [0, 0, 0];
+                            eye = [0, 0, 0];
+                            target = [0, 0, 0];
+                            for (a in as) {
+                                pos = array_add(pos, positions[as[a]]);
+                                eye = array_add(eye, eyes[as[a]]);
+                                target = array_add(target, targets[as[a]]);
+                            }
+                            pos = array_div(pos, as.length);
+                            eye = array_div(eye, as.length);
+                            target = array_div(target, as.length);
+                            //create
+                            api.createAnnotationFromWorldPosition(pos, eye, target, `Cluster ${array_add_ele(as, 1)}`, '');
+                        }
+
+                        //style cluster annotations
+                        api.setAnnotationsTexture({
+                                    url: imgBLogo,
+                                    padding: 2,
+                                    iconSize: 48,
+                                    colNumber: 10
+                                  }, function () {});
+                        //hovering, enter and leave
+                        api.addEventListener('annotationMouseEnter', function(index) {
+                            if (index >= annotations.length) {
+                                api.gotoAnnotation(index, {preventCameraAnimation: true, preventCameraMove: true});
+                            }
+                        });
+                        api.addEventListener('annotationBlur', function(index) {
+                            if (index >= annotations.length) {
+                                //restore style
+                                api.setAnnotationsTexture({
+                                    url: imgBLogo,
+                                    padding: 2,
+                                    iconSize: 48,
+                                    colNumber: 10
+                                }, function () {});
+                                //show
+                                for (i=0; i < clusters.length + annotations.length; i++) {
+                                    if (i >= annotations.length)
+                                        api.showAnnotation(i);
+                                }
+                            }
+                            else {
+                                for (i=0; i < clusters.length + annotations.length; i++) {
+                                    if (i >= annotations.length)
+                                        api.showAnnotation(i);
+                                    else
+                                        api.hideAnnotation(i);
+                                }
+                                api.setAnnotationsTexture({
+                                    url: imgBLogo,
+                                    padding: 2,
+                                    iconSize: 48,
+                                    colNumber: 10
+                                }, function () {});
+                            }
+                        });
+                        //add selection funcs
+                        api.addEventListener('annotationFocus', function(index) {
+                            if (index >= annotations.length) {
+                                for (a in clusters[index - annotations.length]) {
+                                    api.showAnnotation(clusters[index - annotations.length][a]);
+                                }
+                                //hide other annotation
+                                for (i=0; i < clusters.length + annotations.length; i++) {
+                                    if (!clusters[index - annotations.length].includes(i))
+                                        api.hideAnnotation(i);
+                                }
+                                //restyle annotations
+                                url = getNewPastilleURL('rgba(0,0,0,0.50)', 'white', 'white', 'none', 0, 50, 512, 256);
+                                api.setAnnotationsTexture(url, function () {});
+                            }
+                            // if it's an original point, respawn clusters
+                            else {
+                                //show
+                                url = getNewPastilleURL('rgba(0,0,0,0.50)', 'white', 'white', 'none', 0, 50, 512, 256);
+                                api.setAnnotationsTexture(url, function () {});
+                                api.showAnnotation(index);
+                                //log selection
+                                total_tries += 1;
+                            }
+                            //log tasks
+                            if (tasks.includes(index) && !completed_tasks.includes(index)) {
+                                completed_tasks.push(index);
+                                //track progress
+                                pbar.style.width = 1 + 33 * completed_tasks.length + '%';
+                                //logging
+                                loggingjs.logEvent(null, 'ClusterSubTrialEnd', {
+                                    eventName: 'ClusterSubTrialEnd',
+                                    model: 'well-spread'
+                                });
+                                if (completed_tasks.length == 3) {
+                                    // error rate
+                                    loggingjs.logEvent(null, 'ClusterTrialErrorRate', {
+                                        eventName: 'ClusterTrialErrorRate',
+                                        model: 'well-spread',
+                                        error_rate: 1 - completed_tasks.length / total_tries
+                                    });
+                                    // end time
+                                    loggingjs.logEvent(null, 'ClusterTrialEnd', {
+                                        eventName: 'ClusterTrialEnd',
+                                        model: 'well-spread'
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+            } );
+        },
+        error: function onError() {
+            console.log( 'Viewer error' );
+        },
+        autostart: 1,
+    });
+
+    </script>
+</body>
+</html>

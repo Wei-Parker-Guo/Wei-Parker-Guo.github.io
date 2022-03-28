@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sketchfab - List Layout</title>
+
+    <!-- Insert this script -->
+    <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"></script>
+    <script type="text/javascript" src="../logging/logging.js"></script>
+</head>
+
+<body style="display: flex">
+    <div>
+        <div style="display:flex; justify-content: center;">
+            <p style="width: 70%; text-align: center; font-size: 17pt">
+                Welcome to the list layout tutorial! This tutorial aims simulate how the trial will be carried
+                out. Please feel free to play around with the list of annotations on the right to navigate between annotations as this will help you gain familiarity with the layout before starting on the task.
+            </p>
+        </div>
+        
+        <div style="display:flex;">
+            <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+            execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen
+            mozallowfullscreen="true" webkitallowfullscreen="true" style="display: block; margin: 3% auto" width="1024"
+            height="576"></iframe>
+
+            <div id="myItemList" style="display:flex;align-items: center;margin-right: auto;"></div>
+        </div>
+        
+
+        <!-- Initialize the viewer -->
+        <script type="text/javascript">
+            var iframe = document.getElementById("api-frame");
+            var uid = "a81a3dbe18784734bc11b2725cc40448";
+
+            // By default, the latest version of the viewer API will be used.
+            var client = new Sketchfab(iframe);
+
+            // Alternatively, you can request a specific version.
+            // var client = new Sketchfab( '1.12.0', iframe );
+
+            client.init(uid, {
+                success: function onSuccess(api) {
+                    ul = document.createElement("ul");
+                    ul.style.cssText = "display: flex; flex-direction: column;";
+
+                    document.getElementById("myItemList").appendChild(ul);
+
+                    api.start();
+                    api.addEventListener("viewerready", function () {
+                        loggingjs.logEvent(null, "ListTrialStart", {
+                            eventName: "ListTrialStart",
+                            model: "tutorial",
+                        });
+
+                        api.getAnnotationList(function (err, annotations) {
+                            if (!err) {
+                                annotations.forEach((annotation, index) => {
+                                    let button = document.createElement("button");
+                                    ul.appendChild(button);
+                                    button.innerHTML += "Annotation " + (index + 1);
+                                    button.style.cssText = "padding:8px;width:240px;font-size:15px;margin-bottom:10px;border-radius:8px;"
+                                    button.addEventListener("click", function () {
+                                        api.gotoAnnotation(index, {
+                                            preventCameraAnimation: false,
+                                            preventCameraMove: false,
+                                        });
+                                    });
+                                });
+                            }
+                        });
+                    });
+                },
+                error: function onError() {
+                    console.log("Viewer error");
+                },
+                autostart: 1,
+            });
+        </script>
+    </div>
+</body>
+
+</html>
