@@ -22,7 +22,7 @@
     </div>
     <div style="display:flex; flex-direction: column; justify-content: center;">
       <p style="width: 100%; text-align: center; font-size: 17pt">
-        One by one, click on annotations <b>2</b>, <b>6</b> and <b>10</b>.
+        One by one, please click and read the titles for annotations <b>3</b>, <b>4</b>, <b>8</b>, <b>9</b> and <b>10</b> to complete this trial task.
       </p>
       <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
         <div id='pbar' style="width: 1%; height: 1.75rem; background-color: green;"></div>
@@ -58,7 +58,7 @@
             api.getAnnotationList(function (err, annotations) {
               var pbar = document.getElementById('pbar');
 
-              tasks = [1, 5, 9];
+              tasks = [2, 3, 7, 8, 9];
               completed_tasks = [];
               total_tries = 0;
               if (!err) {
@@ -81,13 +81,13 @@
                   if (tasks.includes(index) && !completed_tasks.includes(index)) {
                     completed_tasks.push(index);
                     //track progress
-                    pbar.style.width = 1 + 33 * completed_tasks.length + '%';
+                    pbar.style.width = 1 + 20 * completed_tasks.length + '%';
                     //logging
                     loggingjs.logEvent(null, 'ListSubTrialEnd', {
                       eventName: 'ListSubTrialEnd',
                       model: 'simple'
                     });
-                    if (completed_tasks.length == 3) {
+                    if (completed_tasks.length == 5) {
                       // error rate
                       loggingjs.logEvent(null, 'ListTrialErrorRate', {
                         eventName: 'ListTrialErrorRate',

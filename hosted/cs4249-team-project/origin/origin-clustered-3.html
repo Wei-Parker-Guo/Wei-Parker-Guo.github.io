@@ -15,7 +15,7 @@
     <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" style="display: block; margin: 3% auto;" width="1024" height="576"></iframe>
 
     <p style="width: 100%;text-align: center;font-size: 17pt;">
-        One by one, click on annotations <b>3</b>, <b>4</b> and <b>5</b> until progress bar is full.
+        One by one, click on annotations <b>5</b>, <b>12</b> and <b>20</b>.
     </p>
 
     <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
@@ -26,7 +26,7 @@
     <script type="text/javascript">
 
     var iframe = document.getElementById( 'api-frame' );
-    var uid = 'ae89eaa902574329a3444f5d80461f7f';
+    var uid = 'ea312cd63c07426ab3df275139525341';
 
     // By default, the latest version of the viewer API will be used.
     var client = new Sketchfab( iframe );
@@ -70,7 +70,7 @@
                 // log starting time
                 loggingjs.logEvent(null, 'OriginTrialStart', {
                     eventName: 'OriginTrialStart',
-                    model: 'well-spread'
+                    model: 'clustered'
                 });
 
                 //get list of annotations
@@ -82,7 +82,7 @@
                         var pbar = document.getElementById('pbar');
 
                         //define arbitary tasks here
-                        tasks = [2, 3, 4];
+                        tasks = [4, 11, 19];
                         completed_tasks = [];
                         total_tries = 0;
 
@@ -97,19 +97,19 @@
                                 //logging
                                 loggingjs.logEvent(null, 'OriginSubTrialEnd', {
                                     eventName: 'OriginSubTrialEnd',
-                                    model: 'well-spread'
+                                    model: 'clustered'
                                 });
                                 if (completed_tasks.length == 3) {
                                     // error rate
                                     loggingjs.logEvent(null, 'OriginTrialErrorRate', {
                                         eventName: 'OriginTrialErrorRate',
-                                        model: 'well-spread',
+                                        model: 'clustered',
                                         error_rate: 1 - completed_tasks.length / total_tries
                                     });
                                     // end time
                                     loggingjs.logEvent(null, 'OriginTrialEnd', {
                                         eventName: 'OriginTrialEnd',
-                                        model: 'well-spread'
+                                        model: 'clustered'
                                     });
                                 }
                             }

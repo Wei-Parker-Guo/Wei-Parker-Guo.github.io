@@ -4,34 +4,32 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sketchfab - List Layout</title>
+    <title>Sketchfab - Original Layout</title>
 
     <!-- Insert this script -->
     <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"></script>
     <script type="text/javascript" src="../logging/logging.js"></script>
 </head>
 
-<body style="display: flex">
+<body>
     <div>
-        <div style="display:flex; justify-content: center;">
+        <div style="display: flex; justify-content: center">
             <p style="width: 70%; text-align: center; font-size: 17pt">
-                Welcome to the list layout tutorial! This tutorial aims simulate how the trial will be carried
-                out. Please use the list view on the right to navigate around the model.
-                <br><br>
+                Welcome to the original layout tutorial! This tutorial aims simulate how
+                the trial will be carried out. Please navigate around the model using mouse clicks.
+                <br /><br />
                 Click on annotation <b>2</b> to complete this tutorial.
             </p>
         </div>
 
-        <div style="display:flex;">
+        <div style="display: flex">
             <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
                 execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen
                 mozallowfullscreen="true" webkitallowfullscreen="true" style="display: block; margin: 3% auto"
                 width="1024" height="576"></iframe>
-
-            <div id="myItemList" style="display:flex;align-items: center;margin-right: auto;"></div>
         </div>
-        <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
-            <div id='pbar' style="width: 1%; height: 1.75rem; background-color: green;"></div>
+        <div id="progress" style="width: 1024px; background-color: lightgray; margin: 0 auto">
+            <div id="pbar" style="width: 1%; height: 1.75rem; background-color: green"></div>
         </div>
 
         <!-- Initialize the viewer -->
@@ -45,37 +43,54 @@
             // Alternatively, you can request a specific version.
             // var client = new Sketchfab( '1.12.0', iframe );
 
+            //utilities
+            function array_add(a1, a2) {
+                r = [];
+                for (i in a1) {
+                    r.push(a1[i] + a2[i]);
+                }
+                return r;
+            }
+
+            function array_add_ele(a1, x) {
+                r = [];
+                for (i in a1) {
+                    r.push(a1[i] + x);
+                }
+                return r;
+            }
+
+            function array_div(a1, x) {
+                r = [];
+                for (i in a1) {
+                    r.push(a1[i] / x);
+                }
+                return r;
+            }
+
             client.init(uid, {
                 success: function onSuccess(api) {
-                    ul = document.createElement("ul");
-                    ul.style.cssText = "display: flex; flex-direction: column;";
-
-                    document.getElementById("myItemList").appendChild(ul);
-
                     api.start();
                     api.addEventListener("viewerready", function () {
-                        loggingjs.logEvent(null, "ListTrialStart", {
-                            eventName: "ListTrialStart",
-                            model: "tutorial",
-                        });
-
-                        api.getAnnotationList(function (err, annotations) {
-                            if (!err) {
-                                tasks = [1];
+                        // API is ready to use
+                        // Insert your code here
+                        console.log("Viewer is ready");
+                        // log starting time
+                        tasks = [1];
                                 completed_tasks = [];
                                 total_tries = 0;
-                                annotations.forEach((annotation, index) => {
-                                    let button = document.createElement("button");
-                                    ul.appendChild(button);
-                                    button.innerHTML += "Annotation " + (index + 1);
-                                    button.style.cssText = "padding:8px;width:240px;font-size:15px;margin-bottom:10px;border-radius:8px;"
-                                    button.addEventListener("click", function () {
-                                        api.gotoAnnotation(index, {
-                                            preventCameraAnimation: false,
-                                            preventCameraMove: false,
-                                        });
-                                    });
-                                });
+                        loggingjs.logEvent(null, "OriginTrialStart", {
+                            eventName: "OriginTrialStart",
+                            model: "simple",
+                        });
+
+                        //get list of annotations
+                        api.getAnnotationList(function (err, annotations) {
+                            if (!err) {
+                                var eyes = [];
+                                var positions = [];
+                                var targets = [];
+                                //define arbitary tasks here
                             }
                         });
                         api.addEventListener('annotationFocus', function (index) {
@@ -85,7 +100,6 @@
                                 pbar.style.width = '100%';
                             }
                         })
-
                     });
                 },
                 error: function onError() {

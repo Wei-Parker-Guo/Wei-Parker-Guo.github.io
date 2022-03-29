@@ -17,7 +17,7 @@
     <p style="width: 100%;text-align: center;font-size: 17pt;">
         Hover on the cluster buttons <img src="./logo.png" width="32"> to expand annotations. Click on anywhere else in the screen to deselect a cluster.
         <br><br>
-        One by one, click on annotations <b>3</b>, <b>4</b> and <b>5</b> until progress bar is full.
+        Please click and read the titles of annotations <b>5</b>, <b>12</b> and <b>20</b> until progress bar is full.
     </p>
 
     <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
@@ -29,7 +29,7 @@
     <script type="text/javascript">
 
     var iframe = document.getElementById( 'api-frame' );
-    var uid = 'ae89eaa902574329a3444f5d80461f7f';
+    var uid = 'ea312cd63c07426ab3df275139525341';
 
     // By default, the latest version of the viewer API will be used.
     var client = new Sketchfab( iframe );
@@ -129,7 +129,7 @@
                 // log starting time
                 loggingjs.logEvent(null, 'ClusterTrialStart', {
                     eventName: 'ClusterTrialStart',
-                    model: 'well-spread'
+                    model: 'clustered'
                 });
 
                 //get list of annotations
@@ -141,13 +141,13 @@
                         var pbar = document.getElementById('pbar');
 
                         //define arbitary tasks and clusters here
-                        tasks = [2, 3, 4];
+                        tasks = [4, 11, 19];
                         completed_tasks = [];
                         total_tries = 0;
                         clusters = [
-                            [1, 2],
-                            [0],
-                            [3, 4]
+                            [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                            [9, 10, 11, 12, 13, 14],
+                            [15, 16, 17, 18, 19]
                         ];
 
                         for (i in annotations) {
@@ -252,19 +252,19 @@
                                 //logging
                                 loggingjs.logEvent(null, 'ClusterSubTrialEnd', {
                                     eventName: 'ClusterSubTrialEnd',
-                                    model: 'well-spread'
+                                    model: 'clustered'
                                 });
                                 if (completed_tasks.length == 3) {
                                     // error rate
                                     loggingjs.logEvent(null, 'ClusterTrialErrorRate', {
                                         eventName: 'ClusterTrialErrorRate',
-                                        model: 'well-spread',
+                                        model: 'clustered',
                                         error_rate: 1 - completed_tasks.length / total_tries
                                     });
                                     // end time
                                     loggingjs.logEvent(null, 'ClusterTrialEnd', {
                                         eventName: 'ClusterTrialEnd',
-                                        model: 'well-spread'
+                                        model: 'clustered'
                                     });
                                 }
                             }

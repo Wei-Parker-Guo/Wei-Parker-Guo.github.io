@@ -21,7 +21,7 @@
       </div>
       <div style="display:flex; flex-direction: column; justify-content: center;">
         <p style="width: 100%; text-align: center; font-size: 17pt">
-        One by one, click on annotations <b>6</b>, <b>10</b> and <b>19</b>.
+            Please click and read the title of annotation <b>10</b> to complete this trial task.
       </p>
       <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
         <div id='pbar' style="width: 1%; height: 1.75rem; background-color: green;"></div>
@@ -55,7 +55,7 @@
             api.getAnnotationList(function (err, annotations) {
               var pbar = document.getElementById('pbar');
 
-              tasks = [5, 9, 18];
+              tasks = [9];
               completed_tasks = [];
               total_tries = 0;
               if (!err) {
@@ -78,13 +78,13 @@
                   if (tasks.includes(index) && !completed_tasks.includes(index)) {
                     completed_tasks.push(index);
                     //track progress
-                    pbar.style.width = 1 + 33 * completed_tasks.length + '%';
+                    pbar.style.width = '100%';
                     //logging
                     loggingjs.logEvent(null, 'ListSubTrialEnd', {
                       eventName: 'ListSubTrialEnd',
                       model: 'clustered'
                     });
-                    if (completed_tasks.length == 3) {
+                    if (completed_tasks.length == 1) {
                       // error rate
                       loggingjs.logEvent(null, 'ListTrialErrorRate', {
                         eventName: 'ListTrialErrorRate',

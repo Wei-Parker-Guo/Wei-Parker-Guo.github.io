@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sketchfab - List Layout</title>
+
+  <!-- Insert this script -->
+  <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"></script>
+  <script type="text/javascript" src="../logging/logging.js"></script>
+</head>
+<body>
+    <div style="display:flex; flex-direction: column;">
+      <div style="display:flex;">
+        <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+          execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
+          webkitallowfullscreen="true" style="display: block; margin: 3% auto;" width="1024" height="576"></iframe>
+        
+          <div id="myItemList" style="display:flex;align-items: center;margin-right: auto;"></div>
+      </div>
+      <div style="display:flex; flex-direction: column; justify-content: center;">
+        <p style="width: 100%; text-align: center; font-size: 17pt">
+          One by one, click on annotations <b>5</b>, <b>12</b> and <b>20</b>.
+      </p>
+      <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
+        <div id='pbar' style="width: 1%; height: 1.75rem; background-color: green;"></div>
+      </div>
+      </div>
+    <!-- Initialize the viewer -->
+    <script type="text/javascript">
+      var iframe = document.getElementById("api-frame");
+      var uid = "ea312cd63c07426ab3df275139525341";
+
+      // By default, the latest version of the viewer API will be used.
+      var client = new Sketchfab(iframe);
+
+      // Alternatively, you can request a specific version.
+      // var client = new Sketchfab( '1.12.0', iframe );
+
+      client.init(uid, {
+        success: function onSuccess(api) {
+          ul = document.createElement('ul');
+          ul.style.cssText = "display: flex; flex-direction: column;"
+
+          document.getElementById('myItemList').appendChild(ul);
+
+          api.start();
+          api.addEventListener("viewerready", function () {
+            loggingjs.logEvent(null, 'ListTrialStart', {
+              eventName: 'ListTrialStart',
+              model: 'clustered'
+            });
+
+            api.getAnnotationList(function (err, annotations) {
+              var pbar = document.getElementById('pbar');
+
+              tasks = [4, 11, 19];
+              completed_tasks = [];
+              total_tries = 0;
+              if (!err) {
+                annotations.forEach((annotation, index) => {
+                  let button = document.createElement('button');
+                  ul.appendChild(button);
+                  button.innerHTML += "Annotation " + (index + 1)
+                  button.style.cssText = "padding:8px;width:240px;font-size:15px;margin-bottom:10px;border-radius:8px;"
+                  button.addEventListener("click", function () {
+                    api.gotoAnnotation(index, {
+                      preventCameraAnimation: false,
+                      preventCameraMove: false,
+                    });
+                  })
+                });
+                //add selection funcs
+                api.addEventListener('annotationFocus', function (index) {
+                  total_tries += 1;
+                  //log tasks
+                  if (tasks.includes(index) && !completed_tasks.includes(index)) {
+                    completed_tasks.push(index);
+                    //track progress
+                    pbar.style.width = 1 + 33 * completed_tasks.length + '%';
+                    //logging
+                    loggingjs.logEvent(null, 'ListSubTrialEnd', {
+                      eventName: 'ListSubTrialEnd',
+                      model: 'clustered'
+                    });
+                    if (completed_tasks.length == 3) {
+                      // error rate
+                      loggingjs.logEvent(null, 'ListTrialErrorRate', {
+                        eventName: 'ListTrialErrorRate',
+                        model: 'clustered',
+                        error_rate: 1 - completed_tasks.length / total_tries
+                      });
+                      // end time
+                      loggingjs.logEvent(null, 'ListTrialEnd', {
+                        eventName: 'ListTrialEnd',
+                        model: 'clustered'
+                      });
+                    }
+                  }
+                });
+              }
+            });
+          });
+        },
+        error: function onError() {
+          console.log("Viewer error");
+        },
+        autostart: 1,
+      });
+    </script>
+  </div>
+</body>

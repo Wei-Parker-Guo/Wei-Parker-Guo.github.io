@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sketchfab - Original Layout</title>
+
+    <!-- Insert this script -->
+    <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"></script>
+    <script type="text/javascript" src="../logging/logging.js"></script>
+</head>
+
+<body>
+    <!-- Insert an empty iframe with attributes -->
+    <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" style="display: block; margin: 3% auto;" width="1024" height="576"></iframe>
+
+    <p style="width: 100%;text-align: center;font-size: 17pt;">
+        One by one, please click and read the titles for annotations <b>1</b>, <b>3</b> and <b>5</b> to complete this trial task.
+    </p>
+
+    <div id='progress' style="width: 1024px; background-color: lightgray; margin: 0 auto;">
+        <div id='pbar' style="width: 1%; height: 1.75rem; background-color: green;"></div>
+    </div>
+
+    <!-- Initialize the viewer -->
+    <script type="text/javascript">
+
+    var iframe = document.getElementById( 'api-frame' );
+    var uid = 'ae89eaa902574329a3444f5d80461f7f';
+
+    // By default, the latest version of the viewer API will be used.
+    var client = new Sketchfab( iframe );
+
+    // Alternatively, you can request a specific version.
+    // var client = new Sketchfab( '1.12.0', iframe );
+
+    //utilities
+    function array_add(a1, a2) {
+        r = [];
+        for (i in a1) {
+            r.push(a1[i] + a2[i]);
+        }
+        return r;
+    }
+
+    function array_add_ele(a1, x) {
+        r = [];
+        for (i in a1) {
+            r.push(a1[i] + x);
+        }
+        return r;
+    }
+
+    function array_div(a1, x) {
+        r = [];
+        for (i in a1) {
+            r.push(a1[i] / x);
+        }
+        return r;
+    }
+
+    client.init(uid, {
+        success: function onSuccess( api ){
+            api.start();
+            api.addEventListener( 'viewerready', function() {
+
+                // API is ready to use
+                // Insert your code here
+                console.log( 'Viewer is ready' );
+                // log starting time
+                loggingjs.logEvent(null, 'OriginTrialStart', {
+                    eventName: 'OriginTrialStart',
+                    model: 'well-spread'
+                });
+
+                //get list of annotations
+                api.getAnnotationList(function(err, annotations) {
+                    if (!err) {
+                        var eyes = [];
+                        var positions = [];
+                        var targets = [];
+                        var pbar = document.getElementById('pbar');
+
+                        //define arbitary tasks here
+                        tasks = [0, 2, 4];
+                        completed_tasks = [];
+                        total_tries = 0;
+
+                        //add selection funcs
+                        api.addEventListener('annotationFocus', function(index) {
+                            total_tries += 1;
+                            //log tasks
+                            if (tasks.includes(index) && !completed_tasks.includes(index)) {
+                                completed_tasks.push(index);
+                                //track progress
+                                pbar.style.width = 1 + 33 * completed_tasks.length + '%';
+                                //logging
+                                loggingjs.logEvent(null, 'OriginSubTrialEnd', {
+                                    eventName: 'OriginSubTrialEnd',
+                                    model: 'well-spread'
+                                });
+                                if (completed_tasks.length == 3) {
+                                    // error rate
+                                    loggingjs.logEvent(null, 'OriginTrialErrorRate', {
+                                        eventName: 'OriginTrialErrorRate',
+                                        model: 'well-spread',
+                                        error_rate: 1 - completed_tasks.length / total_tries
+                                    });
+                                    // end time
+                                    loggingjs.logEvent(null, 'OriginTrialEnd', {
+                                        eventName: 'OriginTrialEnd',
+                                        model: 'well-spread'
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+            } );
+        },
+        error: function onError() {
+            console.log( 'Viewer error' );
+        },
+        autostart: 1,
+    });
+
+    </script>
+</body>
+</html>
