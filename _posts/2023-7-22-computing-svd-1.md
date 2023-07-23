@@ -232,7 +232,7 @@ In the case where $a_i=0$, we would have a zero singular value computed. To cont
 
 We accomplish this by a special Givens rotation:
 
-$$\begin{gathered}\begin{bmatrix}c&-s\\ s&c\end{bmatrix} \begin{bmatrix}b_{i+1}\\ a_{i+1}\end{bmatrix} =\begin{bmatrix}0\\ \sqrt{a^{2}_{i+1}+b^{2}_{i+1}} \end{bmatrix} ,\\ \text{s.t.} \  \mathbf{G}^{T}_{i,i+1} \begin{bmatrix}a_{1}&b_{2}&&&&&\\ &\ddots &\ddots &&&&\\ &&a_{i-1}&b_{i}&&&\\ &&&0&\textcolor{red}{b_{i+1}} &&\\ &&&&\textcolor{red}{a_{i+1}} &\ddots &\\ &&&&&\ddots &b_{n-1}\\ &&&&&&a_{n}\end{bmatrix} =\begin{bmatrix}a_{1}&b_{2}&&&&&\\ &\ddots &\ddots &&&&\\ &&a_{i-1}&b_{i}&&&\\ &&&0&\textcolor{red}{0} &\textcolor{red}{+} &\\ &&&&\textcolor{red}{a^{\ast }_{i+1}} &\ddots &\\ &&&&&\ddots &b_{n-1}\\ &&&&&&a_{n}\end{bmatrix} .\end{gathered}$$
+$$\begin{gathered}\begin{bmatrix}c&-s\\ s&c\end{bmatrix} \begin{bmatrix}b_{i+1}\\ a_{i+1}\end{bmatrix} =\begin{bmatrix}0\\ \sqrt{a^{2}_{i+1}+b^{2}_{i+1}} \end{bmatrix} ,\\ \text{s.t.} \  \mathbf{G}^{T}_{i,i+1} \begin{bmatrix}a_{1}&b_{2}&&&&&\\ &\ddots &\ddots &&&&\\ &&a_{i-1}&b_{i}&&&\\ &&&0&\textcolor{red}{b_{i+1}} &&\\ &&&&\textcolor{red}{a_{i+1}} &\ddots &\\ &&&&&\ddots &b_{n-1}\\ &&&&&&a_{n}\end{bmatrix} = \\ \begin{bmatrix}a_{1}&b_{2}&&&&&\\ &\ddots &\ddots &&&&\\ &&a_{i-1}&b_{i}&&&\\ &&&0&\textcolor{red}{0} &\textcolor{red}{+} &\\ &&&&\textcolor{red}{a^{\ast }_{i+1}} &\ddots &\\ &&&&&\ddots &b_{n-1}\\ &&&&&&a_{n}\end{bmatrix} .\end{gathered}$$
 
 We can then remove the introduced bulge with further Givens rotations $\mathbf{G}_{i,k}, k=i+2, \cdots, n$.
 
