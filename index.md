@@ -12,7 +12,7 @@ permalink: /
 <div class="text_block" markdown="1">
 
 # Index
-Thanks for visiting! These are the areas I can show you:
+Thanks for visiting my site! These are the areas I can show you:
 
 <div class="container_flex">
 
@@ -44,18 +44,24 @@ Thanks for visiting! These are the areas I can show you:
 
 ---
 
-# Progression
-Some progress on this site.
+# Activities
+Some statistics on my git and this site.
 
+<!-- Calendar Heatmap -->
+<a href='https://github.com/Wei-Parker-Guo'>
+  <img src="http://ghchart.rshah.org/7fd1ae/Wei-Parker-Guo" alt="My Git Chart" width="100%" />
+</a>
+
+<!-- Progress Bars -->
 <div class="container_flex">
-  <div id="progress-bar-0" class="progress-bar" value="6" max="20">
-    Posts Published: 6/20
+  <div id="progress-bar-0" class="progress-bar" value="7" max="20">
+    Posts Published: 7/20
   </div>
-  <div id="progress-bar-1" class="progress-bar" value="53.795" max="100">
-    Chars Published: 53.795k/100k
+  <div id="progress-bar-1" class="progress-bar" value="27.3" max="100">
+    Pages Written: 27.3/100
   </div>
-  <div id="progress-bar-2" class="progress-bar" value="1.165" max="2">
-    Reading Time: 1.165/2 hrs
+  <div id="progress-bar-2" class="progress-bar" value="0.78" max="1">
+    Reading Time: 0.78/1 hrs
   </div>
 </div>
 

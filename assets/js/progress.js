@@ -22,13 +22,14 @@ $(document).ready( function() {
             duration: 1000,
             easing: 'bounce'
         });
-        progress_bars[i] = bar;
+        progress_bars.push(bar)
 
         var value = bars.eq(i).attr('value');
         var max = bars.eq(i).attr('max');
         bar.animate(value/max);
     }
 });
+
 
 //scroll events: trigger animation
 $(window).scroll( function() {
@@ -44,12 +45,14 @@ $(window).scroll( function() {
             wS = $(this).scrollTop();
         //check if the element is in viewport
         var in_view = wS > (hT+hH-wH) && (hT > wS) && (wS+wH > hT+hH);
-        if (progress_bars[i].value()==0 && in_view) {
-            var value = bar.attr('value');
-            var max = bar.attr('max');
-            progress_bars[i].animate(value/max);
+        if (progress_bars.length != 0) {
+            if (progress_bars[i].value()==0 && in_view) {
+                var value = bar.attr('value');
+                var max = bar.attr('max');
+                progress_bars[i].animate(value/max);
+            }
+            //reset animation if not in view
+            if(!in_view && progress_bars[i]!=0) progress_bars[i].set(0);
         }
-        //reset animation if not in view
-        if(!in_view && progress_bars[i]!=0) progress_bars[i].set(0);
     }
 });
