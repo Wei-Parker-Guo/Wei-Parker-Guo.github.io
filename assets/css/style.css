@@ -5,7 +5,6 @@ blockquote {
 
 b {
   color: #3a7d88;
-  font-weight: normal;
 }
 
 hr {
@@ -110,8 +109,8 @@ hr {
 .bordered-block {
   padding: 1rem;
   border-style: double;
-  border-radius: 0.5rem;
-  border-color: #7fd1ae;
+  border-radius: 0.7rem;
+  border-color: #3a7d88;
 }
 
 /*Progress Bar*/

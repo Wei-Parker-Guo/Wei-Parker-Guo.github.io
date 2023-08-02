@@ -7,13 +7,13 @@ $(document).ready( function() {
     //create progress bars
     for (var i = 0; i < bars.length; i++) {
         var bar = new ProgressBar.Line('#'+bars[i].id, {
-            color: '#E87572',
+            color: '#7fd1ae',
             trailColor: '#eeeeee',
             strokeWidth: 5.1,
             trailWidth: 1.1,
 
             //steps
-            from: {color: '#eeeeee', a:0},
+            from: {color: '#2f4858', a:0},
               to: {color: '#7fd1ae', a:1},
             // Set default step function for all animate calls
             step: function(state, bar) {

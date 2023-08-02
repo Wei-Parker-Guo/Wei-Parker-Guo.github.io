@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "赌博和种田：风险的诘问"
+lang: zh
 categories: 
 - Game Design
 tags:

@@ -22,8 +22,6 @@
   we want the sidebar or header to stretch.
 */
 
-  @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@300&family=Roboto:wght@300&display=swap');
-
 body {
   background-attachment: fixed;
   background-color: $sidebar-bg-color;
@@ -40,14 +38,14 @@ body {
 
   .site-title {
     display: inline-block;
-    font-family: 'Caveat', serif;
+    font-family: $sidebar-title-font;
     font-size: $large-font-size;
-    font-weight: normal;
+    font-weight: bold;
     margin-bottom: $heading-spacing;
     margin-top: 0;
   }
 
-  font-family: 'Caveat', serif;
+  font-family: $sidebar-font;
 
   animation: chromaticMove 2s ease infinite alternate-reverse, blink ease 300ms infinite;
 
@@ -72,7 +70,14 @@ body {
     text-shadow: 2px 0px 3px rgba(251, 12, 12, .5), -2px 0px 3px rgba(12, 200, 251, .5);
     transform: translateY(-.1px);
   }
-  16%, 100% {  text-shadow: none; transform: none;}
+  16%, 63% {  text-shadow: none; transform: none;}
+  64% {
+    text-shadow: -2px 0px 3px rgba(251, 12, 12, .5), 2px 0px 3px rgba(12, 200, 251, .5);
+  }
+  68% {
+    text-shadow: 2px 0px 3px rgba(251, 12, 12, .5), -2px 0px 3px rgba(12, 200, 251, .5);
+  }
+  72%, 100% {  text-shadow: none; transform: none;}
 }
 
 .content {

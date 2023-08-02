@@ -3,6 +3,53 @@
 # only main files contain this front matter, not partials.
 ---
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@300&family=Roboto:wght@300&display=swap');
+
+@font-face{
+font-family: ZanHuaXiaoKai;
+src: url(/assets/css/font/zhxk.ttf);
+}
+
+@font-face{
+font-family: BauhausLight;
+src: url(/assets/css/font/BauhausLight.ttf);
+}
+
+@font-face{
+font-family: DuneRise;
+src: url(/assets/css/font/DuneRise.ttf);
+}
+
+@font-face{
+font-family: Disolve;
+src: url(/assets/css/font/Disolve.ttf);
+}
+
+@font-face{
+font-family: Einstein;
+src: url(/assets/css/font/einstein.ttf);
+}
+
+@font-face{
+font-family: Stargazer;
+src: url(/assets/css/font/Stargazer.ttf);
+}
+
+@font-face{
+font-family: Barkode;
+src: url(/assets/css/font/barkode.ttf);
+}
+
+@font-face{
+font-family: ScreenMatrix;
+src: url(/assets/css/font/ScreenMatrix.ttf);
+}
+
+$cn-font-family: ZanHuaXiaoKai, Kai, -apple-system, Arial;
+
+$sidebar-title-font: 'Caveat', serif;
+$sidebar-font: 'Caveat', serif;
+
 $sidebar-bg-color: #2f4858;
 $link-color: #7fd1ae;
 $bold-color: #3a7d88;
