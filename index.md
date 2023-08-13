@@ -87,7 +87,7 @@ By embracing generative tools, we can work towards our own meaningful existence,
 
 > We have developed speed, but we have shut ourselves in. Machinery that gives abundance has left us in want. Our knowledge has made us cynical; our cleverness, hard and unkind. We think too much and feel too little.<br>...<br>machine men with machine minds and machine hearts!
 
-Through this site, I aim to share my thoughts and methodologies on crafting these generative tools. As a higher feature, this site itself is a tool for exploring various facets of my own being.
+Through this site, I aim to share my thoughts and methodologies on crafting these generative tools. Expanding to many domains, this site itself is a generative tool for exploring various facets of my own being.
 
 ---
 

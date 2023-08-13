@@ -5,12 +5,22 @@ permalink: /email
 sidebar_link: false
 ---
 
-## It's always a good time to say Hi!
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+	<div style="flex: 1 1 auto; min-width: 9rem;max-width: 9rem;">
+		<img src="assets/img/me.png" alt="My Photo"/>
+	</div>
+	<div style="flex: 2 2 auto; padding-left: 1.25rem; padding-right: 1.25rem;">
+		<h2>It's always a good time to say Hi!</h2>
+	</div>
+</div>
+
+---
+
 Feel free to shoot me an email at <a href="mailto:wei.parker.guo.pb@gmail.com">wei.parker.guo.pb@gmail.com</a> if you want to get in touch! I check my mailbox once a day, and will try my best to get back to you within two working days.
 
-Please go through this checklist of cold emailing so we can communicate better:
+Please go through this **checklist of cold emailing** so we can communicate better:
 
-1. **Tailor your message to the recipient.** Conduct research to understand their interests and needs, and demonstrate that you have put effort into understanding them. Additionally, make it clear why you are reaching out to them specifically and ensure that your request is not something easily fulfilled through other means.
+1. **Tailor your message to the recipient.** Demonstrate that you have put effort into understanding them. Additionally, make it clear why you are reaching out to them specifically and ensure that your request is not something easily fulfilled through other means.
 
 2. **Establish credibility and trust.** Mention any mutual connections or relevant authority, credibility, or social status, or find uncommon commonalities to create a sense of belonging and uniqueness.
 
