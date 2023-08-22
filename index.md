@@ -54,14 +54,14 @@ Some statistics on my git and this site.
 
 <!-- Progress Bars -->
 <div class="container_flex">
-  <div id="progress-bar-0" class="progress-bar" value="8" max="20">
-    Posts Published: 8/20
+  <div id="progress-bar-0" class="progress-bar" value="9" max="20">
+    Posts Published: 9/20
   </div>
-  <div id="progress-bar-1" class="progress-bar" value="37.5" max="100">
-    Pages Written: 37.5/100
+  <div id="progress-bar-1" class="progress-bar" value="42.5" max="100">
+    Pages Written: 42.5/100
   </div>
-  <div id="progress-bar-2" class="progress-bar" value="1.27" max="3">
-    Reading Time: 1.27/3 hrs
+  <div id="progress-bar-2" class="progress-bar" value="1.68" max="3">
+    Reading Time: 1.68/3 hrs
   </div>
 </div>
 
