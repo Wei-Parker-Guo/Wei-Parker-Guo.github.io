@@ -11,9 +11,9 @@ tags:
 - Gaussian Process
 ---
 
-![](/assets/img/2023-8-22/moria-mine.jpg "The mine of moria, an engineering wonder in middle earth. Job Menting @ https://www.artstation.com/artwork/b5ZlWn")
-
 Reading Time: 21 min 35 sec
+
+![](/assets/img/2023-8-22/moria-mine.jpg "The mine of moria, an engineering wonder in middle earth. Job Menting @ https://www.artstation.com/artwork/b5ZlWn")
 
 In the early dawn of the 1960s, nestled deep in the heart of South Africa, a mining engineer by the name of Daniel Gerhardus Krige was confronted with a peculiar conundrum. His task was to meticulously choose segments—or "panels"— within two gold mines that would yield more value than the cost of the extraction itself. [^1]
 
