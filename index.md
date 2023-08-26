@@ -11,8 +11,8 @@ permalink: /
 
 <div class="text_block" markdown="1">
 
-# Index
-Thanks for visiting my site! These are the areas I can show you:
+# Map
+These are the areas I can show you:
 
 <div class="container_flex">
 
@@ -24,7 +24,9 @@ Thanks for visiting my site! These are the areas I can show you:
    </div>
 
    <div>
+    <a class="no-link-color" href="/research">
      <i class="icon_button material-icons">data_usage</i>
+   </a>
      <p class="no_line_height">Research</p>
    </div>
 

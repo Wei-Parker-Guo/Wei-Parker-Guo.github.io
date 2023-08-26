@@ -11,6 +11,11 @@ hr {
   border-color: #eeeeee;
 }
 
+img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .container_flex {
     display: flex;
     flex-wrap: wrap;
