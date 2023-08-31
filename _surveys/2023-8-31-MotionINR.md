@@ -100,6 +100,3 @@ The features used by FID are extracted from both the training and generation set
 ![](attachment/99421419b362f9c0c8f81d75cc88b7a8.png)
 
 For a motion generator that just reproduces the training set motions, MMS should be very low. However, MMS for MotionINR proves to sufficiently high, especially when compared with ground-truth and other VAE generators' baselines.
-
-## Comments
----
