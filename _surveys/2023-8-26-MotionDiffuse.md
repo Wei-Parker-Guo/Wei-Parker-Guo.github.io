@@ -1,30 +1,37 @@
 ---
 layout: post
 title: "MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model"
+pub-date: 2022-08-31
 timestamp: 2023-06-15
 categories:
 - Motion Synthesis
 tags:
-- generative model
+- text2motion
+- diffusion
 - digital human
-- motion generation
 ---
 
 [M. Zhang et al., “MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model.” arXiv, Aug. 31, 2022. doi: 10.48550/arXiv.2208.15001.](https://arxiv.org/abs/2208.15001)
 
 ## Problem
-Given a set of input texts, map them to a motion sequence.
+---
+Given a set of input texts, how to map them to a motion sequence?
 
-## Constraints
-1. Probabilistic Mapping
-	- Mapping from text to motion is probabilistic, leading to diversity of generations,
-2. Realistic Synthesis
-	- Mapping respects realistic human motions.
-3. Multi-Level Manipulation
-	- Mapping yields **fine-grained body part motions** that respect **different** text descriptions.
-	- Mapping yields **fine-grained time-varied motions** that respect **different** text descriptions.
+## Observations
+---
+1. Autoregressive motion generation accumulates errors.
+2. HumanML dataset offers vague descriptions of motions for individual body parts.
+3. HumanML dataset offers vague descriptions of time-varied motions.
+
+## Assumptions
+---
+1. Probabilistic mapping from text to motion leads to diversity of generations.
+2. Text descriptions can be decomposed into subparts of body-part-independent control signals.
+3. Text descriptions can be decomposed into subparts of time-independent control signals.
+4. Body-part-independent and time-independent control signals **independently** condition motion generation.
 
 ## Pipeline
+---
 ![](attachment/0e3ce384481ebc46d8457fc314550837.png)
 
 ### Basis Model
@@ -94,6 +101,7 @@ Essentially, this block serves as a **soft activation of extracted features** w.
 </div>
 
 ## Extensions
+---
 ### Body Part-independent Controlling
 The **lack of diversity in given text** descriptions **makes accurate body part motion control difficult**.
 
