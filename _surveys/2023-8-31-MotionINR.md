@@ -8,7 +8,7 @@ categories:
 tags:
 - action2motion
 - INR
-- digital human
+- generative
 ---
 
 [P. Cervantes, Y. Sekikawa, I. Sato, and K. Shinoda, “Implicit Neural Representations for Variable Length Human Motion Generation.” arXiv, Jul. 15, 2022. doi: 10.48550/arXiv.2203.13694.](https://arxiv.org/abs/2203.13694)

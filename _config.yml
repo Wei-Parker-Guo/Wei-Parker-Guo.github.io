@@ -4,7 +4,7 @@ highlighter:      rouge
 
 # Setup
 title:            Wei Guo
-tagline:          'Exploring generative multimedia computing.'
+tagline:          "Always problem driven, occasionally drive problems."
 description:      "I'm exploring generative computer graphics and building efficient human communication with AI models."
 url:              https://wei-parker-guo.github.io
 baseurl:          ''

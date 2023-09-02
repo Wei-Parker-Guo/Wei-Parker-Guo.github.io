@@ -8,7 +8,7 @@ categories:
 tags:
 - text2motion
 - diffusion
-- digital human
+- generative
 ---
 
 [M. Zhang et al., “MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model.” arXiv, Aug. 31, 2022. doi: 10.48550/arXiv.2208.15001.](https://arxiv.org/abs/2208.15001)
