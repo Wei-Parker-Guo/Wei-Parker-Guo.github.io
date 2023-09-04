@@ -50,7 +50,7 @@ A compilation of papers for which I have written personal survey notes.
 	{% for category in categories%}
 	{% assign surveys = site.surveys | where: "categories", category | sort: "pub-date" | reverse %}
 	<tr>
-		<th rowspan={{surveys | size}}>{{category}}</th>
+		<th rowspan={{surveys | size }}>{{category}}</th>
 		<td>
 			<a href="{{surveys[0].url}}">{{surveys[0].title}}</a>
 			<br>
@@ -63,11 +63,8 @@ A compilation of papers for which I have written personal survey notes.
 		<td>{{surveys[0].pub-date | date: "%Y-%m"}}</td>
 	</tr>
 		{% for survey in surveys %}
-			{% assign imod2 = forloop.index | modulo: 2 %}
-			{% if imod2 == 1 %}
+			{% if survey.title != surveys[0].title %}
 			<tr>
-			{% endif %}
-				{% if survey.title != surveys[0].title %}
 				<td>
 					<a href="{{survey.url}}">{{survey.title}}</a>
 					<div style="text-align: right;">
@@ -77,8 +74,6 @@ A compilation of papers for which I have written personal survey notes.
 					</div>
 				</td>
 				<td>{{survey.pub-date | date: "%Y-%m"}}</td>
-				{% endif %}
-			{% if imod2 == 0 or forloop.last %}
 			</tr>
 			{% endif %}
 		{% endfor %}
