@@ -28,7 +28,7 @@ permalink: /heart
 <div style="text-align: center; margin: auto; width: 100%;">
 	<div class='flex-verses'>
 		<div>
-			And now here is my secret,<br> a very simple secret:<br><br>It is only with the heart<br>that one can see rightly;<br><br>What is essential is invisible to the eye.
+			And now here is my secret,<br> a very simple secret:<br><br>It is only with <a href="/assets/img/heart.jpg">the heart</a><br>that one can see rightly;<br><br>What is essential is invisible to the eye.
 		</div>
 		<div style="width: 10rem; height: 5rem;"><img class="heart" src="/favicon.png" style="display: inline-block;"></div>
 		<div style="font-family: ZanHuaXiaoKai, Kai, sans-serif;">
