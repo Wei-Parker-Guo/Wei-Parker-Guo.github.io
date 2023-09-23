@@ -21,7 +21,7 @@ I regularly post my research products here including publications, data, code an
 ---
 
 ## Publications
-<table style="font-size: 1rem;">
+<table style="font-size: .9rem;">
 	<tr>
 		<th>Category</th>
 		<th>Title</th>
@@ -40,7 +40,7 @@ I regularly post my research products here including publications, data, code an
 
 A compilation of papers for which I have written personal survey notes.
 
-<table style="font-size: 1rem;">
+<table style="font-size: .9rem;">
 	<tr>
 		<th>Category</th>
 		<th>Paper</th>

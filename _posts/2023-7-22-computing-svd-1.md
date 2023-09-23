@@ -275,7 +275,7 @@ Output: The SVD components s.t. $\mathbf{A}=\mathbf{U}\mathbf{\Sigma}\mathbf{V}^
 	
 	4. For $i=p+1,\cdots,n-q-1$ :
 		
-		If $\mathbf{b}_{i,i}=0$:  `%Cancellation of computing $\mathbf{b}_{i,i}$.`
+		If $\mathbf{b}_{i,i}=0$:  `%Cancellation of computing bii`
 		1. Apply our special Givens rotations to maintain the bidiagonal form of $\mathbf{B}_{2,2}$.
 		
 		Else:  `%Golub-Kahan SVD Step`

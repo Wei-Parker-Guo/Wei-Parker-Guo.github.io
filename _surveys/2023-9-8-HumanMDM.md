@@ -6,7 +6,7 @@ timestamp: 2023-09-08
 categories:
 - Motion Synthesis
 tags:
-- context2motion
+- action2motion
 - text2motion
 - classifier-free guidance
 - diffusion
