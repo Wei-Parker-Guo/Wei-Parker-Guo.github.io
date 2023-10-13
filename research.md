@@ -13,6 +13,9 @@ sidebar_link: true
 		border-radius: 5px;
 		font-size: .7rem;
 	}
+	.col1 {
+		width: 20%;
+	}
 </style>
 
 ## Declaration
@@ -28,7 +31,7 @@ I regularly post my research products here including publications, data, code an
 		<th>Date</th>
 	</tr>
 	<tr>
-		<th>Procedural Generation</th>
+		<th class="col1">Procedural Generation</th>
 		<td><a href="https://doi.org/10.1016/j.cej.2023.142108">Enhancement of hollow Ni/CeO2-Co3O4 for CO2 methanation: From CO2 adsorption and activation by synergistic effects</a><br><div style="text-align: right;"><span class="tag">rendering</span> <span class="tag">visualization</span> <span class="tag">simulation</span></div></td>
 		<td>2023-04</td>
 	</tr>
@@ -50,7 +53,7 @@ A compilation of papers for which I have written personal survey notes.
 	{% for category in categories%}
 	{% assign surveys = site.surveys | where: "categories", category | sort: "pub-date" | reverse %}
 	<tr>
-		<th rowspan={{surveys | size }}>{{category}}</th>
+		<th rowspan={{surveys | size }} class="col1">{{category}}</th>
 		<td>
 			<a href="{{surveys[0].url}}">{{surveys[0].title}}</a>
 			<br>

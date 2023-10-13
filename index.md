@@ -69,27 +69,24 @@ Some statistics on my git and this site.
 
 ---
 
-# Through the looking-glass, found.
+# Axioms
+Without some "self-evident" beliefs, I cannot develop any materials with self-expression. Therefore, for all my products, I hold the following, ever updating, axioms to be true:
 
-Here is a brief motivation for building this site.
+**What I believe in:**
+1. Knowledge belongs to everyone, and should stay available to everyone.
+2. Learning.
+3. 积累（Curiously, there is no exact mapping of this word in English!）
+4. Non-zero-sum games.
+5. Future is generative instead of deterministic.
 
-Life often tricks us into believing we have a predetermined path with fixed goals and challenges. However, reality speaks a different truth. As Clifford Geertz once said in his _Interpretation of Cultures_:
+**What I don't believe in:**
+1. A solution eliminates its problem.
+2. Assumptions.
+3. Appointed genius.
+4. Authority over reality.
+5. A person without humor.
 
-> Man is an animal suspended in webs of significance he himself has spun.
-
-In response, we keep evolving and creating tools that expand the possibilities within our webs, making every aspect of life significant.
-
-But amidst this growth, there's a risk of becoming confined by our own creations.
-
-That's when we are lost.
-
-Yet, amid this chaos, there is a glimmer of hope. Instead of building tools for judgment, we can build tools for exploration. Exploration is about generating new insights from our past experiences.
-
-By embracing generative tools, we can work towards our own meaningful existence, breaking free from artificial and automatic judgments. This pursuit is particularly vital in today's world. To quote Chaplin on this:
-
-> We have developed speed, but we have shut ourselves in. Machinery that gives abundance has left us in want. Our knowledge has made us cynical; our cleverness, hard and unkind. We think too much and feel too little.<br>...<br>machine men with machine minds and machine hearts!
-
-Through this site, I aim to share my thoughts and methodologies on crafting these generative tools. Expanding to many domains, this site itself is a generative tool for exploring various facets of my own being.
+It seems that I don't believe many things that start with the letter A, but if you believe that then you believe in me not believing arbitrariness!
 
 ---
 
