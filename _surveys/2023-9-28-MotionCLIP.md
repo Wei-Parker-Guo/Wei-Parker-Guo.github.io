@@ -8,6 +8,7 @@ categories:
 tags:
 - text2motion
 - motion manifold
+- open-vocabulary
 - AE
 - deterministic
 ---

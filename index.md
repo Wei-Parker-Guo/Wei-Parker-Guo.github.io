@@ -8,6 +8,7 @@ permalink: /
 <script src="/assets/js/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/progressbar.min.js"></script>
 <script src="/assets/js/progress.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 <div class="text_block" markdown="1">
 
@@ -47,12 +48,23 @@ These are the areas I can show you:
 ---
 
 # Activities
-Some statistics on my git and this site.
+Some **realtime** statistics.
+
+<!-- Toggl Activities -->
+<div id='toggl'></div>
+<script src='/assets/js/togglfeed.js'></script>
 
 <!-- Calendar Heatmap -->
 <a href='https://github.com/Wei-Parker-Guo'>
   <img src="http://ghchart.rshah.org/7fd1ae/Wei-Parker-Guo" alt="My Git Chart" width="100%" />
 </a>
+<div style="text-align: center;">My Github Commits</div>
+
+<br>
+
+---
+
+<br>
 
 <!-- Progress Bars -->
 <div class="container_flex">
