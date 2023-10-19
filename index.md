@@ -48,7 +48,7 @@ These are the areas I can show you:
 ---
 
 # Activities
-Some **realtime** statistics.
+You need to disable adblocker for some **realtime** statistics.
 
 <!-- Toggl Activities -->
 <div id='toggl'></div>

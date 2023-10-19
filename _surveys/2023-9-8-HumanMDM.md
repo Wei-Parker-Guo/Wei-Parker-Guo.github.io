@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Human Motion Diffusion Model"
+title: "HumanMDM: Human Motion Diffusion Model"
 pub-date: 2022-09-29
 timestamp: 2023-09-08
 categories:

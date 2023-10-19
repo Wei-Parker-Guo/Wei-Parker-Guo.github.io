@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pretrained Diffusion Models for Unified Human Motion Synthesis"
+title: "MoFusion-DAMO: Pretrained Diffusion Models for Unified Human Motion Synthesis"
 pub-date: 2022-12-06
 timestamp: 2023-09-27
 categories:

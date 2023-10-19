@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Implicit Neural Representations for Variable Length Human Motion Generation"
+title: "MotionINR: Implicit Neural Representations for Variable Length Human Motion Generation"
 pub-date: 2022-03-25
 timestamp: 2023-08-31
 categories:

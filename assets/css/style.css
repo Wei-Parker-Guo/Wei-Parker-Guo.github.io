@@ -118,6 +118,22 @@ img {
   border-color: #3a7d88;
 }
 
+.border-glow {
+  border-color: rgba(127, 209, 174, 0);
+  border-style: dashed;
+  border-width: 3px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  animation: border-glow-anim ease-in-out alternate 3s infinite;
+}
+
+@keyframes border-glow-anim {
+  0% { border-color: rgba(127, 209, 174, 0) }
+
+  100% { border-color: rgba(127, 209, 174, 1.0) }
+}
+
 /*Progress Bar*/
 .progress-bar {
   width: 17rem;

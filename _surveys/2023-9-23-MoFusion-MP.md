@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MoFusion: A Framework for Denoising-Diffusion-based Motion Synthesis"
+title: "MoFusion-MP: A Framework for Denoising-Diffusion-based Motion Synthesis"
 pub-date: 2023-05-15
 timestamp: 2023-09-23
 categories:
