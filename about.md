@@ -20,6 +20,6 @@ I'm a computer science researcher focusing on multimedia computing. I'm interest
 
 I try to approach my problem from an inter-disciplinary perspective <b>mixing computer vision, computer graphics and natural language processing</b>. My ultimate goal is to nurture a <b>perception-action cycle</b> for digital humans, allowing them to autonomously explore both virtual and real environments.
 
-On this site, I post thoughts, notes and reports over various topics related to my works. You can read most of them in my <a href='/blog'>blogs</a>.
+On this site, I post thoughts, notes and reports over various topics related to my works. You can read most of them in my <a href='/research'>research</a> and <a href='/blog'>blogs</a>.
 
 In my spare time I enjoy: long-distance running, reading, traveling, painting. They are ranked based on engagement. I enjoy small-group activities more than parties.

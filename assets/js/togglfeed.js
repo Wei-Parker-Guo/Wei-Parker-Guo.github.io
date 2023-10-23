@@ -31,8 +31,8 @@ function chart_toggl(response) {
     // stacked bar chart of date against project durations in last 30 days
 
     // Declare the chart dimensions and margins.
-    const width = $('#toggl').width()
-    const height = 400;
+    const width = $('#toggl').width();
+    const height = 360;
     const marginTop = 30;
     const marginRight = 30;
     const marginBottom = 30;
@@ -60,9 +60,11 @@ function chart_toggl(response) {
       .domain([0, d3.max(series, d => d3.max(d, d => d[1]))])
       .rangeRound([height - marginBottom, marginTop]);
 
+    const color_keys = series.map(d => d.key);
+    color_keys.splice(Math.floor(series.length / 2), 0, 'null');
     const color = d3.scaleOrdinal()
-      .domain(series.map(d => d.key))
-      .range(d3.schemeSpectral[series.length])
+      .domain(color_keys)
+      .range(d3.schemePRGn[color_keys.length].map(d => d3.interpolateRgb(d, '#7fd1ae')(0.382)))
       .unknown("#ccc");
 
     // A function to format the value in the tooltip.
