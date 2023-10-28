@@ -96,7 +96,7 @@ Without some "self-evident" beliefs, I cannot develop any materials with self-ex
 2. Assumptions.
 3. Appointed genius.
 4. Authority over reality.
-5. A person without humor.
+5. A person without [humor](/humor).
 
 It seems that I don't believe many things that start with the letter A, but if you believe that then you believe in me not believing arbitrariness!
 

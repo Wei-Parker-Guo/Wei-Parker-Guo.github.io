@@ -137,7 +137,12 @@ function chart_toggl(response) {
     if (response["current"]) {
       const entry = response["current"];
       const start = new Date(entry.start);
-      $('#toggl').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase()}ing</b> stuff on <b>${entry.tags.join(', ')}</b>.</p>`);
+      const tags = entry.tags;
+      if (tags.length >= 2) {
+        tags[tags.length-1] = tags[tags.length-2] + " and " + tags[tags.length-1];
+        tags.splice(tags.length-2, 1);
+      }
+      $('#toggl').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase()}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
     }
 
     $('#toggl').append("<br><hr><br>");
