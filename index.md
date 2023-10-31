@@ -4,6 +4,25 @@ title: Home
 permalink: /
 ---
 
+<style>
+  #map-slogan {
+    text-align: center;
+    margin-top: .7rem;
+  }
+
+  #map-slogan:after {
+    content: "踏遍青山人未老，风景这边独好。";
+    font-family: ZanHuaXiaoKai, Kai;
+    font-size: 1.1rem;
+  }
+
+  #map-slogan:hover:after {
+    content: "In the mountains of truth, you never climb in vain.";
+    font-family: Roboto;
+    font-size: 1rem;
+  }
+</style>
+
 <!-- Progress Bars -->
 <script src="/assets/js/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/progressbar.min.js"></script>
@@ -11,7 +30,6 @@ permalink: /
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 <div class="text_block" markdown="1">
-
 # Map
 These are the areas I can show you:
 
@@ -44,6 +62,8 @@ These are the areas I can show you:
    </div>
 
 </div>
+
+<div id="map-slogan"></div>
 
 ---
 
