@@ -21,6 +21,10 @@ permalink: /
     font-family: Roboto;
     font-size: 1rem;
   }
+
+  #toggl:hover {
+    cursor: pointer;
+  }
 </style>
 
 <!-- Progress Bars -->
@@ -71,7 +75,7 @@ These are the areas I can show you:
 You need to disable adblocker for some **realtime** statistics.
 
 <!-- Toggl Activities -->
-<div id='toggl' width='100%'></div>
+<div id='toggl' onclick="location.href='/activities'" width='100%'></div>
 <script src='/assets/js/togglfeed.js'></script>
 
 <!-- Calendar Heatmap -->
@@ -104,21 +108,21 @@ You need to disable adblocker for some **realtime** statistics.
 # Axioms
 Without some "self-evident" beliefs, I cannot develop any materials with self-expression. Therefore, for all my products, I hold the following, ever updating, axioms to be true:
 
-**What I believe in:**
-1. Knowledge belongs to everyone, and should stay available to everyone.
-2. Learning.
-3. 积累（Curiously, there is no exact mapping of this word in English!）
-4. Non-zero-sum games.
-5. Future is generative instead of deterministic.
+1. **What I believe in:**
+    1. Knowledge belongs to everyone, and should stay available to everyone.
+    2. Learning.
+    3. 积累（Curiously, there is no exact mapping of this word in English!）
+    4. Non-zero-sum games.
+    5. Future is generative instead of deterministic.
 
-**What I don't believe in:**
-1. A solution eliminates its problem.
-2. Assumptions.
-3. Appointed genius.
-4. Authority over reality.
-5. A person without [humor](/humor).
+2. **What I don't believe in:**
+    1. A solution eliminates its problem.
+    2. Assumptions.
+    3. Appointed genius.
+    4. Authority over reality.
+    5. A person without [humor](/humor).
 
-It seems that I don't believe many things that start with the letter A, but if you believe that then you believe in me not believing arbitrariness!
+But I also don't believe in believing beliefs! It's not a paradox if you think about it carefully.
 
 ---
 
@@ -157,10 +161,17 @@ I have created some "blog creatures" to aid reading. They will introduce themsel
 
 # Disclaimers
 
-<b>Pronoun Usage: </b>Situation often arises for the usage of gender neutral pronouns. For the ease of reading, sometimes "he/she" is abbreviated as "he". This by no means conveys any gender bias from the author.
+<b>Pronoun Usage: </b><br>
+By Axiom 1.1, and a common narrating perspective, "we" is often used despite of the fact that I'm not directly involved in others' works. I appreciate your understanding in this matter.
 
-<b>Personal Opinions: </b>As this site contains a blog, a lot of personal opinions exist throughout the posts. I stand by the first amendment of free speech, but welcome discussions.
+Situation often arises for the usage of gender neutral pronouns. For ease of reading, sometimes only a random pronoun is drawn instead of "he/she". This by no means conveys any gender bias from the author.
 
-<b>References: </b>I try to provide references to others' works throughout the posts. Exact quotations are not made sometimes for ease of reading. However, I make sure every referenced work is present in footnotes.
+<b>Personal Opinions: </b><br>
+As this site contains a blog, a lot of personal opinions exist throughout the posts. I stand by Axiom 2.4, but welcome discussions.
+
+<b>References: </b><br>
+I try to provide references to others' works throughout the posts. Exact quotations are not made for ease of reading. However, I make sure every reference is presented properly.
+
 
 </div>
+

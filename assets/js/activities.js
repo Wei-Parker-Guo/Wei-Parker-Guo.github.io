@@ -1,4 +1,4 @@
-function chart_toggl(response) {
+function chart_overview(response) {
     // data preprocessing
     let current_date = new Date();
     const projects = response['projects'];
@@ -31,10 +31,10 @@ function chart_toggl(response) {
     // stacked bar chart of date against project durations in last 30 days
 
     // Declare the chart dimensions and margins.
-    const width = $('#toggl').width();
+    const width = $('#overview').width();
     const height = width / 2.8;
     const marginTop = 30;
-    const marginRight = 30;
+    const marginRight = 0;
     const marginBottom = 30;
     const marginLeft = 30;
 
@@ -106,13 +106,13 @@ function chart_toggl(response) {
     // append legends
     const keys = series.map(d => d.key);
     for (k in keys) {
-      $('#toggl').append(`<div style="display: inline-block; border-radius: 10px;font-size: .7rem; color: white; padding: 1px 10px 1px 10px; margin: 0 .3rem .1rem .3rem;  background-color: ${color(keys[k])}">${keys[k]}</div>`);
+      $('#overview').append(`<div class="legend" style="background-color: ${color(keys[k])}">${keys[k]}</div>`);
     }
 
     // append plot
-    $('#toggl').append(svg.node());
+    $('#overview').append(svg.node());
 
-    $('#toggl').append(`<div style="text-align: center;">My Activities (hrs) in Last ${series[0].length} Days</div>`);
+    $('#overview').append(`<div style="text-align: center;">My Activities (hrs) in Last ${series[0].length} Days</div>`);
 
     // append snap
     const snap_data = response['last_30'].reduce(
@@ -131,7 +131,7 @@ function chart_toggl(response) {
       {}
     );
     const max_tag = Object.entries(snap_data).reduce((a, b) => a[1].duration > b[1].duration ? a : b)[0];
-    $('#toggl').append(`<br><p style="text-align: center;">In the past 30 days, I'm mostly <b>${snap_data[max_tag].project.toLowerCase()}ing</b> stuff on <b>${max_tag}</b>.</p>`);
+    $('#overview').append(`<br><p style="text-align: center;">In the past 30 days, I'm mostly <b>${snap_data[max_tag].project.toLowerCase()}ing</b> stuff on <b>${max_tag}</b>.</p>`);
 
     // append realtime activity
     if (response["current"]) {
@@ -142,11 +142,110 @@ function chart_toggl(response) {
         tags[tags.length-1] = tags[tags.length-2] + " and " + tags[tags.length-1];
         tags.splice(tags.length-2, 1);
       }
-      $('#toggl').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase()}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
+      $('#overview').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase()}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
     }
-
-    $('#toggl').append("<br><hr><br>");
 }
+
+
+function chart_time_entries_bar(response) {
+  const projects = response['projects'];
+  const result = response['last_30'].reduce(
+    function(r, a){
+        const name = a.description
+        const duration = a.duration / 3600;
+        // update entry if exist
+        const ei = r[0].findIndex(e => (e.name == name));        
+        if (ei != -1)  {
+          r[0][ei].duration += duration;
+        }
+        // create new entry
+        else {
+          const entry = {
+              name: name,
+              duration: duration
+          };
+          r[0].push(entry);
+        }
+        r[1] += duration;
+        return r;
+    },
+    [[], 0]
+  );
+  const total_duration = result[1];
+  const time_entries_data = result[0].sort((a, b) => d3.descending(a.duration, b.duration));
+
+  // Declare the chart dimensions and margins.
+  const width = $('#time-entries-bar').width();
+  const height = width / 2.8;
+  const marginTop = 30;
+  const marginRight = 0;
+  const marginBottom = 30;
+  const marginLeft = 30;
+
+  // Declare the x (horizontal position) scale.
+  const x = d3.scaleBand()
+      .domain(time_entries_data.map(d => d.name)) // descending frequency
+      .range([marginLeft, width - marginRight])
+      .padding(0.1);
+  
+  // Declare the y (vertical position) scale.
+  const y_min = d3.min(time_entries_data, (d) => d.duration) / 2;
+  const y = d3.scaleLog()
+      .domain([y_min, d3.max(time_entries_data, (d) => d.duration)])
+      .range([height - marginBottom, marginTop]);
+
+  // Create the SVG container.
+  const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height])
+      .attr("style", "max-width: 100%; height: auto;");
+
+  // color
+  const color_keys = time_entries_data.map(d => d.name);
+  color_keys.splice(Math.floor(time_entries_data.length / 2), 0, 'null1', 'null2', 'null3');
+
+  const color = d3.scaleOrdinal()
+        .domain(color_keys)
+        .range(color_keys.map((k, i) => d3.interpolateRgb(d3.interpolatePRGn(i / color_keys.length), '#7fd1ae')(0.382)))
+        .unknown("#ccc");
+
+  // Add a rect for each bar.
+  svg.append("g")
+    .selectAll()
+    .data(time_entries_data)
+    .join("rect")
+      .attr("x", (d) => x(d.name))
+      .attr("y", (d) => y(d.duration))
+      .attr("height", (d) => y(y_min) - y(d.duration))
+      .attr("width", x.bandwidth())
+      .attr("fill", d => color(d.name));
+
+  // Add the y-axis and label, and remove the domain line.
+  svg.append("g")
+      .attr("transform", `translate(${marginLeft},0)`)
+      .call(d3.axisLeft(y).ticks(10, "r"))
+      .call(g => g.select(".domain").remove())
+      .call(g => g.append("text")
+          .attr("x", -marginLeft)
+          .attr("y", 10)
+          .attr("fill", "currentColor")
+          .attr("text-anchor", "start")
+          .text("↑ Duration (hrs)"));
+
+  // Return the SVG element.
+  $('#time-entries-bar').append(svg.node());
+
+  // append legends
+  const keys = time_entries_data.map(d => d.name);
+  for (k in keys) {
+    $('#time-entries-bar').append(`<div class="legend" style="background-color: ${color(keys[k])}">${keys[k]}</div>`);
+  }
+
+  // append title
+  $('#time-entries-bar').append(`<br><br><div style="text-align: center;">Focus Distribution for ${time_entries_data.length} Specific Contents</div>`);
+}
+
 
 // Get data from toggl
 $.ajax({
@@ -156,7 +255,8 @@ $.ajax({
     format: "json",
     crossDomain: true,
     success: function( response ) {
-        chart_toggl(response);
+        chart_overview(response);
+        chart_time_entries_bar(response);
     }
 });
 
