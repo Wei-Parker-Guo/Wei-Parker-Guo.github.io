@@ -146,15 +146,108 @@ function chart_overview(response) {
     }
 }
 
+function chart_focus_bar(data, div_id, width, axis, desc) {
+  // Declare the chart dimensions and margins.
+  const height = width / 2;
+  const marginTop = 15;
+  let marginRight = 0;
+  const marginBottom = 15;
+  let marginLeft = 30;
+
+  if (axis != 0) {
+    marginRight = 30;
+    marginLeft = 0;
+  }
+
+  // Declare the x (horizontal position) scale.
+  const x = d3.scaleBand()
+      .domain(data.map(d => d.name))
+      .range([marginLeft, width - marginRight])
+      .padding(0.1);
+  
+  // Declare the y (vertical position) scale.
+  const y_min = d3.min(data, (d) => d.duration) / 2;
+  const y = d3.scaleLog()
+      .domain([y_min, d3.max(data, (d) => d.duration)])
+      .range([height - marginBottom, marginTop]);
+
+  // Create the SVG container.
+  const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height]);
+
+  // color
+  const color_keys = data.map(d => d.name);
+  color_keys.splice(Math.floor(data.length / 2), 0, 'null1', 'null2', 'null3');
+
+  const color = d3.scaleOrdinal()
+        .domain(color_keys)
+        .range(color_keys.map((k, i) => d3.interpolateRgb(d3.interpolatePRGn(i / color_keys.length), '#7fd1ae')(0.382)))
+        .unknown("#ccc");
+
+  // Add a rect for each bar.
+  svg.append("g")
+    .selectAll()
+    .data(data)
+    .join("rect")
+      .attr("x", (d) => x(d.name))
+      .attr("y", (d) => y(d.duration))
+      .attr("height", (d) => y(y_min) - y(d.duration))
+      .attr("width", x.bandwidth())
+      .attr("fill", d => color(d.name));
+
+  // Add the y-axis and label, and remove the domain line.
+  if (axis == 0) {
+    svg.append("g")
+        .attr("transform", `translate(${marginLeft},0)`)
+        .call(d3.axisLeft(y).ticks(10, "r"))
+        .call(g => g.select(".domain").remove())
+        .call(g => g.append("text")
+            .attr("x", 0)
+            .attr("y", 10)
+            .attr("fill", "currentColor")
+            .attr("text-anchor", "start")
+            .text("↑ Duration (hrs)"));
+  }
+  else {
+    svg.append("g")
+        .attr("transform", `translate(${width - marginRight},0)`)
+        .call(d3.axisRight(y).ticks(10, "r"))
+        .call(g => g.select(".domain").remove())
+        .call(g => g.append("text")
+            .attr("x", -2 * marginRight)
+            .attr("y", 10)
+            .attr("fill", "currentColor")
+            .attr("text-anchor", "start")
+            .text("↑ Duration (hrs)"));
+  }
+
+  // Return the SVG element.
+  $(div_id).append(svg.node());
+  $(div_id).attr("width", width);
+  if (axis != 0) {
+    $(div_id).attr("style", "text-align: right;");
+  }
+
+  // append legends
+  const keys = data.map(d => d.name);
+  for (k in keys) {
+    $(div_id).append(`<div class="legend" style="background-color: ${color(keys[k])}">${keys[k]}</div>`);
+  }
+}
+
 
 function chart_time_entries_bar(response) {
   const projects = response['projects'];
   const result = response['last_30'].reduce(
     function(r, a){
-        const name = a.description
+        const name = a.description;
         const duration = a.duration / 3600;
+        const tags = a.tags;
         // update entry if exist
         const ei = r[0].findIndex(e => (e.name == name));        
+        
         if (ei != -1)  {
           r[0][ei].duration += duration;
         }
@@ -167,83 +260,45 @@ function chart_time_entries_bar(response) {
           r[0].push(entry);
         }
         r[1] += duration;
+
+        for (let t in tags) {
+          const ti = r[2].findIndex(e => (e.name == tags[t]));
+          if (ti != -1) {
+            r[2][ti].duration += duration;
+          }
+          else {
+            const entry = {
+              name: tags[t],
+              duration: duration
+            };
+            r[2].push(entry);
+          }
+        }
+
         return r;
     },
-    [[], 0]
+    [[], 0, []]
   );
   const total_duration = result[1];
-  const time_entries_data = result[0].sort((a, b) => d3.descending(a.duration, b.duration));
+  const time_entries_data = result[0].sort((a, b) => d3.ascending(a.duration, b.duration));
+  const time_entries_tags_data = result[2].sort((a, b) => d3.descending(a.duration, b.duration));
 
-  // Declare the chart dimensions and margins.
-  const width = $('#time-entries-bar').width();
-  const height = width / 2.8;
-  const marginTop = 30;
-  const marginRight = 0;
-  const marginBottom = 30;
-  const marginLeft = 30;
+  // *************
+  // descriptions chart
+  // *************
 
-  // Declare the x (horizontal position) scale.
-  const x = d3.scaleBand()
-      .domain(time_entries_data.map(d => d.name)) // descending frequency
-      .range([marginLeft, width - marginRight])
-      .padding(0.1);
-  
-  // Declare the y (vertical position) scale.
-  const y_min = d3.min(time_entries_data, (d) => d.duration) / 2;
-  const y = d3.scaleLog()
-      .domain([y_min, d3.max(time_entries_data, (d) => d.duration)])
-      .range([height - marginBottom, marginTop]);
+  const width = ($("#time-entries-focus").width() - 30) / 2;
+  chart_focus_bar(time_entries_data, "#time-entries-bar", width, 1, "Materials");
 
-  // Create the SVG container.
-  const svg = d3.create("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("viewBox", [0, 0, width, height])
-      .attr("style", "max-width: 100%; height: auto;");
+  // *************
+  // tags chart
+  // *************
 
-  // color
-  const color_keys = time_entries_data.map(d => d.name);
-  color_keys.splice(Math.floor(time_entries_data.length / 2), 0, 'null1', 'null2', 'null3');
+  chart_focus_bar(time_entries_tags_data, "#time-entries-tag-bar", width, 0, "Categories");
 
-  const color = d3.scaleOrdinal()
-        .domain(color_keys)
-        .range(color_keys.map((k, i) => d3.interpolateRgb(d3.interpolatePRGn(i / color_keys.length), '#7fd1ae')(0.382)))
-        .unknown("#ccc");
-
-  // Add a rect for each bar.
-  svg.append("g")
-    .selectAll()
-    .data(time_entries_data)
-    .join("rect")
-      .attr("x", (d) => x(d.name))
-      .attr("y", (d) => y(d.duration))
-      .attr("height", (d) => y(y_min) - y(d.duration))
-      .attr("width", x.bandwidth())
-      .attr("fill", d => color(d.name));
-
-  // Add the y-axis and label, and remove the domain line.
-  svg.append("g")
-      .attr("transform", `translate(${marginLeft},0)`)
-      .call(d3.axisLeft(y).ticks(10, "r"))
-      .call(g => g.select(".domain").remove())
-      .call(g => g.append("text")
-          .attr("x", -marginLeft)
-          .attr("y", 10)
-          .attr("fill", "currentColor")
-          .attr("text-anchor", "start")
-          .text("↑ Duration (hrs)"));
-
-  // Return the SVG element.
-  $('#time-entries-bar').append(svg.node());
-
-  // append legends
-  const keys = time_entries_data.map(d => d.name);
-  for (k in keys) {
-    $('#time-entries-bar').append(`<div class="legend" style="background-color: ${color(keys[k])}">${keys[k]}</div>`);
-  }
-
-  // append title
-  $('#time-entries-bar').append(`<br><br><div style="text-align: center;">Focus Distribution for ${time_entries_data.length} Specific Contents</div>`);
+  // append titles
+  $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
+  $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
 }
 
 

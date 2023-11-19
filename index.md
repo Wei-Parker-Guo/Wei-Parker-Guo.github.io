@@ -21,10 +21,6 @@ permalink: /
     font-family: Roboto;
     font-size: 1rem;
   }
-
-  #toggl:hover {
-    cursor: pointer;
-  }
 </style>
 
 <!-- Progress Bars -->
@@ -75,7 +71,7 @@ These are the areas I can show you:
 You need to disable adblocker for some **realtime** statistics.
 
 <!-- Toggl Activities -->
-<div id='toggl' onclick="location.href='/activities'" width='100%'></div>
+<div id='toggl' width='100%'></div>
 <script src='/assets/js/togglfeed.js'></script>
 
 <!-- Calendar Heatmap -->

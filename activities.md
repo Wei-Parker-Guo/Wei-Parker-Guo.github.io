@@ -28,9 +28,12 @@ This page offers a more detailed dashboard of statistics for my **realtime** dai
 
 ---
 
-<div id="time-entries-bar" width="100%"></div>
+<div id="time-entries-focus" style="display: grid; grid-gap: 10px; width: 100%;">
 
----
+<div id="time-entries-bar" style="grid-column: 1; grid-row: 1;"></div>
+<div id="time-entries-tag-bar" style="grid-column: 2; grid-row: 1;"></div>
+
+</div>
 
 <script src='/assets/js/activities.js'></script>
 

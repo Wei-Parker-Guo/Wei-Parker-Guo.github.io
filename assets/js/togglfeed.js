@@ -75,7 +75,9 @@ function chart_toggl(response) {
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", [0, 0, width, height])
-      .attr("style", "max-width: 100%; height: auto;");
+      .attr("style", "max-width: 100%; height: auto;")
+      .attr("onclick", "location.href='/activities'")
+      .attr("onmouseover", "this.style.cursor='pointer'");
 
     // Append a group for each series, and a rect for each element in the series.
     svg.append("g")
