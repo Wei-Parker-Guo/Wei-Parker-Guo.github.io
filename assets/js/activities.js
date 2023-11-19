@@ -178,12 +178,16 @@ function chart_focus_bar(data, div_id, width, axis, desc) {
       .attr("viewBox", [0, 0, width, height]);
 
   // color
-  const color_keys = data.map(d => d.name);
-  color_keys.splice(Math.floor(data.length / 2), 0, 'null1', 'null2', 'null3');
+  let color_keys = data.map(d => d.name);
+  if (axis != 0) {
+    color_keys = color_keys.reverse();
+  }
+  const colors = [...color_keys];
+  colors.splice(Math.floor(data.length / 2), 0, 'null1', 'null2', 'null3');
 
   const color = d3.scaleOrdinal()
-        .domain(color_keys)
-        .range(color_keys.map((k, i) => d3.interpolateRgb(d3.interpolatePRGn(i / color_keys.length), '#7fd1ae')(0.382)))
+        .domain(colors)
+        .range(colors.map((k, i) => d3.interpolateRgb(d3.interpolatePRGn(i / colors.length), '#7fd1ae')(0.382)))
         .unknown("#ccc");
 
   // Add a rect for each bar.
@@ -232,8 +236,8 @@ function chart_focus_bar(data, div_id, width, axis, desc) {
 
   // append legends
   const keys = data.map(d => d.name);
-  for (k in keys) {
-    $(div_id).append(`<div class="legend" style="background-color: ${color(keys[k])}">${keys[k]}</div>`);
+  for (k in color_keys) {
+    $(div_id).append(`<div class="legend" style="background-color: ${color(color_keys[k])}">${color_keys[k]}</div>`);
   }
 }
 
