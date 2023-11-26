@@ -17,7 +17,7 @@ sidebar_link: false
 </style>
 
 ## Activities
-This page offers a more detailed dashboard of statistics for my **realtime** daily activities recorded. Please contact me with good reasons if you are interested in the entire dataset collected since September 2023.
+This page offers a more detailed dashboard of statistics for my **realtime** daily activities recorded. Please [contact me](/email) with good reasons if you are interested in the entire dataset collected since September 2023.
 
 ---
 
@@ -28,12 +28,22 @@ This page offers a more detailed dashboard of statistics for my **realtime** dai
 
 ---
 
-<div id="time-entries-focus" style="display: grid; grid-gap: 10px; width: 100%;">
-
-<div id="time-entries-bar" style="grid-column: 1; grid-row: 1;"></div>
-<div id="time-entries-tag-bar" style="grid-column: 2; grid-row: 1;"></div>
-
+<div id="time-entries-ratio" style="display: grid; grid-gap: 10px; width: 100%">
+	<div id="project-pie" style="grid-column: 1; grid-row: 1;"></div>
+	<div id="weighted-project-pie" style="grid-column: 2; grid-row: 1;"></div>
+	<div id="client-pie" style="grid-column: 3; grid-row: 1;"></div>
 </div>
+
+---
+
+<div id="time-entries-focus" style="display: grid; grid-gap: 10px; width: 100%;">
+	<div id="time-entries-bar" style="grid-column: 1; grid-row: 1;"></div>
+	<div id="time-entries-tag-bar" style="grid-column: 2; grid-row: 1;"></div>
+</div>
+
+---
+
+<div id="footnote" style="text-align: right; font-size: .7rem;"></div>
 
 <script src='/assets/js/activities.js'></script>
 

@@ -241,21 +241,114 @@ function chart_focus_bar(data, div_id, width, axis, desc) {
   }
 }
 
+function chart_pie(data, div_id, width, unit) {
+  const height = width * 0.618;
+  const radius = width * 0.618 / 2;
 
-function chart_time_entries_bar(response) {
+  const arc = d3.arc()
+      .innerRadius(radius * 0.618)
+      .outerRadius(radius - 1);
+
+  const pie = d3.pie()
+      .padAngle(3 / radius)
+      .sort(null)
+      .value(d => d.duration);
+
+  const color_keys = data.map(d => d.name);
+  color_keys.splice(Math.floor(color_keys.length / 2), 0, 'null');
+  const color = d3.scaleOrdinal()
+      .domain(color_keys)
+      .range(d3.schemePRGn[color_keys.length].map(d => d3.interpolateRgb(d, '#7fd1ae')(0.382)))
+      .unknown("#ccc");
+
+  const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [-width / 2, -height / 2, width, height]);
+
+  svg.append("g")
+    .selectAll()
+    .data(pie(data))
+    .join("path")
+      .attr("fill", d => color(d.data.name))
+      .attr("d", arc)
+    .append("title")
+      .text(d => `${d.data.name}: ${d.data.duration.toLocaleString()}`);
+
+  if (unit != "$") {
+    svg.append("g")
+        .attr("font-size", 12)
+        .attr("text-anchor", "middle")
+      .selectAll()
+      .data(pie(data))
+      .join("text")
+        .attr("transform", d => `translate(${arc.centroid(d)})`)
+        .call(text => text.append("tspan")
+            .attr("fill", "white")
+            .text(d => `${Math.round(d.data.duration)}${unit}`));
+
+    svg.append("text")
+      .attr("font-size", 16)
+      .attr("text-anchor", "middle")
+      .attr("dy", "-0.618em")
+      .text(`${(d3.sum(data, d => d.duration) / 30).toFixed(2)} ${unit}/day`);
+
+    svg.append("text")
+      .attr("font-size", 16)
+      .attr("text-anchor", "middle")
+      .attr("dy", "1em")
+      .text(`${d3.mean(data, d => d.duration).toFixed(2)} ${unit}/item`);
+  }
+  else {
+    svg.append("g")
+        .attr("font-size", 12)
+        .attr("text-anchor", "middle")
+      .selectAll()
+      .data(pie(data))
+      .join("text")
+        .attr("transform", d => `translate(${arc.centroid(d)})`)
+        .call(text => text.append("tspan")
+            .attr("fill", "white")
+            .text(d => `${unit}${Math.round(d.data.duration)}`)); 
+
+    svg.append("text")
+      .attr("font-size", 16)
+      .attr("text-anchor", "middle")
+      .attr("dy", "-0.618em")
+      .text(`${unit}${(d3.sum(data, d => d.duration) / 30).toFixed(2)}/day`);
+
+    svg.append("text")
+      .attr("font-size", 16)
+      .attr("text-anchor", "middle")
+      .attr("dy", "1em")
+      .text(`${unit}${d3.mean(data, d => d.duration).toFixed(2)}/item`);
+  }
+
+  $(div_id).append(svg.node());
+  $(div_id).attr("width", width).attr("style", "text-align: center;");
+
+  // append legends
+  const keys = data.map(d => d.name);
+  for (k in keys) {
+    $(div_id).append(`<div class="legend" style="background-color: ${color(keys[k])};">${keys[k]}</div>`);
+  }
+}
+
+function chart_time_entries(response) {
   const projects = response['projects'];
+  const clients = response['clients'];
   const result = response['last_30'].reduce(
     function(r, a){
         const name = a.description;
         const duration = a.duration / 3600;
         const tags = a.tags;
-        // update entry if exist
-        const ei = r[0].findIndex(e => (e.name == name));        
-        
+        const pid = a.project_id;
+
+        // time entries data
+        const ei = r[0].findIndex(e => (e.name == name));
         if (ei != -1)  {
           r[0][ei].duration += duration;
         }
-        // create new entry
         else {
           const entry = {
               name: name,
@@ -265,6 +358,7 @@ function chart_time_entries_bar(response) {
         }
         r[1] += duration;
 
+        // time entries tags data
         for (let t in tags) {
           const ti = r[2].findIndex(e => (e.name == tags[t]));
           if (ti != -1) {
@@ -279,19 +373,48 @@ function chart_time_entries_bar(response) {
           }
         }
 
+        // time entries project data
+        const pi = r[3].findIndex(e => (e.name == projects[pid].name));
+        if (pi != -1) {
+          r[3][pi].duration += duration;
+        }
+        else {
+          const entry = {
+            name: projects[pid].name,
+            duration: duration,
+            total_duration: projects[pid].actual_seconds
+          };
+          r[3].push(entry);
+        }
+
+        // time entries client data
+        const ci = r[4].findIndex(e => (e.name == clients[projects[pid].client_id].name));
+        if (ci != -1) {
+          r[4][ci].duration += duration;
+        }
+        else {
+          const entry = {
+            name: clients[projects[pid].client_id].name,
+            duration: duration
+          };
+          r[4].push(entry);
+        }
+
         return r;
     },
-    [[], 0, []]
+    [[], 0, [], [], []]
   );
   const total_duration = result[1];
   const time_entries_data = result[0].sort((a, b) => d3.ascending(a.duration, b.duration));
   const time_entries_tags_data = result[2].sort((a, b) => d3.descending(a.duration, b.duration));
+  const projects_data = result[3].sort((a, b) => d3.descending(a.duration, b.duration));
+  const clients_data = result[4].sort((a, b) => d3.descending(a.duration, b.duration));
 
   // *************
   // descriptions chart
   // *************
 
-  const width = ($("#time-entries-focus").width() - 30) / 2;
+  let width = ($("#time-entries-focus").width() - 20) / 2;
   chart_focus_bar(time_entries_data, "#time-entries-bar", width, 1, "Materials");
 
   // *************
@@ -303,6 +426,31 @@ function chart_time_entries_bar(response) {
   // append titles
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
+
+  // *************
+  // tags chart
+  // *************
+  
+  width = ($("#time-entries-ratio").width() - 20) / 3;
+
+  const weights = {
+    "Study": 16.49,
+    "Read": 13.17,
+    "Survey": 6.87,
+    "Implement": 12.5,
+    "Blog": 11.09,
+    "Review": 9.87
+  };
+
+  chart_pie(projects_data, "#project-pie", width, "hrs");
+
+  chart_pie(projects_data.map(d => ({name: d.name, duration: d.duration * weights[d.name]})), "#weighted-project-pie", width, "$");
+
+  chart_pie(clients_data, "#client-pie", width, "hrs");
+
+  $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Projects</div>`);
+  $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Income*</div>`);
+  $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 3; grid-row: 2">Clients</div>`);
 }
 
 
@@ -315,7 +463,8 @@ $.ajax({
     crossDomain: true,
     success: function( response ) {
         chart_overview(response);
-        chart_time_entries_bar(response);
+        chart_time_entries(response);
+        $("#footnote").append(`*Income is estimated from the importance weighted project durations instead of actual rates.`);
     }
 });
 
