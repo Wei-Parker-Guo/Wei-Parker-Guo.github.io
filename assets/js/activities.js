@@ -434,6 +434,7 @@ function chart_time_entries(response) {
   width = ($("#time-entries-ratio").width() - 20) / 3;
 
   const weights = {
+    "Default": 10,
     "Study": 16.49,
     "Read": 13.17,
     "Survey": 6.87,
@@ -444,7 +445,15 @@ function chart_time_entries(response) {
 
   chart_pie(projects_data, "#project-pie", width, "hrs");
 
-  chart_pie(projects_data.map(d => ({name: d.name, duration: d.duration * weights[d.name]})), "#weighted-project-pie", width, "$");
+  chart_pie(
+    projects_data.map(function(d) {
+      if (weights[d.name] == undefined) {
+        return {name: d.name, duration: d.duration * weights["Default"]};
+      }
+      else {
+        return {name: d.name, duration: d.duration * weights[d.name]};
+      }
+    }), "#weighted-project-pie", width, "$");
 
   chart_pie(clients_data, "#client-pie", width, "hrs");
 
