@@ -4,8 +4,8 @@ highlighter:      rouge
 
 # Setup
 title:            Wei Guo
-tagline:          "Always problem driven, occasionally drive problems."
-description:      "I'm exploring generative computer graphics and building efficient human communication with AI models."
+tagline:          "Rise to the challenge!"
+description:      "I'm exploring generative multimedia computing."
 url:              https://wei-parker-guo.github.io
 baseurl:          ''
                   # the optional subpath of your site, e.g. "/blog"
