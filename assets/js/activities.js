@@ -144,6 +144,9 @@ function chart_overview(response) {
       }
       $('#overview').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase()}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
     }
+
+    // return active days
+    return series[0].length;
 }
 
 function chart_focus_bar(data, div_id, width, axis, desc) {
@@ -241,7 +244,7 @@ function chart_focus_bar(data, div_id, width, axis, desc) {
   }
 }
 
-function chart_pie(data, div_id, width, unit) {
+function chart_pie(data, div_id, width, unit, active_days) {
   const height = width * 0.618;
   const radius = width * 0.618 / 2;
 
@@ -291,7 +294,7 @@ function chart_pie(data, div_id, width, unit) {
       .attr("font-size", 16)
       .attr("text-anchor", "middle")
       .attr("dy", "-0.618em")
-      .text(`${(d3.sum(data, d => d.duration) / 30).toFixed(2)} ${unit}/day`);
+      .text(`${(d3.sum(data, d => d.duration) / active_days).toFixed(2)} ${unit}/day`);
 
     svg.append("text")
       .attr("font-size", 16)
@@ -315,7 +318,7 @@ function chart_pie(data, div_id, width, unit) {
       .attr("font-size", 16)
       .attr("text-anchor", "middle")
       .attr("dy", "-0.618em")
-      .text(`${unit}${(d3.sum(data, d => d.duration) / 30).toFixed(2)}/day`);
+      .text(`${unit}${(d3.sum(data, d => d.duration) / active_days).toFixed(2)}/day`);
 
     svg.append("text")
       .attr("font-size", 16)
@@ -334,7 +337,7 @@ function chart_pie(data, div_id, width, unit) {
   }
 }
 
-function chart_time_entries(response) {
+function chart_time_entries(response, active_days) {
   const projects = response['projects'];
   const clients = response['clients'];
   const result = response['last_30'].reduce(
@@ -443,7 +446,7 @@ function chart_time_entries(response) {
     "Review": 9.87
   };
 
-  chart_pie(projects_data, "#project-pie", width, "hrs");
+  chart_pie(projects_data, "#project-pie", width, "hrs", active_days);
 
   chart_pie(
     projects_data.map(function(d) {
@@ -453,9 +456,9 @@ function chart_time_entries(response) {
       else {
         return {name: d.name, duration: d.duration * weights[d.name]};
       }
-    }), "#weighted-project-pie", width, "$");
+    }), "#weighted-project-pie", width, "$", active_days);
 
-  chart_pie(clients_data, "#client-pie", width, "hrs");
+  chart_pie(clients_data, "#client-pie", width, "hrs", active_days);
 
   $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Projects</div>`);
   $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Income*</div>`);
@@ -471,8 +474,8 @@ $.ajax({
     format: "json",
     crossDomain: true,
     success: function( response ) {
-        chart_overview(response);
-        chart_time_entries(response);
+        const active_days = chart_overview(response);
+        chart_time_entries(response, active_days);
         $("#footnote").append(`*Income is estimated from the importance weighted project durations instead of actual rates.`);
     }
 });
