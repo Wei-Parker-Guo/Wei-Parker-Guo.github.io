@@ -294,13 +294,13 @@ function chart_pie(data, div_id, width, unit, active_days) {
       .attr("font-size", 16)
       .attr("text-anchor", "middle")
       .attr("dy", "-0.618em")
-      .text(`${(d3.sum(data, d => d.duration) / active_days).toFixed(2)} ${unit}/day`);
+      .text(`${d3.sum(data, d => d.duration).toFixed(2)} ${unit}`);
 
     svg.append("text")
       .attr("font-size", 16)
       .attr("text-anchor", "middle")
       .attr("dy", "1em")
-      .text(`${d3.mean(data, d => d.duration).toFixed(2)} ${unit}/item`);
+      .text(`${(d3.sum(data, d => d.duration) / active_days).toFixed(2)} ${unit}/day`);
   }
   else {
     svg.append("g")
@@ -318,13 +318,13 @@ function chart_pie(data, div_id, width, unit, active_days) {
       .attr("font-size", 16)
       .attr("text-anchor", "middle")
       .attr("dy", "-0.618em")
-      .text(`${unit}${(d3.sum(data, d => d.duration) / active_days).toFixed(2)}/day`);
+      .text(`${unit}${d3.sum(data, d => d.duration).toFixed(2)}`);
 
     svg.append("text")
       .attr("font-size", 16)
       .attr("text-anchor", "middle")
       .attr("dy", "1em")
-      .text(`${unit}${d3.mean(data, d => d.duration).toFixed(2)}/item`);
+      .text(`${unit}${(d3.sum(data, d => d.duration) / active_days).toFixed(2)}/day`);
   }
 
   $(div_id).append(svg.node());
@@ -337,6 +337,145 @@ function chart_pie(data, div_id, width, unit, active_days) {
   }
 }
 
+function chart_moving_average(data, ks, div_id, width, window_size) {
+  // preprocessing for moving averages
+  data = data.reduce(
+    function(r, a, i) {
+      if (i + 1 >= window_size) {
+        const entry = {
+          date: a.date,
+          durations: {"Total": a.total_duration}
+        };
+
+        for (var k in ks) {
+          k = ks[k];
+          if (k in a.durations) {
+            entry.durations[k] = a.durations[k];
+          }
+          else {
+            entry.durations[k] = 0;
+          }
+        }
+
+        for (j=1; j < window_size; j++) {
+          entry.durations["Total"] += data[i - j].total_duration;
+          for (var k in ks) {
+            k = ks[k];
+            if (k in data[i-j].durations) {
+              entry.durations[k] += data[i-j].durations[k];
+            }
+          }
+        }
+
+        for (var k in entry.durations) {
+          entry.durations[k] /= window_size;
+        }
+
+        r.push(entry);
+      }
+      return r;
+    },
+    []
+  );
+
+  // Declare the chart dimensions and margins.
+  const height = width / 3;
+  const marginTop = 30;
+  const marginRight = 0;
+  const marginBottom = 40;
+  const marginLeft = 30;
+
+  // Declare the x (horizontal position) scale.
+  const x = d3.scaleBand(data.map(d => d.date), [marginLeft, width - marginRight]);
+
+  // Declare the y (vertical position) scale.
+  const y = d3.scaleLinear([0, 1], [height - marginBottom, marginTop]);
+
+  // color
+  const colors = [...ks];
+  colors.push("Total");
+  colors.splice(Math.floor(data.length / 2), 0, 'null');
+
+  const color = d3.scaleOrdinal()
+        .domain(colors)
+        .range(d3.schemePRGn[colors.length].map(d => d3.interpolateRgb(d, '#7fd1ae')(0.382)))
+        .unknown("#ccc");
+
+  // Declare the lines
+  const lines = {};
+  const y_max = d3.max(data, d => d.durations["Total"]);
+  const y_min = d3.min(data, d => d.durations["Total"]);
+  lines["Total"] = d3.line()
+    .x(d => x(d.date))
+    .y(d => y((d.durations["Total"] - y_min) / (y_max - y_min)))
+    .curve(d3.curveCardinal.tension(.618));
+  for (var k in ks) {
+    k = ks[k];
+    const y_max = d3.max(data, d => d.durations[k]);
+    const y_min = d3.min(data, d => d.durations[k]);
+    lines[k] = d3.line()
+      .x(d => x(d.date))
+      .y(d => y((d.durations[k] - y_min) / (y_max - y_min)))
+      .curve(d3.curveCardinal.tension(.618));
+  }
+
+  // Create the SVG container.
+  const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height]);
+
+  // Add the x-axis.
+  svg.append("g")
+      .attr("transform", `translate(0,${height + 10 - marginBottom})`)
+      .call(d3.axisBottom(x).tickSizeOuter(0))
+      .call(g => g.selectAll(".domain").remove());
+
+  // Add the y-axis, remove the domain line, add grid lines and a label.
+  svg.append("g")
+      .attr("transform", `translate(${marginLeft},0)`)
+      .call(d3.axisLeft(y).ticks(height / 40))
+      .call(g => g.select(".domain").remove())
+      .call(g => g.selectAll(".tick line").clone()
+          .attr("x2", width - marginLeft - marginRight)
+          .attr("stroke-opacity", 0.1))
+      .call(g => g.append("text")
+          .attr("x", width - marginRight - 150)
+          .attr("y", 10)
+          .attr("fill", "currentColor")
+          .attr("text-anchor", "start")
+          .text("↑ Normalized Duration"));
+
+  // Append a path for the line.
+  for (var k in ks) {
+    k = ks[k];
+    svg.append("path")
+      .attr("fill", "none")
+      .attr("stroke", color(k))
+      .attr("stroke-width", 3.437)
+      .attr("stroke-linecap", "round")
+      .attr("stroke-opacity", .5)
+      .attr("transform", `translate(${marginLeft},0)`)
+      .attr("d", lines[k](data));
+  }
+  svg.append("path")
+    .attr("fill", "none")
+    .attr("stroke", color("Total"))
+    .attr("stroke-width", 9)
+    .attr("stroke-linecap", "round")
+    .attr("transform", `translate(${marginLeft},0)`)
+    .attr("d", lines["Total"](data));
+
+  for (k in ks) {
+      $(div_id).append(`<div class="legend" style="background-color: ${color(ks[k])}">${ks[k]}</div>`);
+  }
+  $(div_id).append(`<div class="legend" style="background-color: ${color("Total")}">Total</div>`);
+
+  $(div_id).append(svg.node());
+
+  $(div_id).append(`<div style="text-align: center;">Moving Average with Window Size ${window_size}</div>`);
+}
+
 function chart_time_entries(response, active_days) {
   const projects = response['projects'];
   const clients = response['clients'];
@@ -346,6 +485,10 @@ function chart_time_entries(response, active_days) {
         const duration = a.duration / 3600;
         const tags = a.tags;
         const pid = a.project_id;
+        const proj_name = projects[pid].name;
+        let date = new Date(a.start);
+        date.setHours(0,0,0,0);
+        date = `${date.getMonth()+1}/${date.getDate()}`
 
         // time entries data
         const ei = r[0].findIndex(e => (e.name == name));
@@ -383,7 +526,7 @@ function chart_time_entries(response, active_days) {
         }
         else {
           const entry = {
-            name: projects[pid].name,
+            name: proj_name,
             duration: duration,
             total_duration: projects[pid].actual_seconds
           };
@@ -403,38 +546,41 @@ function chart_time_entries(response, active_days) {
           r[4].push(entry);
         }
 
+        // date data
+        const di = r[5].findIndex(e => (e.date == date));
+        if (di != -1) {
+          r[5][di].total_duration += duration;
+          if (proj_name in r[5][di].durations) {
+            r[5][di].durations[proj_name] += duration;
+          }
+          else {
+            r[5][di].durations[proj_name] = duration;
+          }
+        }
+        else {
+          const entry = {
+            date: date,
+            total_duration: duration,
+            durations: {}
+          };
+          entry.durations[proj_name] = duration;
+          r[5].push(entry);
+        }
+
         return r;
     },
-    [[], 0, [], [], []]
+    [[], 0, [], [], [], []]
   );
   const total_duration = result[1];
   const time_entries_data = result[0].sort((a, b) => d3.ascending(a.duration, b.duration));
   const time_entries_tags_data = result[2].sort((a, b) => d3.descending(a.duration, b.duration));
   const projects_data = result[3].sort((a, b) => d3.descending(a.duration, b.duration));
   const clients_data = result[4].sort((a, b) => d3.descending(a.duration, b.duration));
+  const date_data = result[5];
 
   // *************
-  // descriptions chart
+  // weights
   // *************
-
-  let width = ($("#time-entries-focus").width() - 20) / 2;
-  chart_focus_bar(time_entries_data, "#time-entries-bar", width, 1, "Materials");
-
-  // *************
-  // tags chart
-  // *************
-
-  chart_focus_bar(time_entries_tags_data, "#time-entries-tag-bar", width, 0, "Categories");
-
-  // append titles
-  $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
-  $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
-
-  // *************
-  // tags chart
-  // *************
-  
-  width = ($("#time-entries-ratio").width() - 20) / 3;
 
   const weights = {
     "Default": 10,
@@ -445,6 +591,20 @@ function chart_time_entries(response, active_days) {
     "Blog": 11.09,
     "Review": 9.87
   };
+
+  // *************
+  // moving average chart
+  // *************
+
+  let width = $("#time-entries-ratio").width();
+
+  chart_moving_average(date_data, projects_data.map(d => d.name), "#time-entries-moving-average", width, 7);
+
+  // *************
+  // pie charts
+  // *************
+  
+  width = ($("#time-entries-ratio").width() - 20) / 3;
 
   chart_pie(projects_data, "#project-pie", width, "hrs", active_days);
 
@@ -463,6 +623,23 @@ function chart_time_entries(response, active_days) {
   $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Projects</div>`);
   $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Income*</div>`);
   $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 3; grid-row: 2">Clients</div>`);
+
+  // *************
+  // descriptions chart
+  // *************
+
+  width = ($("#time-entries-focus").width() - 20) / 2;
+  chart_focus_bar(time_entries_data, "#time-entries-bar", width, 1, "Materials");
+
+  // *************
+  // tags chart
+  // *************
+
+  chart_focus_bar(time_entries_tags_data, "#time-entries-tag-bar", width, 0, "Categories");
+
+  // append titles
+  $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
+  $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
 }
 
 
