@@ -16,10 +16,10 @@ sidebar_link: true
 
 ---
 
-I'm a computer science researcher focusing on multimedia computing. I'm interested in building data-driven, generative models for <b>digital humans</b>. I dedicate my time to solving one specific problem: <b>how do we generate motion?</b>
+I'm a computer science researcher focusing on multimedia computing. I'm interested in building data-driven, generative models for <b>digital humans</b>. I dedicate my time to one specific problem: <b>what creates motion?</b>
 
-I try to approach my problem from an inter-disciplinary perspective <b>mixing computer vision, computer graphics and natural language processing</b>. My ultimate goal is to nurture a <b>perception-action cycle</b> for digital humans, allowing them to autonomously explore both virtual and real environments.
+I try to approach my problem from an inter-disciplinary perspective mixing <b>vision, graphics, natural language processing and neuroscience</b>. My ultimate goal is to nurture a <b>perception-action cycle</b> for digital humans, allowing them to autonomously explore both virtual and real environments.
 
 On this site, I post thoughts, notes and reports over various topics related to my works. You can read most of them in my <a href='/research'>research</a> and <a href='/blog'>blogs</a>.
 
-In my spare time I enjoy: long-distance running, reading, traveling, painting. They are ranked based on engagement. I enjoy small-group activities more than parties.
+In my spare time I enjoy: long-distance running, reading, traveling, painting (ranked by engagement). I enjoy small-group activities more than parties.
