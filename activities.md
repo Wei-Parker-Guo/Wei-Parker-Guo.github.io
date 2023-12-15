@@ -28,10 +28,6 @@ This page offers a more detailed dashboard of statistics for my **realtime** dai
 
 ---
 
-<div id="time-entries-moving-average"></div>
-
----
-
 <div id="time-entries-ratio" style="display: grid; grid-gap: 10px; width: 100%">
 	<div id="project-pie" style="grid-column: 1; grid-row: 1;"></div>
 	<div id="weighted-project-pie" style="grid-column: 2; grid-row: 1;"></div>
@@ -44,6 +40,10 @@ This page offers a more detailed dashboard of statistics for my **realtime** dai
 	<div id="time-entries-bar" style="grid-column: 1; grid-row: 1;"></div>
 	<div id="time-entries-tag-bar" style="grid-column: 2; grid-row: 1;"></div>
 </div>
+
+---
+
+<div id="time-entries-moving-average"></div>
 
 ---
 

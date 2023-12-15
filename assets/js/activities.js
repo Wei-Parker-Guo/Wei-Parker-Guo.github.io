@@ -32,7 +32,7 @@ function chart_overview(response) {
 
     // Declare the chart dimensions and margins.
     const width = $('#overview').width();
-    const height = width / 2.8;
+    const height = width / 2.7;
     const marginTop = 30;
     const marginRight = 0;
     const marginBottom = 30;
@@ -379,7 +379,7 @@ function chart_moving_average(data, ks, div_id, width, window_size) {
   );
 
   // Declare the chart dimensions and margins.
-  const height = width / 3;
+  const height = width / 3.708;
   const marginTop = 30;
   const marginRight = 0;
   const marginBottom = 40;
@@ -593,18 +593,10 @@ function chart_time_entries(response, active_days) {
   };
 
   // *************
-  // moving average chart
-  // *************
-
-  let width = $("#time-entries-ratio").width();
-
-  chart_moving_average(date_data, projects_data.map(d => d.name), "#time-entries-moving-average", width, 7);
-
-  // *************
   // pie charts
   // *************
   
-  width = ($("#time-entries-ratio").width() - 20) / 3;
+  let width = ($("#time-entries-ratio").width() - 20) / 3;
 
   chart_pie(projects_data, "#project-pie", width, "hrs", active_days);
 
@@ -640,6 +632,14 @@ function chart_time_entries(response, active_days) {
   // append titles
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
+
+  // *************
+  // moving average chart
+  // *************
+
+  width = $("#time-entries-ratio").width();
+
+  chart_moving_average(date_data, projects_data.map(d => d.name), "#time-entries-moving-average", width, 7);
 }
 
 
