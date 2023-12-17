@@ -43,6 +43,13 @@ This page offers a more detailed dashboard of statistics for my **realtime** dai
 
 ---
 
+<div id="time-entries-distribution" style="display: grid; grid-gap: 10px; width: 100%;">
+	<div id="days-density" style="grid-column: 1; grid-row: 1;"></div>
+	<div id="hours-density" style="grid-column: 2; grid-row: 1;"></div>
+</div>
+
+---
+
 <div id="time-entries-moving-average"></div>
 
 ---

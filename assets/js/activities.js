@@ -32,7 +32,7 @@ function chart_overview(response) {
 
     // Declare the chart dimensions and margins.
     const width = $('#overview').width();
-    const height = width / 2.7;
+    const height = width / 2.8;
     const marginTop = 30;
     const marginRight = 0;
     const marginBottom = 30;
@@ -358,11 +358,11 @@ function chart_moving_average(data, ks, div_id, width, window_size) {
         }
 
         for (j=1; j < window_size; j++) {
-          entry.durations["Total"] += data[i - j].total_duration;
+          entry.durations["Total"] += data[i - j].total_duration * Math.exp(-((j/(window_size-1))**2));
           for (var k in ks) {
             k = ks[k];
             if (k in data[i-j].durations) {
-              entry.durations[k] += data[i-j].durations[k];
+              entry.durations[k] += data[i-j].durations[k] * Math.exp(-((j/(window_size-1))**2));
             }
           }
         }
@@ -473,7 +473,102 @@ function chart_moving_average(data, ks, div_id, width, window_size) {
 
   $(div_id).append(svg.node());
 
-  $(div_id).append(`<div style="text-align: center;">Moving Average with Window Size ${window_size}</div>`);
+  const kernel = [...Array(window_size).keys()].map(a => Math.exp(-((a/(window_size-1))**2)).toFixed(2));
+
+  $(div_id).append(`<div style="text-align: center;">Convolution with Gaussian Kernel [${kernel.join(", ")}]</div>`);
+}
+
+function chart_area(data, width, color) {
+  // Declare the chart dimensions and margins.
+  const height = width / 2;
+  const marginTop = 30;
+  const marginRight = 0;
+  const marginLeft = 30;
+  const marginBottom = 30;
+
+  // Declare the x (horizontal position) scale.
+  const x = d3.scaleBand(data.map(d => d[0]), [marginLeft, width - marginRight]);
+
+  // Declare the y (vertical position) scale.
+  const y = d3.scaleLinear([0, d3.max(data, d => d[1])], [height - marginBottom, marginTop]);
+
+  // Declare the area generator.
+  const area = d3.area()
+      .x(d => x(d[0]))
+      .y0(y(0))
+      .y1(d => y(d[1]))
+      .curve(d3.curveMonotoneX);
+
+  // Create the SVG container.
+  const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height]);
+
+  // Add the x-axis.
+  svg.append("g")
+      .attr("transform", `translate(0,${height - marginBottom + 5})`)
+      .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0))
+      .call(g => g.select(".domain").remove());
+
+  // Append a path for the area.
+  svg.append("path")
+      .attr("fill", color)
+      .attr("opacity", 0.7)
+      .attr("d", area(data))
+      .attr("transform", `translate(${(x(1)-x(0))/2},0)`);
+
+  // Add the y-axis, remove the domain line, add grid lines and a label.
+  svg.append("g")
+      .attr("transform", `translate(${marginLeft},0)`)
+      .call(d3.axisLeft(y).ticks(height / 40))
+      .call(g => g.select(".domain").remove())
+      .call(g => g.selectAll(".tick line").clone()
+          .attr("x2", width - marginLeft - marginRight)
+          .attr("stroke-opacity", 0.1))
+      .call(g => g.append("text")
+          .attr("x", -marginLeft)
+          .attr("y", 10)
+          .attr("fill", "currentColor")
+          .attr("text-anchor", "start")
+          .text("↑ Density"));
+
+  return svg.node();
+}
+
+function kde(kernel, thresholds, data) {
+  return thresholds.map(t => [t, d3.mean(data, d => kernel(t - d))]);
+}
+
+function epanechnikov(bandwidth) {
+  return x => Math.abs(x /= bandwidth) <= 1 ? 0.75 * (1 - x * x) / bandwidth : 0;
+}
+
+function chart_distributions(data, day_div_id, hour_div_id, width, day_res, day_band, hour_res, hour_band) {
+  const hours = [...Array(24).keys()];
+  const days = [...Array(7).keys()];
+
+  const days_data = [];
+  for (i in data) {
+    var start = new Date(data[i].start);
+    var start = Math.round((start.getDay() + start.getHours()/24) / day_res) * day_res;
+    const points = [...Array(1 + Math.round(data[i].duration/3600/24/day_res)).keys()].map(a => (start + a * day_res));
+    days_data.push(...points);
+  }
+  const days_density = kde(epanechnikov(day_band), days, days_data);
+
+  $(day_div_id).append(chart_area(days_density, width, "#69598c"));
+
+  const hours_data = [];
+  for (i in data) {
+    var start = new Date(data[i].start);
+    var start = Math.round((start.getHours() + start.getMinutes() / 60) / hour_res) * hour_res;
+    const points = [...Array(1 + Math.round(data[i].duration/3600/hour_res)).keys()].map(a => (start + a * hour_res));
+    hours_data.push(...points);
+  }
+  const hours_density = kde(epanechnikov(hour_band), hours, hours_data);
+
+  $(hour_div_id).append(chart_area(hours_density, width, "#2b9651"));
 }
 
 function chart_time_entries(response, active_days) {
@@ -632,6 +727,18 @@ function chart_time_entries(response, active_days) {
   // append titles
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
+
+  // *************
+  // time entries distribution chart
+  // *************
+
+  width = ($("#time-entries-distribution").width() - 20) / 2;
+
+  chart_distributions(response["last_30"], "#days-density", "#hours-density", width, .1, 1, .1, 3);
+
+  // append titles
+  $("#time-entries-distribution").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Density for One Week</div>`);
+  $("#time-entries-distribution").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Density for One Day</div>`);
 
   // *************
   // moving average chart
