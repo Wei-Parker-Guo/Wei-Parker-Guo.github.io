@@ -338,6 +338,8 @@ function chart_pie(data, div_id, width, unit, active_days) {
 }
 
 function chart_moving_average(data, ks, div_id, width, window_size) {
+  // kernel
+  const kernel = [...Array(window_size).keys()].map(a => Math.exp(-((a/(Math.sqrt(window_size ** 1.236)))**2)));
   // preprocessing for moving averages
   data = data.reduce(
     function(r, a, i) {
@@ -358,11 +360,11 @@ function chart_moving_average(data, ks, div_id, width, window_size) {
         }
 
         for (j=1; j < window_size; j++) {
-          entry.durations["Total"] += data[i - j].total_duration * Math.exp(-((j/(window_size-1))**2));
+          entry.durations["Total"] += data[i - j].total_duration * kernel[j];
           for (var k in ks) {
             k = ks[k];
             if (k in data[i-j].durations) {
-              entry.durations[k] += data[i-j].durations[k] * Math.exp(-((j/(window_size-1))**2));
+              entry.durations[k] += data[i-j].durations[k] * kernel[j];
             }
           }
         }
@@ -455,7 +457,7 @@ function chart_moving_average(data, ks, div_id, width, window_size) {
       .attr("stroke-width", 3.437)
       .attr("stroke-linecap", "round")
       .attr("stroke-opacity", .5)
-      .attr("transform", `translate(${marginLeft},0)`)
+      .attr("transform", `translate(${(x(data[1].date)-x(data[0].date))/2},0)`)
       .attr("d", lines[k](data));
   }
   svg.append("path")
@@ -463,7 +465,7 @@ function chart_moving_average(data, ks, div_id, width, window_size) {
     .attr("stroke", color("Total"))
     .attr("stroke-width", 9)
     .attr("stroke-linecap", "round")
-    .attr("transform", `translate(${marginLeft},0)`)
+    .attr("transform", `translate(${(x(data[1].date)-x(data[0].date))/2},0)`)
     .attr("d", lines["Total"](data));
 
   for (k in ks) {
@@ -473,9 +475,7 @@ function chart_moving_average(data, ks, div_id, width, window_size) {
 
   $(div_id).append(svg.node());
 
-  const kernel = [...Array(window_size).keys()].map(a => Math.exp(-((a/(window_size-1))**2)).toFixed(2));
-
-  $(div_id).append(`<div style="text-align: center;">Convolution with Gaussian Kernel [${kernel.join(", ")}]</div>`);
+  $(div_id).append(`<div style="text-align: center;">Convolution with Gaussian Kernel [${kernel.map(a => a.toFixed(2)).join(", ")}]</div>`);
 }
 
 function chart_area(data, width, color) {
@@ -746,7 +746,7 @@ function chart_time_entries(response, active_days) {
 
   width = $("#time-entries-ratio").width();
 
-  chart_moving_average(date_data, projects_data.map(d => d.name), "#time-entries-moving-average", width, 7);
+  chart_moving_average(date_data, projects_data.map(d => d.name), "#time-entries-moving-average", width, 10);
 }
 
 
