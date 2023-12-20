@@ -684,7 +684,8 @@ function chart_time_entries(response, active_days) {
     "Survey": 6.87,
     "Implement": 12.5,
     "Blog": 11.09,
-    "Review": 9.87
+    "Review": 9.87,
+    "Research": 19.67
   };
 
   // *************
