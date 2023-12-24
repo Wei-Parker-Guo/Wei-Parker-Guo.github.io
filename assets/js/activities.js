@@ -604,10 +604,12 @@ function chart_time_entries(response, active_days) {
           const ti = r[2].findIndex(e => (e.name == tags[t]));
           if (ti != -1) {
             r[2][ti].duration += duration;
+            r[2][ti].entries += 1;
           }
           else {
             const entry = {
               name: tags[t],
+              entries: 1,
               duration: duration
             };
             r[2].push(entry);
@@ -618,11 +620,13 @@ function chart_time_entries(response, active_days) {
         const pi = r[3].findIndex(e => (e.name == projects[pid].name));
         if (pi != -1) {
           r[3][pi].duration += duration;
+          r[3][pi].entries += 1;
         }
         else {
           const entry = {
             name: proj_name,
             duration: duration,
+            entries: 1,
             total_duration: projects[pid].actual_seconds
           };
           r[3].push(entry);
@@ -713,21 +717,94 @@ function chart_time_entries(response, active_days) {
   $("#time-entries-ratio").append(`<div style="text-align: center; grid-column: 3; grid-row: 2">Clients</div>`);
 
   // *************
-  // descriptions chart
+  // focus chart
   // *************
 
   width = ($("#time-entries-focus").width() - 20) / 2;
   chart_focus_bar(time_entries_data, "#time-entries-bar", width, 1, "Materials");
-
-  // *************
-  // tags chart
-  // *************
-
   chart_focus_bar(time_entries_tags_data, "#time-entries-tag-bar", width, 0, "Categories");
 
   // append titles
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
+
+  // *************
+  // radar chart
+  // *************
+
+  const proj_radar_canvas = document.getElementById('time-entries-project-radar');
+
+  const proj_radar = new Chart(proj_radar_canvas, {
+    type: 'radar',
+    data: {
+      labels: projects_data.map(d => d.name),
+      datasets: [{
+        label: 'Average Project Entry Duration',
+        data: projects_data.map(d => d.duration / d.entries),
+        fill: true,
+        backgroundColor: 'rgba(105, 89, 140, 0.2)',
+        borderColor: 'rgba(105, 89, 140, .7)',
+        pointBackgroundColor: 'rgba(105, 89, 140, .7)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(105, 89, 140)'
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        r: {
+          ticks: {
+            maxTicksLimit: 5
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+
+  const cate_radar_canvas = document.getElementById('time-entries-category-radar');
+
+  const cate_radar = new Chart(cate_radar_canvas, {
+    type: 'radar',
+    data: {
+      labels: time_entries_tags_data.map(d => d.name),
+      datasets: [{
+        label: 'Average Category Entry Duration',
+        data: time_entries_tags_data.map(d => d.duration / d.entries),
+        fill: true,
+        backgroundColor: 'rgba(43, 150, 80, 0.2)',
+        borderColor: 'rgba(43, 150, 80, .7)',
+        pointBackgroundColor: 'rgba(43, 150, 80, .7)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(43, 150, 80)'
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        r: {
+          ticks: {
+            maxTicksLimit: 5
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+
+  // append titles
+  $("#time-entries-radars").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Average Duration of One Entry for Each Project</div>`);
+  $("#time-entries-radars").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Average Duration of One Entry for Each Category</div>`);
 
   // *************
   // time entries distribution chart
