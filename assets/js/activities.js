@@ -803,8 +803,8 @@ function chart_time_entries(response, active_days) {
   });
 
   // append titles
-  $("#time-entries-radars").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Average Duration of One Entry for Each Project</div>`);
-  $("#time-entries-radars").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Average Duration of One Entry for Each Category</div>`);
+  $("#time-entries-radars").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Average Duration per Entry for Each Project</div>`);
+  $("#time-entries-radars").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Average Duration per Entry for Each Category</div>`);
 
   // *************
   // time entries distribution chart
