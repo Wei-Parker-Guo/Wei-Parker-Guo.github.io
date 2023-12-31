@@ -655,12 +655,22 @@ function chart_time_entries(response, active_days) {
           else {
             r[5][di].durations[proj_name] = duration;
           }
+          for (let t in tags) {
+            tag = tags[t];
+            if (tag in r[5][di].tag_durations) {
+              r[5][di].tag_durations[tag] += duration;
+            }
+            else {
+              r[5][di].tag_durations[tag] = duration;
+            }
+          }
         }
         else {
           const entry = {
             date: date,
             total_duration: duration,
-            durations: {}
+            durations: {},
+            tag_durations: {}
           };
           entry.durations[proj_name] = duration;
           r[5].push(entry);
@@ -727,6 +737,115 @@ function chart_time_entries(response, active_days) {
   // append titles
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 1; grid-row: 2">Focus Distribution for ${time_entries_data.length} Materials</div>`);
   $("#time-entries-focus").append(`<div style="text-align: center; grid-column: 2; grid-row: 2">Focus Distribution for ${time_entries_tags_data.length} Categories</div>`);
+
+  // *************
+  // time lag comparison chart
+  // *************
+
+  const time_lag = 7; // time lag in days
+
+  const comps = date_data.slice(-time_lag-1, -1).reduce(
+    function (r, a) {
+      for (const k in a.durations) {
+        if (k in r) {
+          r[0][k] += a.durations[k];
+        }
+        else {
+          r[0][k] = a.durations[k];
+        }
+      }
+      for (const k in a.tag_durations) {
+        if (k in r) {
+          r[1][k] += a.tag_durations[k];
+        }
+        else {
+          r[1][k] = a.tag_durations[k];
+        }
+      }
+      return r;
+    },
+    [{}, {}]
+  );
+
+  const proj_comp = comps[0];
+  const tag_comp = comps[1];
+
+  const current = date_data[date_data.length-1];
+  const proj_ks = Object.keys(proj_comp);
+  const tag_ks = Object.keys(tag_comp);
+  const comp_ks = proj_ks.concat(tag_ks);
+
+  const comp_canvas = document.getElementById('comparisons-canvas');
+  const comp_chart = new Chart(comp_canvas, {
+    type: 'bar',
+    data: {
+      labels: comp_ks,
+      datasets: [
+        {
+          label: 'Projects and Categories',
+          data: comp_ks.map(
+            function (a) {
+              if (a in current.durations) {
+                return current.durations[a] - proj_comp[a]/time_lag;
+              }
+              else if (a in current.tag_durations) {
+                return current.tag_durations[a] - tag_comp[a]/time_lag;
+              }
+              else if (a in proj_comp) {
+                return 0 - proj_comp[a]/time_lag;
+              }
+              else {
+                return 0 - tag_comp[a]/time_lag;
+              }
+            }
+          ),
+          backgroundColor: comp_ks.map(
+            function (a) {
+              if (a in proj_comp) {
+                return 'rgba(105, 89, 140, 0.2)';
+              }
+              else {
+                return 'rgba(43, 150, 80, 0.2)';
+              }
+            }
+          ),
+          borderColor: comp_ks.map(
+            function (a) {
+              if (a in proj_comp) {
+                return 'rgba(105, 89, 140, 0.7)';
+              }
+              else {
+                return 'rgba(43, 150, 80, 0.7)';
+              }
+            }
+          )
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      aspectRatio: 2.8,
+      plugins: {
+        title: {
+          display: false
+        },
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          grid: {display: false},
+          border: {display: false}
+        },
+        y: {
+          border: {display: false}
+        }
+      }
+    }
+  });
+
+  $("#time-lag-comparisons").append(`<div style="text-align: center;">Work Comparison of Lastest Day Against Past ${time_lag} Days</div>`);
 
   // *************
   // radar chart

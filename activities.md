@@ -49,6 +49,12 @@ This page offers a more detailed dashboard of statistics for my **realtime** dai
 
 ---
 
+<div id="time-lag-comparisons" style="width: 100%">
+	<canvas id="comparisons-canvas"></canvas>
+</div>
+
+---
+
 <div id="time-entries-radars" style="display: grid; grid-gap: 10px; width: 100%">
 	<div class="radar-div" id="time-entries-radar-1" style="grid-column: 1; grid-row: 1;">
 		<canvas id="time-entries-project-radar"></canvas>
