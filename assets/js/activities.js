@@ -851,7 +851,7 @@ function chart_time_entries(response, active_days) {
     }
   });
 
-  $("#time-lag-comparisons").append(`<div style="text-align: center;">Work Comparison of Lastest Day Against Past ${time_lag} Days</div>`);
+  $("#time-lag-comparisons").append(`<div style="text-align: center;">Work Comparison of Latest Day Against Past ${time_lag} Days</div>`);
 
   // *************
   // radar chart
