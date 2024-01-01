@@ -673,6 +673,10 @@ function chart_time_entries(response, active_days) {
             tag_durations: {}
           };
           entry.durations[proj_name] = duration;
+          for (let t in tags) {
+            tag = tags[t];
+            entry.tag_durations[tag] = duration;
+          }
           r[5].push(entry);
         }
 
@@ -747,7 +751,7 @@ function chart_time_entries(response, active_days) {
   const comps = date_data.slice(-time_lag-1, -1).reduce(
     function (r, a) {
       for (const k in a.durations) {
-        if (k in r) {
+        if (k in r[0]) {
           r[0][k] += a.durations[k];
         }
         else {
@@ -755,7 +759,7 @@ function chart_time_entries(response, active_days) {
         }
       }
       for (const k in a.tag_durations) {
-        if (k in r) {
+        if (k in r[1]) {
           r[1][k] += a.tag_durations[k];
         }
         else {
@@ -766,6 +770,8 @@ function chart_time_entries(response, active_days) {
     },
     [{}, {}]
   );
+
+  console.log(comps);
 
   const proj_comp = comps[0];
   const tag_comp = comps[1];
