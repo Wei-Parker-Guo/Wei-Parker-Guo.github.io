@@ -41,7 +41,13 @@ I regularly post my research products here including publications, data, code an
 
 ## Surveys
 
-A compilation of papers for which I have written personal survey notes.
+Here is a very rough overview of the concept of motion over time.
+
+<script src="../assets/js/timeline.min.js"></script>
+<link href="../assets/css/timeline.min.css" rel="stylesheet" />
+{% include_relative /assets/html/res_timeline.html %}
+
+Here is a compilation of selected papers for which I have written personal survey notes.
 
 <table style="font-size: .9rem;">
 	<tr>
