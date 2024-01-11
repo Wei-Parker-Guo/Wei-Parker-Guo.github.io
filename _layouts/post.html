@@ -1,6 +1,10 @@
 ---
 layout: default
 ---
+<style type="text/css">
+  
+</style>
+
 <script>
 MathJax = {
   tex: {
@@ -12,9 +16,35 @@ MathJax = {
 };
 </script>
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+{% if page.toc %}
+<div id="toc-and-content">
+  <div id="table-of-contents">
+    {{ content | toc_only }}
+  </div>
+  <div id="post-content">
+    <header>
+      <h1 class="post-title">{{ page.title }}</h1>
+    </header>
+    <div class="content">
+      {% include post-meta.html post=page %}
+
+      <div class="post-body">
+        {{ content }}
+        {% include post-tags.html post=page %}
+      </div>
+
+      {% include comments.html %}
+      {% include related_posts.html %}
+    </div>
+  </div>
+</div>
+
+{% else %}
 <header>
   <h1 class="post-title">{{ page.title }}</h1>
 </header>
+
 <div class="content">
   {% include post-meta.html post=page %}
 
@@ -26,3 +56,4 @@ MathJax = {
   {% include comments.html %}
   {% include related_posts.html %}
 </div>
+{% endif %}

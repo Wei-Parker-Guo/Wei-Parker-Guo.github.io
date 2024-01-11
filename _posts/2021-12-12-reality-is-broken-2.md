@@ -17,7 +17,10 @@ In this post we are gonna review the first 3 of the 7 traits of game that enhanc
 It should be noted that the theories in this post, no matter how well constructed and proven, usually stay within the perspectives of psychology/philosophy. Game, or play, is a fundamental feature of human being, but disciplines are not (J. Huizinga)[^2]. Therefore, these theories should serve as an errata-check rather than a cookbook for a game project: we refer to them in the hope of avoiding some mistakes, but never engineering the whole experience from them.
 
 Let’s go through the first 3 traits now.
-## 1. Meeting positive challenges.
+
+## Meeting positive challenges.
+---
+
 A player yearns for challenges during a game. The key trigger behind this behaviour is explained in positive psychology.
 
 It turns out that the right amount of challenge, not too difficult nor too easy, keeps a person fully occupied by the task at hand. Enjoyment occurs from this immersion, and urges the participant to engage challenges continuously. This mental state of self-driven occupation is named the _flow state_ by Mihály Csíkszentmihályi[^3].
@@ -49,7 +52,9 @@ A game can push a player to his/her limits without breaking the good spirit, and
   </div>
 </div>
 
-## 2. From exotelic to autotelic.
+## From exotelic to autotelic.
+---
+
 > Autotelic, in greek as αὐτοτελής (autotelēs), formed from αὐτός (autos, "self") and τέλος (telos, "end" or "goal").[^4]
 
 An exotelic participant places purpose and rewards on external events. An autotelic participant finds joy in internal flows instead, and has the ability to self-generate rewards.[^5] Exotelic happiness is limited by provision, while the autotelic one is endless: we could always reward ourselves by taking specific actions and attitudes.
@@ -132,7 +137,9 @@ Another thing we can do is to promise rewards instead of offering them straighta
   </div>
 </div>
 
-## 3. Towards blissful productivity.
+## Towards blissful productivity.
+---
+
 > Blissful Productivity: The idea that playing in a game makes you happier working hard, than you would be relaxing. Essentially, we’re optimised as human beings by working hard, and doing meaningful and rewarding work.[^6]
 
 Yes, game is work. Unlike many other jobs, its product is happiness. The blissful productivity we obtain from game depends on many factors. The formula is here:

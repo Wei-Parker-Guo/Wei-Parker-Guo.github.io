@@ -3,6 +3,7 @@ layout: post
 title: "Atomic Motions: towards bottom-up motion synthesis for digital humans"
 permalink: /atomic_motions
 sidebar_link: false
+toc: true
 ---
 
 **Please be aware that this content is subject to significant changes until Jan.25, 2024.**
@@ -52,8 +53,7 @@ In 2020s, the motion manifold model becomes more popular because it can easily b
 
 We should keep in mind that these ideas, once emerged, seldom become obsolete. For example, the idea of template editing, such as motion matching, has been extended all the way from 1980s to 2023.
 
-## Top-down or Bottom-up?
----
+### Top-down or Bottom-up?
 Nevertheless, we can see that there is a tendency of recent ideas to drift from a top-down approach towards a bottom-up one in modeling the building blocks of motion. In 2003, we view a motion clip as a template for us to tweak into new motions. Today, we often extract low-level motion features from the motion dataset and compose motions from them instead.
 
 The top-down and bottom-up approaches are analogous to two ways of designing rocket engines: in the face of a new mission, you can either envelop the design of an old, working version with tweaks, or you can build a new engine from individually-verified parts. The difference is: in the top-down workflow we really don't know if the tweaks will cause any new problems. One tweak leads to further tweaks. In worst case, one of the subsequent tweaks form a cycle with the previous tweak, and the whole process is stuck in a local optimum loop.

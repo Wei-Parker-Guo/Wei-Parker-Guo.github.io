@@ -37,7 +37,7 @@ Game excels reality in building social bonds\* through its **efficiency** and **
 
 Efficiency in a social game means the enhanced speed and quality of social bond formation. In reality, these bonds are constructed inefficiently by the interaction of limited social roles and status, and solidified through rarely shared experience. In forming social bonds, a game environment could provide quality through _free social roles_ and speed with _realtime experience_.
 
-### Free Social Roles: for Quality
+## Free Social Roles: for Quality
 By “free” we mean that a player doesn’t need any other resources than his own effort to obtain the desired social role in a game. In reality, social roles often need other resources to achieve. To name a few:
 - An institutional recognition is needed to become a teacher.
 - An actual offspring is needed to become a parent.
@@ -79,7 +79,7 @@ Many other systems exist to help us understand and design a player’s social ro
 
 Answering these questions yield insights on how to integrate a certain social role into our game. Finally, one thing to note is that the addition of social roles in a game must be “organic”: the added role must be able to react with other game elements, such as story, rules, challenges and feedbacks. In fact, a constant mutual influence among these elements is needed to keep a game’s harmony during design.
 
-### Realtime Experience: for Speed
+## Realtime Experience: for Speed
 Shared experience is one of the most correlated factors in forming social bonds. The exposure length and extent in shared experience determines the strength of social bonds formed.[^2] As a side note, shared experience’s effect on social bonds is not relevant to its positivity as long as it’s far from neutral. A negative shared experience, such as war, bonds participants as deeply as a positive one to the same extent.[^3]
 
 What I want to discuss here is not the extent of shared experience offered by game, but the ease of this offer. Game is a device of creating realtime experience, and this feature enables it to deliver any shared experience consistently, while the same content is only rarely obtained in reality.

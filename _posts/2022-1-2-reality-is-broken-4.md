@@ -14,7 +14,7 @@ In the [previous post]({% post_url 2021-12-25-reality-is-broken-3 %}) we have in
 
 As usual, it should be reminded that the theories presented are drawn loosely from a psychological perspective. These statements, no matter how well constructed in their own field, cannot explain game or gamification as an entirety. The traits mentioned should be approached as a checklist during your project instead of a cookbook.
 
-## 1. Crafting an attitude for success.
+## Crafting an attitude for success.
 
 > Failure is the condiment that gives success its flavour. — T. Capote
 
@@ -64,7 +64,7 @@ From a viewpoint of game dynamics, a game offers the process of achieving the fi
 
 Thinking further along this line, game becomes fun by offering an enduring expectation for success and purposefully witholding the reach of that success. Although there are many ways to promise this mechanism, a common source of inspiration lies in the long-term jobs found in reality: these jobs are proven to offer enduring learning curve for achieving their objectives. The job of a game designer, in this perspective, is to gamify these jobs well enough so that they are fun to perform. I recommend reading the first post on this subject for more details if you are interested.
 
-## 2. Offering a purpose of grandeur.
+## Offering a purpose of grandeur.
 Grandeur refers to any intention, any act and any result that has greater significance than an individual’s. Yet the interesting thing is, these intentions, acts and results often come from just an individual. According to buddhism, in these moments, a transcendence in significance occurs, along with extreme happiness.[^2] Even if we don’t believe in any religion, the construction of numerous modern monuments speaks the same fact: grandeur is one of the most wanted things for a human being.
 
 Game offers grandeur in buckets. We might not have the chance to experience grandeur in reality: that often requires lifelong efforts and crucial chances to achieve. In game, however, we could get the ingredients for grandeur easily. Specifically, game can offer the following building parts:
@@ -77,7 +77,7 @@ We could approach the invocation of grandeur by brainstorming the three features
 
 As long as we can get a good story, a freedom to act and a large group of people working together, we could always have grandeur. This is an important revelation because we now know a game doesn’t really need AAA level investments to produce grandeur. It is achievable even for indie game designers. In fact, I think finding a low-cost, innovative way to do this reflects a much deeper understanding of game.
 
-## 3. Having a levelling-up worldview.
+## Having a levelling-up worldview.
 This is the last trait I’m gonna discuss, mentioned in _Reality Is Broken_. A levelling-up worldview refers to the fact that reality could be interpreted as a game in many settings. We can solve many personal distress by assuming this worldview.
 
 ### Reclaiming control in life.
