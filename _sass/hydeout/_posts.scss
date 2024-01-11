@@ -92,17 +92,28 @@ button.disqus-load {
   margin-top: 1em;
 }
 
-
 #toc-and-content {
   display: flex !important;
   gap: 3rem;
   max-width: 90%;
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+#post-content::-webkit-scrollbar {
+  display: none;
 }
 
 #post-content {
   overflow-y: auto;
   flex: 1 1 auto;
   order: 0;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#table-of-contents::-webkit-scrollbar {
+  display: none;
 }
 
 #table-of-contents {
@@ -110,19 +121,16 @@ button.disqus-load {
     max-width: 15rem;
     flex: 0 0 auto;
     order: 1;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 7rem;
+    padding-top: 7rem;
     align-self: flex-start;
+    height: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 #table-of-contents ol {
   list-style-type: decimal;
-}
-
-body {
-  overflow: hidden !important;
-  height: 100vh;
 }
 
 @media (max-width: $large-breakpoint) {
