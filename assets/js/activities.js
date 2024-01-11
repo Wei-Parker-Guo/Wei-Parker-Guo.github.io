@@ -771,8 +771,6 @@ function chart_time_entries(response, active_days) {
     [{}, {}]
   );
 
-  console.log(comps);
-
   const proj_comp = comps[0];
   const tag_comp = comps[1];
 

@@ -20,7 +20,7 @@ MathJax = {
 {% if page.toc %}
 <div id="toc-and-content">
   <div id="table-of-contents">
-    {{ content | toc_only }}
+    {% include toc.html html=content ordered=true %}
   </div>
   <div id="post-content">
     <header>

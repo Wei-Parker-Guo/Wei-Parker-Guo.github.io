@@ -40,7 +40,6 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-seo-tag
-  - jekyll-toc
 
 # Sidebar link settings
 sidebar_home_link:  false
@@ -52,18 +51,6 @@ sidebar_blog_link:  '/blog'   # By default, your home page is your blog
 #comment(disqus)
 disqus:
   shortname: wei-parker-guo
-
-#table of contents settings
-toc:
-  min_level: 1
-  max_level: 6
-  ordered_list: true
-  no_toc_section_class: no_toc_section
-  list_id: toc
-  list_class: section-nav
-  sublist_class: ''
-  item_class: toc-entry
-  item_prefix: toc-
 
 # defaults
 defaults:

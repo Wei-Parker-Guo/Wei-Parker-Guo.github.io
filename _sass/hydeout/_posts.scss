@@ -106,14 +106,14 @@ button.disqus-load {
 }
 
 #table-of-contents {
-  font-size: .8rem;
-  max-width: 15rem;
-  flex: 0 0 auto;
-  order: 1;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 7rem;
-  align-self: flex-start;
+    font-size: .8rem;
+    max-width: 15rem;
+    flex: 0 0 auto;
+    order: 1;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 7rem;
+    align-self: flex-start;
 }
 
 #table-of-contents ol {
@@ -123,6 +123,23 @@ button.disqus-load {
 body {
   overflow: hidden !important;
   height: 100vh;
+}
+
+@media (max-width: $large-breakpoint) {
+  #table-of-contents {
+    display: none;
+  }
+
+  body {
+    overflow: auto !important;
+    height: 100vh;
+  }
+
+  #toc-and-content {
+    overflow-y: auto;
+    display: default !important;
+    max-width: 100%;
+  }
 }
 
 
