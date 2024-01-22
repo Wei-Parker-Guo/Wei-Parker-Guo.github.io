@@ -391,7 +391,43 @@ These digital humans also scale up well, as described in the crowd motion synthe
 
 ## Challenges
 ---
-Available in <b style="text-align: center;" class="countdown" date="Jan 25, 2024 00:00:00"></b>.
+The challenges of my proposed framework mostly involve its extraction and execution stages.
+
+### Challenge of Data Collection
+Our framework relies on a data-driven autoencoder for atomic motion. This makes data collection our first challenge. If some essential motion features are outliers in the current dataset, we might misrepresent them in the atomic motion features. On the other hand, overfitting to nonessential motion features happens if we overemphasize the reconstruction quality of our extractor on this data.
+
+![](assets/img/atomic_motions/2d245bde2b1a477e7b323d1274ef773d.png){:width="70%"}
+
+Data collection can be enhanced by extending existent motion capture datasets, such as AMASS, with **active sampling** strategies. In one active sampling round, we conduct the following algorithm:
+1. Randomly select and formulate structures from previous atomic motions, retaining only un-sampled candidate structures in previous rounds.
+2. Synthesize motion sequences from these structures.
+3. Request a **human performer** to mimic these motion sequences and capture the response motions.
+4. Extract new atomic motions from the latest captures to augment the existing set:
+    1. If the features of new atomic motions, $A^\ast_i$'s, from the **previous round** are not significantly novel, we deem the previous round as not learning much novel motions. In this case, we update on $A^\ast_i$'s instead of adding new atomic motions in this round.
+    2. Otherwise, we learn new atomic motions, $A^{\ast\ast}_i$'s, and add them to the existing set.
+
+The formulation of this active sampler is nontrivial, especially for step 2 and 4. For step 3, the cost of hiring a human performer can easily become intractable if the sampling budget is not constrained properly.
+
+### Challenge of Information Quantification
+Quantifying the necessary information to build representative atomic motions also presents a difficulty. Specifically, determining the required number of atomic motions for optimal motion representation is not straightforward. Currently, we need thorough ablation studies on a dataset to establish this number. This approach costs much human labor and incurs repetitive computation.
+
+Since the information quantification problem in our case is a parameter optimization problem, an alternative approach alludes to **meta learning**. We could assign multiple unsupervised motion synthesis tasks, such as motion inpainting and motion forecast, to our VQ-VAE. We optimize our meta parameters as
+1. the number of atomic motions, $N$.
+2. the feature size of each atomic motion, $M$.
+3. the structural attributes of the affinity/aversion matrix $\Sigma$ for atomic motions, such as its norm and eigenvalues distribution.
+
+We aim to obtain optimal information quantification knowledge by optimizing these model parameters across various tasks. This knowledge in turn guides us to extract atomic motions.
+
+Due to the consideration of various tasks, the meta learning challenge is nontrivial.
+
+### Challenge of Motion Integration
+The Atomic Motions framework specifically synthesizes motion for human skeletons. However, body surface and hand motion synthesis require different methods involving mesh deformation. Therefore, we need to confirm if our synthesized motions integrate well with these deformation motions to fully drive a digital human.
+
+By integration, we refer to synthesizing proper **correlations** between body motion and deformation motions. For instance, a dancing person produce different gestures according to different body movements.
+
+The answer is likely no. Atomic motions exist at a low level in the bottom-up view of body motions, differing from deformation motions which match with higher-level body actions. For instance, a fist correlates only with a punch, not all arm thrusting movements (you can also push with an arm thrust). This suggests that correlations target primary atomic motion structures at least. However, the combinatorial nature of the primary structure space makes it tricky to generalize observed correlations faithfully.
+
+I don't see a very viable remedy to this problem yet. Perhaps a good starting point is to figure out how to constrain the space of primary atomic motion structures by co-embedding it with the deformation space.
 
 ## Research Forecast
 ---
