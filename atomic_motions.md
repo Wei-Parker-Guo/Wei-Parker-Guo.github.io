@@ -431,7 +431,44 @@ I don't see a very viable remedy to this problem yet. Perhaps a good starting po
 
 ## Research Forecast
 ---
-Available in <b style="text-align: center;" class="countdown" date="Jan 25, 2024 00:00:00"></b>.
+![](assets/img/atomic_motions/plan.png)
+
+In my future research, I intend to progressively work my way up from my framework of atomic motions. As I expand my investigation to higher-level structures formed by atomic motions, I aim at tackling more complex problems in motion synthesis.
+
+### Stage 1: Framework of Atomic Motions
+I'm going to investigate and improve the aforementioned atomic motions framework in this stage. The primary challenge is unconditioned motion synthesis. The task is to generate a random human motion sequence. Current methods struggle to produce human motions that are plausible and diverse **simultaneously**. My model aims to generate such motions while reducing data and computational costs significantly.
+
+### Stage 2: Exploring Primary Structures
+The primary structure of atomic motions concerns a sequence of motion structures formed during a sequential planning process. Sequential planning is often seen in conditional motion synthesis problems. For example, in action-to-motion generation, a "run" action label points to a "sprint with left leg -> sprint with right leg" sequence. Therefore, it's not only important to form individual motion structures and plans, but also crucial to constrain a sequence of them with proper correlations.
+
+The primary structure of atomic motions involves formulating a sequence of motion structures. This process is common in conditional motion synthesis, such as action-to-motion generation. For instance, a "run" action label may indicate a sequence: "sprint with left leg -> sprint with right leg". Thus, while forming individual motion structures and plans is vital, it's equally crucial to create them with appropriate correlations.
+
+I consider the following conditioned motion synthesis tasks in this stage:
+1. action-to-motion generation.
+2. text-to-motion generation.
+3. motion inpainting.
+4. body-part motion editing.
+5. feedback motion control.
+
+For 5, please see the implications section for more details.
+
+### Stage 3: Exploring Secondary Structures
+What motions do you end up with if you can compose different primary motion structures? This is the question of interest in stage 3.
+
+We can see that
+1. juxtaposing primary structures and animating multiple digital humans with them leads to **crowd motion synthesis**.
+2. choosing an optimal primary structure among others leads to **interactive motion synthesis** since we are essentially building a motion policy.
+
+I'd like to start stage 3 by investigating these two secondary structures first. It's also interesting to explore how we can have both 1 and 2 in a crowd of digital humans.
+
+### Stage 4: Interactive Crowds
+Consider two crowds of digital humans, driven by the secondary motion structures in stage 3. These two crowds follow different environmental conditions to guide their motions.
+
+In reality, humans don't operate in closed systems. Environmental conditions vary locally, influencing their motion patterns. For instance, people often walk on streets and sit in cafes. As the secondary structures handle interactions and crowd motions, the tertiary structure focuses on the interaction between crowds from different environments. Some example questions are: how to synthesize interactive crowd motions between heterogenous local environments? what happens when two crowds are suddenly exposed to each other?
+
+Efficiency is key when processing vast amounts of motion information. In the atomic motions framework, each digital human must plan and execute motions at least every 8 frames. This equates to a 3Hz update rate for creating 24-frame animations. Maintaining this update rate in real-time is crucial, especially when dealing with tertiary structures involving a behemoth amount of digital humans.
+
+In lack of computational resources, compromises need to be considered for our framework to be usable. For instance, some level-of-detail tricks can be employed. We might update the digital humans near a human user at 3Hz, and gradually lower this rate for those further away.
 
 ## References
 ---
