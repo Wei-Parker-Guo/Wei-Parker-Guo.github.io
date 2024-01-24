@@ -10,10 +10,12 @@ toc: true
 
 Digital humans should perform humanlike behaviors. The basic human behavior is motion. What creates motion? Unlike natural language or DNA, the fundamental building blocks of motion are unclear. The lack of a bottom-up approach motivates many motion synthesis works to model lower-level elements of motion. These endeavors have achieved significant progress over the past two decades with the boost of machine learning algorithms. I dedicate my time to cook the most motions with the least ingredients possible. Analogous to the periodic table of atoms, I hypothesize that there exist "atomic motions" that exhibit high data efficiency in modeling motion structures and dynamics. Based on atomic motions, I model motion synthesis as an autonomous structuring-planning-executing process. I will discuss recent trends in motion synthesis, introduce my atomic motions model, and use recent findings from computer graphics and neuroscience to support my approach's validity for further investigation. I will wrap up by outlining challenges and forecasting my future research activities.
 
-## Video
+## Presentation
 ---
 
-Available in <b style="text-align: center;" class="countdown" date="Jan 25, 2024 00:00:00"></b>.
+Available in <b style="text-align: center;" class="countdown" date="Jan 31, 2024 00:00:00"></b>.
+
+<a href="assets/doc/atomic_motions.pdf" target="_blank">Slides: https://wei-parker-guo.github.io/assets/doc/atomic_motions.pdf</a>
 
 ## Introduction
 ---
@@ -472,7 +474,7 @@ In lack of computational resources, compromises need to be considered for our fr
 
 ## References
 ---
-Available in <b style="text-align: center;" class="countdown" date="Jan 25, 2024 00:00:00"></b>.
+Available in <b style="text-align: center;" class="countdown" date="Jan 31, 2024 00:00:00"></b>.
 
 
 <script src="../assets/js/countdown.js"></script>
