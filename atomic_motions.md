@@ -3,7 +3,6 @@ layout: post
 title: "Atomic Motions: towards bottom-up motion synthesis for digital humans"
 permalink: /atomic_motions
 sidebar_link: false
-toc: true
 ---
 
 **Please be aware that this content is subject to significant changes until Jan.25, 2024.**
@@ -47,9 +46,9 @@ I propose that before building more larger and more complex models of recent mot
 ---
 Many ideas have been formed regarding the building blocks of motion. Let's browse them quickly before we draw our own hypothesis about atomic motions.
 
-
-<script src="../assets/js/timeline.min.js"></script>
+<script src="../assets/js/timeline.js"></script>
 <link href="../assets/css/timeline.min.css" rel="stylesheet" />
+
 <div class="timeline">
     <div class="timeline__wrap">
         <div class="timeline__items">
@@ -157,7 +156,7 @@ Many ideas have been formed regarding the building blocks of motion. Let's brows
 
 <script type="text/javascript">
     timeline(document.querySelectorAll('.timeline'), {
-      forceVerticalMode: 800,
+      forceVerticalMode: 600,
       mode: 'horizontal',
       visibleItems: 3
     });

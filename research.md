@@ -43,7 +43,7 @@ I regularly post my research products here including publications, data, code an
 
 Here is a very rough overview of the concept of motion over time.
 
-<script src="../assets/js/timeline.min.js"></script>
+<script src="../assets/js/timeline.js"></script>
 <link href="../assets/css/timeline.min.css" rel="stylesheet" />
 {% include_relative /assets/html/res_timeline.html %}
 

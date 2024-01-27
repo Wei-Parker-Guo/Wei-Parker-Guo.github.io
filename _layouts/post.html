@@ -15,19 +15,18 @@ MathJax = {
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
 {% if page.toc %}
-<style type="text/css">
-  .container {
-    padding: 0;
-  }
-</style>
 <div id="toc-and-content">
+  <style type="text/css">
+    .container {
+      padding: 0;
+      background: white;
+    }
+  </style>
   <div id="table-of-contents">
     {% include toc.html html=content ordered=true %}
   </div>
   <div id="post-content">
-    <header>
-      <h1 style="padding-top: 1.5rem;" class="post-title">{{ page.title }}</h1>
-    </header>
+    <h1 class="post-title" style="padding: 1rem;">{{ page.title }}</h1>
     <div class="content">
       {% include post-meta.html post=page %}
 
