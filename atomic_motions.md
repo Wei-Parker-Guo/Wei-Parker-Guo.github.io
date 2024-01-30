@@ -5,16 +5,14 @@ permalink: /atomic_motions
 sidebar_link: false
 ---
 
-**Please be aware that this content is subject to significant changes until Jan.25, 2024.**
-
 Digital humans should perform humanlike behaviors. The basic human behavior is motion. What creates motion? Unlike natural language or DNA, the fundamental building blocks of motion are unclear. The lack of a bottom-up approach motivates many motion synthesis works to model lower-level elements of motion. These endeavors have achieved significant progress over the past two decades with the boost of machine learning algorithms. I dedicate my time to cook the most motions with the least ingredients possible. Analogous to the periodic table of atoms, I hypothesize that there exist "atomic motions" that exhibit high data efficiency in modeling motion structures and dynamics. Based on atomic motions, I model motion synthesis as an autonomous structuring-planning-executing process. I will discuss recent trends in motion synthesis, introduce my atomic motions model, and use recent findings from computer graphics and neuroscience to support my approach's validity for further investigation. I will wrap up by outlining challenges and forecasting my future research activities.
 
 ## Presentation
 ---
 
-Available in <b style="text-align: center;" class="countdown" date="Jan 31, 2024 00:00:00"></b>.
+<iframe src="https://www.youtube.com/embed/kgoXeipx2XU" style="border:0px #ffffff none;" name="video" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="512px" width="100%" allowfullscreen></iframe>
 
-<a href="assets/doc/atomic_motions.pdf" target="_blank">Slides: https://wei-parker-guo.github.io/assets/doc/atomic_motions.pdf</a>
+Slides can be found here: <a href="assets/doc/atomic_motions.pdf" target="_blank">https://wei-parker-guo.github.io/assets/doc/atomic_motions.pdf</a>
 
 ## Introduction
 ---
@@ -473,8 +471,64 @@ In lack of computational resources, compromises need to be considered for our fr
 
 ## References
 ---
-Available in <b style="text-align: center;" class="countdown" date="Jan 31, 2024 00:00:00"></b>.
 
+[1] K. Gong et al., “TM2D: Bimodality Driven 3D Dance Generation via Music-Text Integration.” arXiv, Oct. 01, 2023. doi: 10.48550/arXiv.2304.02419.
 
-<script src="../assets/js/countdown.js"></script>
+[2] K. Zhao, Y. Zhang, S. Wang, T. Beeler, and S. Tang, “Synthesizing Diverse Human Motions in 3D Indoor Scenes.” arXiv, Aug. 21, 2023. doi: 10.48550/arXiv.2305.12411.
+
+[3] N. Athanasiou, M. Petrovich, M. J. Black, and G. Varol, “SINC: Spatial Composition of 3D Human Motions for Simultaneous Action Generation.” arXiv, Aug. 19, 2023. doi: 10.48550/arXiv.2304.10417.
+
+[4] X. Cao et al., “A Survey of Learning on Small Data: Generalization, Optimization, and Challenge.” arXiv, Jun. 06, 2023. doi: 10.48550/arXiv.2207.14443.
+
+[5] W. Li, X. Chen, P. Li, O. Sorkine-Hornung, and B. Chen, “Example-based Motion Synthesis via Generative Motion Matching.” arXiv, Jun. 01, 2023. doi: 10.48550/arXiv.2306.00378.
+
+[6] R. Dabral, M. H. Mughal, V. Golyanik, and C. Theobalt, “MoFusion: A Framework for Denoising-Diffusion-based Motion Synthesis.” arXiv, May 15, 2023. Accessed: Sep. 23, 2023. [Online]. Available: http://arxiv.org/abs/2212.04495
+
+[7] J. Lin et al., “Being Comes from Not-being: Open-vocabulary Text-to-Motion Generation with Wordless Training.” arXiv, Mar. 24, 2023. doi: 10.48550/arXiv.2210.15929.
+
+[8] J. Zhang et al., “T2M-GPT: Generating Human Motion from Textual Descriptions with Discrete Representations.” arXiv, Feb. 28, 2023. doi: 10.48550/arXiv.2301.06052.
+
+[9] S. Raab, I. Leibovitch, P. Li, K. Aberman, O. Sorkine-Hornung, and D. Cohen-Or, “MoDi: Unconditional Motion Synthesis from Diverse Data.” arXiv, Dec. 18, 2022. doi: 10.48550/arXiv.2206.08010.
+
+[10] J. Ma, S. Bai, and C. Zhou, “Pretrained Diffusion Models for Unified Human Motion Synthesis.” arXiv, Dec. 06, 2022. doi: 10.48550/arXiv.2212.02837.
+
+[11] C. He, J. Saito, J. Zachary, H. Rushmeier, and Y. Zhou, “NeMF: Neural Motion Fields for Kinematic Animation.” arXiv, Oct. 09, 2022. doi: 10.48550/arXiv.2206.03287.
+
+[12] W. Mao, M. Liu, R. Hartley, and M. Salzmann, “Contact-aware Human Motion Forecasting.” arXiv, Oct. 08, 2022. doi: 10.48550/arXiv.2210.03954.
+
+[13] N. Athanasiou, M. Petrovich, M. J. Black, and G. Varol, “TEACH: Temporal Action Composition for 3D Humans.” arXiv, Sep. 12, 2022. doi: 10.48550/arXiv.2209.04066.
+
+[14] G. Tevet, S. Raab, B. Gordon, Y. Shafir, D. Cohen-Or, and A. H. Bermano, “Human Motion Diffusion Model.” arXiv, Sep. 29, 2022. doi: 10.48550/arXiv.2209.14916.
+
+[15] M. Zhang et al., “MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model.” arXiv, Aug. 31, 2022. doi: 10.48550/arXiv.2208.15001.
+
+[16] C. Guo, X. Zuo, S. Wang, and L. Cheng, “TM2T: Stochastic and Tokenized Modeling for the Reciprocal Generation of 3D Human Motions and Texts.” arXiv, Aug. 04, 2022. doi: 10.48550/arXiv.2207.01696.
+
+[17] M. Petrovich, M. J. Black, and G. Varol, “TEMOS: Generating diverse human motions from textual descriptions.” arXiv, Jul. 22, 2022. doi: 10.48550/arXiv.2204.14109.
+
+[18] P. Cervantes, Y. Sekikawa, I. Sato, and K. Shinoda, “Implicit Neural Representations for Variable Length Human Motion Generation.” arXiv, Jul. 15, 2022. doi: 10.48550/arXiv.2203.13694.
+
+[19] H. K. Inagaki et al., “Neural Algorithms and Circuits for Motor Planning,” Annu. Rev. Neurosci., vol. 45, no. 1, pp. 249–271, Jul. 2022, doi: 10.1146/annurev-neuro-092021-121730.
+
+[20] X. B. Peng, Y. Guo, L. Halper, S. Levine, and S. Fidler, “ASE: Large-Scale Reusable Adversarial Skill Embeddings for Physically Simulated Characters,” ACM Trans. Graph., vol. 41, no. 4, pp. 1–17, Jul. 2022, doi: 10.1145/3528223.3530110.
+
+[21] X. Tang et al., “Real-time Controllable Motion Transition for Characters,” ACM Trans. Graph., vol. 41, no. 4, pp. 1–10, Jul. 2022, doi: 10.1145/3528223.3530090.
+
+[22] C. Guo et al., “Generating Diverse and Natural 3D Human Motions From Text,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Jun. 2022, pp. 5152–5161.
+
+[23] G. Tevet, B. Gordon, A. Hertz, A. H. Bermano, and D. Cohen-Or, “MotionCLIP: Exposing Human Motion Generation to CLIP Space.” arXiv, Mar. 15, 2022. doi: 10.48550/arXiv.2203.08063.
+
+[24] S. Starke, H. Zhang, T. Komura, and J. Saito, “Neural state machine for character-scene interactions,” ACM Trans. Graph., vol. 38, no. 6, p. 209:1-209:14, Nov. 2019, doi: 10.1145/3355089.3356505.
+
+[25] D. Holden, T. Komura, and J. Saito, “Phase-functioned neural networks for character control,” ACM Trans. Graph., vol. 36, no. 4, pp. 1–13, Aug. 2017, doi: 10.1145/3072959.3073663.
+
+[26] D. Holden, J. Saito, T. Komura, and T. Joyce, “Learning motion manifolds with convolutional autoencoders,” in SIGGRAPH Asia 2015 Technical Briefs, Kobe Japan: ACM, Nov. 2015, pp. 1–4. doi: 10.1145/2820903.2820918.
+
+[27] K. Hyun, M. Kim, Y. Hwang, and J. Lee, “Tiling Motion Patches,” IEEE Trans. Visual. Comput. Graphics, vol. 19, no. 11, pp. 1923–1934, Nov. 2013, doi: 10.1109/TVCG.2013.80.
+
+[28] T. Mukai and S. Kuriyama, “Geostatistical motion interpolation,” ACM Trans. Graph., vol. 24, no. 3, pp. 1062–1070, Jul. 2005, doi: 10.1145/1073204.1073313.
+
+[29] O. Arikan, D. A. Forsyth, and J. F. O’Brien, “Motion synthesis from annotations,” ACM Trans. Graph., vol. 22, no. 3, pp. 402–408, Jul. 2003, doi: 10.1145/882262.882284.
+
+[30] L. Kovar, M. Gleicher, and F. Pighin, “Motion graphs,” in Proceedings of the 29th annual conference on Computer graphics and interactive techniques, San Antonio Texas: ACM, Jul. 2002, pp. 473–482. doi: 10.1145/566570.566605.
 
