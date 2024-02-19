@@ -131,7 +131,7 @@ function chart_overview(response) {
       {}
     );
     const max_tag = Object.entries(snap_data).reduce((a, b) => a[1].duration > b[1].duration ? a : b)[0];
-    $('#overview').append(`<br><p style="text-align: center;">In the past 30 days, I'm mostly <b>${snap_data[max_tag].project.toLowerCase()}ing</b> stuff on <b>${max_tag}</b>.</p>`);
+    $('#overview').append(`<br><p style="text-align: center;">In the past 30 days, I'm mostly <b>${snap_data[max_tag].project.toLowerCase().replace(/e+$/g, '')}ing</b> stuff on <b>${max_tag}</b>.</p>`);
 
     // append realtime activity
     if (response["current"]) {
@@ -142,7 +142,7 @@ function chart_overview(response) {
         tags[tags.length-1] = tags[tags.length-2] + " and " + tags[tags.length-1];
         tags.splice(tags.length-2, 1);
       }
-      $('#overview').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase()}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
+      $('#overview').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase().replace(/e+$/g, '')}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
     }
 
     // return active days

@@ -133,7 +133,7 @@ function chart_toggl(response) {
       {}
     );
     const max_tag = Object.entries(snap_data).reduce((a, b) => a[1].duration > b[1].duration ? a : b)[0];
-    $('#toggl').append(`<br><p style="text-align: center;">In the past 30 days, I'm mostly <b>${snap_data[max_tag].project.toLowerCase()}ing</b> stuff on <b>${max_tag}</b>.</p>`);
+    $('#toggl').append(`<br><p style="text-align: center;">In the past 30 days, I'm mostly <b>${snap_data[max_tag].project.toLowerCase().replace(/e+$/g, '')}ing</b> stuff on <b>${max_tag}</b>.</p>`);
 
     // append realtime activity
     if (response["current"]) {
@@ -144,7 +144,7 @@ function chart_toggl(response) {
         tags[tags.length-1] = tags[tags.length-2] + " and " + tags[tags.length-1];
         tags.splice(tags.length-2, 1);
       }
-      $('#toggl').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase()}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
+      $('#toggl').append(`<p class="border-glow">Currently, since ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}, I have started <b>${projects[entry.project_id]['name'].toLowerCase().replace(/e+$/g, '')}ing</b> stuff on <b>${tags.join(', ')}</b>.</p>`);
     }
 
     $('#toggl').append("<br><hr><br>");
