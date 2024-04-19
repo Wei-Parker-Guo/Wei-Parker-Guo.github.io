@@ -1,0 +1,60 @@
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
+
+# Setup
+title:            Wei Guo
+tagline:          "What creates motion?"
+description:      "I'm exploring generative multimedia computing."
+url:              https://wei-parker-guo.github.io
+baseurl:          ''
+                  # the optional subpath of your site, e.g. "/blog"
+                  # NB: This applies to all pages in your Jekyll site.
+                  # If you want to move just the blog index pages but keep
+                  # other pages at root, see the paginate_path and
+                  # sidebar_blog_link below.
+logo: /assets/img/logo.ico
+
+social:
+  name: Wei Guo
+  links:
+    - https://github.com/Wei-Parker-Guo
+    - https://discord.gg/MHNN3bbaCx
+
+google_site_verification: 'I9SaJvNiWmomKQr5NkmIZ5p33h01P5N_LSZQC6_qa6o'
+
+author:
+  name:           'Wei Guo'
+  url:            https://wei-parker-guo.github.io
+
+paginate:         10
+paginate_path:    '/blog/page:num'
+                    # Or '/blog/page:num' if you want to move your index pages
+
+collections:
+  surveys:
+    output: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-seo-tag
+
+# Sidebar link settings
+sidebar_home_link:  false
+sidebar_blog_link:  '/blog'   # By default, your home page is your blog
+                                # page. If you change your paginate_path,
+                                # set this to the root of the paginate_path
+                                # to enable a separate blog link.
+
+#comment(disqus)
+disqus:
+  shortname: wei-parker-guo
+
+# defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      toc: true

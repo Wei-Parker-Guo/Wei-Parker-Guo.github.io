@@ -1,0 +1,162 @@
+// Posts and pages
+//
+// Each post is wrapped in `.post` and is used on default and post layouts. Each
+// page is wrapped in `.page` and is only used on the page layout.
+
+.posts-by-tag h2 {
+  text-transform: capitalize;
+}
+
+// Blog post or page title
+.page-title,
+.post-title {
+  margin-top: 0;
+}
+
+.page-title,
+.post-title,
+.post-title a {
+  color: $heading-color;
+}
+
+h2.post-title,
+h2.page-title {
+  font-size: 2rem;
+}
+
+.post-tags a {
+  font-size: 0.8em;
+  margin-right: 0.5rem;
+  opacity: 0.75;
+  white-space: nowrap;
+
+  .tag-name { text-transform: capitalize; }
+
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+}
+
+.posts-list {
+  list-style: none;
+  padding-left: 0;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  li small {
+    color: #999;
+    font-size: 75%;
+    white-space: nowrap;
+  }
+
+  li a:hover {
+    color: $link-color;
+    text-decoration: none;
+  }
+
+  li a:hover small {
+    color: inherit;
+  }
+}
+
+article + *,
+.post-body ~ section {
+  border-top: 1px solid $border-color;
+  margin-top: $section-spacing;
+  padding-top: $section-spacing;
+
+  > h2:first-child,
+  > h3:first-child {
+    margin-top: 0;
+  }
+}
+
+// Meta data line below post title
+.post-meta {
+  color: $body-muted;
+  margin-bottom: 1rem;
+  margin-top: -0.5rem;
+}
+
+.post,
+.page {
+  .content li + li {
+    margin-top: 0.25rem;
+  }
+}
+
+button.disqus-load {
+  margin-top: 1em;
+}
+
+#toc-and-content {
+  display: flex !important;
+  gap: 3rem;
+  max-width: 90%;
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+#post-content::-webkit-scrollbar {
+  display: none;
+}
+
+html:lang(en) #post-content {
+  font-family: AvenirNext, Roboto;
+}
+
+html:lang(zh) #post-content {
+  font-family: $cn-font-family;
+}
+
+#post-content {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  order: 0;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#table-of-contents::-webkit-scrollbar {
+  display: none;
+}
+
+#table-of-contents {
+    font-family: Roboto, -apple-system;
+    font-size: .8rem;
+    max-width: 15rem;
+    flex: 0 0 auto;
+    order: 1;
+    padding-top: 7rem;
+    align-self: flex-start;
+    height: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#table-of-contents ol {
+  list-style-type: decimal;
+}
+
+@media (max-width: $large-breakpoint) {
+  #table-of-contents {
+    display: none;
+  }
+
+  body {
+    overflow: auto !important;
+    height: 100vh;
+  }
+
+  #toc-and-content {
+    overflow-y: auto;
+    display: default !important;
+    max-width: 100%;
+  }
+}
+
+

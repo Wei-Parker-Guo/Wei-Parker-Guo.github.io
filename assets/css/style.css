@@ -1,0 +1,156 @@
+blockquote {
+	border-left: 5px solid #3a7d88;
+	color: #3a7d88;
+}
+
+b {
+  color: #3a7d88;
+}
+
+hr {
+  border-color: #eeeeee;
+}
+
+img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container_flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container_flex div {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 1rem;
+}
+
+.text_block {
+  width: 73%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-right {
+  text-align: left !important;
+}
+
+.icon_button {
+	font-size: 7rem;
+  color: #2f4858;
+}
+
+.icon_button_small {
+  font-size: 5.1rem;
+  color: #2f4858;
+}
+
+.icon_button:hover {
+	color: #7fd1ae;
+	cursor: pointer;
+}
+
+.icon_button_small:hover {
+  color: #7fd1ae;
+  cursor: pointer;
+}
+
+.no_line_height {
+	line-height: 0;
+}
+
+.blog-creature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px;
+}
+
+.b-icon {
+  flex: 1 1 auto;
+  max-width: 5rem;
+  padding-right: 9px;
+}
+
+.z-lines {
+  flex: 2 2 auto;
+  border-style: dashed;
+  border-radius: 11px;
+  border-color: #E87572;
+  padding: 9px;
+  max-width: 31rem;
+}
+.z-lines b {
+  color: #e87572;
+}
+.l-lines {
+  flex: 2 2 auto;
+  border-style: dashed;
+  border-radius: 11px;
+  border-color: #65C9FF;
+  padding: 9px;
+  max-width: 31rem;
+}
+.l-lines b {
+  color: #65C9FF;
+}
+.b-lines {
+  flex: 2 2 auto;
+  border-style: dashed;
+  border-radius: 11px;
+  border-color: #F9B97A;
+  padding: 9px;
+  max-width: 31rem;
+}
+.b-lines b {
+  color: #F9B97A;
+}
+
+.bordered-block {
+  padding: 1rem;
+  border-style: double;
+  border-radius: 0.7rem;
+  border-color: #3a7d88;
+}
+
+.border-glow {
+  border-color: rgba(127, 209, 174, 0);
+  border-style: dashed;
+  border-width: 3px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  animation: border-glow-anim ease-in-out alternate 3s infinite;
+}
+
+@keyframes border-glow-anim {
+  0% { border-color: rgba(127, 209, 174, 0) }
+
+  100% { border-color: rgba(127, 209, 174, 1.0) }
+}
+
+/*Progress Bar*/
+.progress-bar {
+  width: 17rem;
+  max-width: 21rem;
+  height: 5rem;
+}
+
+/* Mobile View */
+@media (max-width: 49rem) {
+  .icon_button {
+    font-size: 6.1rem;
+    color: #eeeeee;
+  }
+  h1 {
+    color: #eeeeee;
+  }
+  hr {
+  border-color: #eeeeee;
+}
+}

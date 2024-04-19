@@ -1,0 +1,14 @@
+<!-- Additional head bits without overriding original head -->
+
+<!-- icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<!-- seo -->
+{% seo title=false%}
+
+{% if jekyll.environment == 'production' %}
+  {% include analytics.html %}
+{% endif %}

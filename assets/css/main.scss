@@ -1,0 +1,48 @@
+---
+# Use a comment to ensure Jekyll reads the file to be transformed into CSS later
+# only main files contain this front matter, not partials.
+---
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@300&family=Roboto:wght@300&display=swap');
+
+@font-face{
+font-family: ZiShiZhengKai;
+src: url(/assets/css/font/zszk.ttf);
+}
+
+@font-face{
+font-family: ZanHuaXiaoKai;
+src: url(/assets/css/font/zhxk.ttf);
+}
+
+@font-face{
+font-family: BauhausLight;
+src: url(/assets/css/font/BauhausLight.ttf);
+}
+
+@font-face{
+font-family: AvenirNext;
+src: url(/assets/css/font/AvenirNext.OTF);
+}
+
+@font-face{
+font-family: Caveat;
+src: url(/assets/css/font/Caveat.ttf);
+}
+
+@font-face{
+font-family: Barkode;
+src: url(/assets/css/font/barkode.ttf);
+}
+
+$cn-font-family: ZiShiZhengKai, ZanHuaXiaoKai, Kai, -apple-system, Arial;
+
+$sidebar-title-font: Caveat, serif;
+$sidebar-font: Caveat, serif;
+
+$sidebar-bg-color: #2f4858;
+$link-color: #7fd1ae;
+$bold-color: #3a7d88;
+$content-max-width: 83%;
+
+@import "hydeout";
