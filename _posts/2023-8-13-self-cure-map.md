@@ -3,7 +3,7 @@ layout: post
 title: "需要终身练习的自由：埃格尔的自我解放地图"
 lang: zh
 categories: 
-- Cognition
+- Psychology
 tags:
 - Self Help
 - Philosophy

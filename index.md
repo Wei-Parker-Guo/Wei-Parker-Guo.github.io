@@ -19,14 +19,10 @@ permalink: /
     "稻花香里说丰年，听取蛙声一片。",
     "Information is merely a means to insight.",
     "知不可乎骤得，惟江上之清风。",
-    "One must imagine Sisyphus happy.",
+    "Sisyphus is happy.",
     "踏遍青山人未老，风景这边独好。",
     "The only way around is through.",
     "马作的卢飞快，弓如霹雳弦惊。",
-    "Pain is inevitable. Suffering is optional.",
-    "上善若水，利万物而不争。",
-    "dum vivimus, vivamus.",
-    "胜人者有力，自胜者强。",
     "There are no beautiful surfaces without a terrible depth.",
     "欲待曲终寻问取，人不见，数峰青。"
   ];
@@ -47,8 +43,7 @@ permalink: /
 
 <div class="text_block" markdown="1">
 
-# Index
-Please [contact me](/email) if you need anything else.
+## Index
 
 <div class="container_flex">
 
@@ -87,7 +82,7 @@ Please [contact me](/email) if you need anything else.
 
 ---
 
-# Activities
+## Activities
 You need to disable adblocker for some **realtime** statistics.
 
 <!-- Toggl Activities -->
@@ -104,53 +99,13 @@ You need to disable adblocker for some **realtime** statistics.
 
 ---
 
-<br>
-
-<!-- Progress Bars -->
-<div class="container_flex">
-  <div id="progress-bar-0" class="progress-bar" value="9" max="20">
-    Posts Published: 9/20
-  </div>
-  <div id="progress-bar-1" class="progress-bar" value="42.5" max="100">
-    Pages Written: 42.5/100
-  </div>
-  <div id="progress-bar-2" class="progress-bar" value="1.68" max="3">
-    Reading Time: 1.68/3 hrs
-  </div>
-</div>
-
----
-
-# Axioms
-Without some "self-evident" beliefs, I cannot express myself. Therefore, for all my products on this site, I hold the following axioms to be true:
-
-1. **What I believe in:**
-    1. Knowledge belongs to everyone, and should stay available to everyone.
-    2. Learning.
-    3. 积累（Curiously, there is no exact mapping of this word in English!）
-    4. Non-zero-sum games.
-    5. Future is generative instead of deterministic.
-
-2. **What I don't believe in:**
-    1. A solution eliminates its problem.
-    2. Assumptions.
-    3. Appointed genius.
-    4. Authority over reality.
-    5. A person without [humor](/humor).
-
-But I also don't believe in believing beliefs! It's not a paradox if you think about it carefully.
-
----
-
-# Disclaimers
+## Disclaimers
 
 <b>Pronoun Usage: </b><br>
-By Axiom 1.1, and a common narrating perspective, "we" is often used despite of the fact that I'm not directly involved in others' works. I appreciate your understanding in this matter.
-
-Situation often arises for the usage of gender neutral pronouns. For ease of reading, sometimes only a random pronoun is drawn instead of "he/she". This by no means conveys any gender bias from the author.
+By a common narrating perspective, "we" is sometimes used despite of the fact that I'm not directly involved in others' works. I appreciate your understanding in this matter.
 
 <b>Personal Opinions: </b><br>
-As this site contains a blog, a lot of personal opinions exist throughout the posts. I stand by Axiom 2.4, but welcome discussions.
+As this site contains a blog, a lot of personal opinions exist throughout the posts.
 
 <b>References: </b><br>
 I try to provide references to others' works throughout the posts. Exact quotations are not made for ease of reading. However, I make sure every reference is presented properly.

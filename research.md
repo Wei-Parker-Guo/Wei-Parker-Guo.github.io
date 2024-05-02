@@ -31,7 +31,7 @@ I regularly post my research products here including publications, data, code an
 		<th>Date</th>
 	</tr>
 	<tr>
-		<th class="col1">Procedural Generation</th>
+		<th class="col1">Chemical Engineering</th>
 		<td><a href="https://doi.org/10.1016/j.cej.2023.142108">Enhancement of hollow Ni/CeO2-Co3O4 for CO2 methanation: From CO2 adsorption and activation by synergistic effects</a><br><div style="text-align: right;"><span class="tag">rendering</span> <span class="tag">visualization</span> <span class="tag">simulation</span></div></td>
 		<td>2023-04</td>
 	</tr>
@@ -40,12 +40,6 @@ I regularly post my research products here including publications, data, code an
 ---
 
 ## Surveys
-
-Here is a very rough overview of the concept of motion over time.
-
-<script src="../assets/js/timeline.js"></script>
-<link href="../assets/css/timeline.min.css" rel="stylesheet" />
-{% include_relative /assets/html/res_timeline.html %}
 
 Here is a compilation of selected papers for which I have written personal survey notes.
 
